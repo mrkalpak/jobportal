@@ -1,0 +1,43 @@
+.image-input {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .custom-outline-color {
+    color: var(--primary);
+    border-color: var(--primary);
+  }
+  .custom-outline-color:hover {
+    color: #fff;
+    background-color: var(--primary);
+    border-color: var(--primary);
+  }
+  .img-fluid{
+    width: 200px !important;
+    height: 130px !important;
+  }
+  .image-overlay {
+    position: absolute;
+    top: 80%;
+    left: 25%;
+    transform: translate(-20%, -0%);
+    font-size: 14px;
+    color: var(--primary);
+    /* font-size: smaller; */
+    /* Add any additional styles for the overlay */
+  }
+  .form-check-label {
+    order: 1 !important;
+    margin-left: 1rem;
+}
+
+.form-check-input {
+    order: 2 !important;
+}
+  .rectangle {
+    width: 475px;
+    height: 130px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+  }
+

@@ -1,0 +1,35 @@
+.how-it-works .card {
+    border: 0;
+}
+
+.how-it-works .icon-box {
+    width: 50px;
+    height: 50px;
+    border: 1px solid rgba(0, 167, 172, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.how-it-works .img-icon {
+    width: 28px;
+    height: 28px;
+}
+
+.how-it-works .text-content {
+    padding-left: 10px;
+}
+
+.how-it-works .card .card-title {
+    font-size: 19px;
+    font-weight: 400;
+    color: #061421;
+}
+
+.how-it-works .card .card-text {
+    font-size: 16px;
+    font-weight: 400;
+    color: #595959;
+    font-family: 'Work Sans', sans-serif;
+}

@@ -1,0 +1,78 @@
+.users-feedback {
+    background-color: #f5f5f5;
+}
+
+.users-feedback .count-title {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    color: #595959;
+    margin-bottom: 0;
+}
+
+.users-feedback .count-text {
+    font-weight: 400;
+    font-size: 27px;
+    color: #061421;
+}
+
+.users-feedback .card {
+    border: 0;
+    padding: 50px;
+}
+
+.users-feedback .img-user {
+    width: 66px !important;
+    height: 66px !important;
+}
+
+.users-feedback .card .text-content {
+    padding-left: 10px;
+}
+
+.users-feedback .card .card-title {
+    font-size: 18px;
+    font-weight: 400;
+    color: #061421;
+}
+
+.users-feedback .card .card-text {
+    font-size: 15px;
+    font-weight: 400;
+    color: #595959;
+    font-family: 'Work Sans', sans-serif;
+}
+
+.users-feedback .card .feedback-text {
+    font-size: 22px;
+    font-weight: 400;
+    color: #061421;
+    font-family: 'Work Sans', sans-serif;
+}
+
+.users-feedback .card .count-item {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    color: var(--primary);
+}
+
+.feedback-nav-icons {
+    display: flex;
+    align-items: center;
+}
+
+.feedback-nav-icons i {
+    background-color: transparent;
+    border: 1px solid rgba(0, 167, 172, 0.5);
+    color: rgba(0, 167, 172, 0.5);
+    padding: 10px;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.feedback-nav-icons i:hover {
+    background-color: rgba(0, 167, 172, 0.5);
+    color: #fff;
+}

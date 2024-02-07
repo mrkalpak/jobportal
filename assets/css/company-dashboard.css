@@ -1,0 +1,31 @@
+.navbar-active{
+    background-color: var(--primary) !important;
+    /* color: white !important; */
+}
+.navbar-active a,.navbar-active a svg{
+    color: white !important;
+    fill: white !important;
+}
+.cards-width{
+    width: 60% !important;
+}
+.dropdown-item{
+    
+    color: black !important;
+}
+.dropdown-item:active{
+    background-color: lightgray !important;
+    color: white !important;
+}
+.hide-details{
+    display: none;
+    pointer-events: none;
+}
+@media (max-width: 767px) {
+    .cards-width{
+        width: 95% !important;
+    }
+    .card-mobile-width{
+        width: 90% !important;
+    }
+}

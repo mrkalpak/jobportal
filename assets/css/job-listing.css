@@ -1,0 +1,151 @@
+.job-listing .job-listing-filter {
+    background: #F8F8F8;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.job-listing .job-listing-filter .card {
+    border: none;
+}
+
+.job-listing .job-listing-filter .card .card-title {
+    font-weight: 400;
+    font-size: 19px;
+    color: #061421;
+}
+
+.job-listing .job-listing-filter .card .form-check-label,
+.job-listing .job-listing-filter .card .job-count {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: #595959;
+}
+
+.job-listing .job-listing-filter .card .form-check-input {
+    border: 1px solid #595959;
+    width: 12px;
+    height: 12px;
+    margin-top: 0.35em;
+}
+
+.job-listing .job-listing-filter .card .form-check-input[type=checkbox] {
+    border-radius: 0;
+}
+
+.job-listing .job-listing-filter .card p {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: #595959;
+}
+
+.job-listing .job-listing-filter .btn-job-alert {
+    font-weight: 400;
+    font-size: 16px;
+    background: var(--primary);
+    border-radius: 5px;
+    padding-top:10px;
+    padding-bottom: 10px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.job-listing-card {
+    padding: 20px;
+}
+
+.job-listing-card .logo-box {
+    width: 50px;
+    height: 50px;
+    background-color: #f2f2f2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.job-listing-card .logo-box .logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.job-listing-card .card-title {
+    font-size: 18px;
+    margin-bottom: 1px;
+    color: #061421;
+}
+
+.job-listing-card .card-text .company-name {
+    font-size: 14px;
+    color: #595959;
+}
+
+.job-listing-card .card-text .deadline {
+    font-size: 15px;
+    color: #061421;
+    margin-left: 15px;
+}
+
+.job-listing-card .card-text .date {
+    font-size: 14px;
+    color: #595959;
+}
+
+.job-listing-card h6 {
+    font-size: 16px;
+    font-weight: 400;
+    color: #595959;
+}
+
+.job-listing-card h6 span {
+    font-size: 16px;
+    font-weight: 400;
+    color: #061421;
+}
+
+.job-listing-card .badge-full-time {
+    background-color: #F3E8C1;
+    font-size: 14px;
+    font-weight: 400;
+    color: #061421;
+    padding: 10px 25px;
+}
+
+.job-listing-card .badge-part-time {
+    background-color: #c6abfb;
+    font-size: 14px;
+    font-weight: 400;
+    color: #061421;
+    padding: 10px 25px;
+}
+
+.job-listing-card .apply-now-link {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--primary);
+}
+
+.job-listing .pagination .page-item {
+    margin-right: 10px;
+}
+
+.job-listing .pagination .page-item.active .page-link {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: #fff;
+}
+
+.job-listing .pagination .page-item .page-link {
+    color: #000;
+    border-color: var(--primary);
+}
+
+.job-listing .pagination .page-link:focus,
+.job-listing .pagination .page-link:hover {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: #fff;
+}

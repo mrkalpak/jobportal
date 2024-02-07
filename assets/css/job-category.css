@@ -1,0 +1,69 @@
+.job-category .search-box {
+    display: flex;
+    align-items: center;
+}
+
+.job-category .search-box .form-control {
+    border-color: var(--primary);
+    border-radius: 0;
+    outline: none;
+    box-shadow: none;
+}
+
+.job-category .btn-search {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: #ffffff;
+    border-radius: 0;
+}
+
+.job-category .card {
+    border: 1px solid rgba(0, 167, 172, 0.2);
+    padding: 20px;
+}
+
+.job-category .job-category-count {
+    text-align: right;
+    font-weight: 400;
+    font-size: 18px;
+    color: rgba(0, 167, 172, 0.2);
+}
+
+.job-category .job-category-title {
+    font-weight: 400;
+    font-size: 19px;
+    color: #061421;
+}
+
+.job-category .job-category-text {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    color: #595959;
+}
+
+.job-category .job-category-text span {
+    color: var(--primary);
+}
+
+.job-category .pagination .page-item {
+    margin-right: 10px;
+}
+
+.job-category .pagination .page-item.active .page-link {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color:#fff;
+}
+
+.job-category .pagination .page-item .page-link {
+    color: #000;
+    border-color: var(--primary);
+}
+
+.job-category .pagination .page-link:focus,
+.job-category .pagination .page-link:hover {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color:#fff;
+}

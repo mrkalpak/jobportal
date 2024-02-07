@@ -1,0 +1,37 @@
+.underline-grow {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+    font-size: 24px;
+    cursor: pointer; 
+}
+
+.underline-grow::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 3px;
+    background-color: var(--primary);
+    bottom: 0;
+    left: 50%; 
+    transform: translateX(-50%); 
+    transition: width 0.3s ease-in;
+    transform-origin: 0 50%;
+   
+}
+.tab{
+    padding-left: 5rem !important;
+    padding-right: 5rem !important;
+}
+
+.underline-grow:hover::before , .underline-active::before {
+    width: 100%; 
+    transform-origin: 100% 50%; 
+}
+@media (max-width: 767px) {
+    .tab{
+        padding-left: 2.5rem !important;
+        padding-right: 1rem !important;
+    } 
+}

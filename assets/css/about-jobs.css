@@ -1,0 +1,108 @@
+.about-jobs .job-feature-title {
+    font-weight: 400;
+    font-size: 20px;
+    color: #061421;
+}
+.about-jobs{
+    background-color: #f5f5f5; 
+}
+.about-jobs .job-feature-text {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 400;
+    font-size: 17px;
+    color: #595959;
+}
+
+.about-jobs .card {
+    position: relative;
+    border: 0;
+}
+
+.about-jobs .vertical-image {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    width: 317px;
+    height: 448px;
+    background-image: url('../images/home/img1.png');
+    background-size: cover;
+    border-radius: 5px;
+}
+
+.about-jobs .horizontal-image {
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    width: 429px;
+    height: 291px;
+    background-image: url('../images/home/img2.png');
+    background-size: cover;
+    border-radius: 5px;
+}
+
+.about-jobs .small-card {
+    position: absolute;
+    top: 370px;
+    right: 0;
+    width: 400px;
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.about-jobs .small-card .img-user {
+    width: 66px !important;
+    height: 66px !important;
+}
+
+.about-jobs .small-card .text-content {
+    padding-left: 10px;
+}
+
+.about-jobs .small-card .card-title {
+    font-size: 17px;
+    font-weight: 400;
+    color: #061421;
+}
+
+.about-jobs .small-card .card-text {
+    font-size: 14px;
+    font-weight: 400;
+    color: #595959;
+    font-family: 'Work Sans', sans-serif;
+}
+@media (max-width: 767px) {
+    .about-jobs .vertical-image {
+        position: relative;
+        top: 30px;
+        left: 0;
+        width: auto;
+        height: 448px;
+        background-image: url('../images/home/img1.png');
+        background-size: cover;
+        border-radius: 5px;
+    }
+    
+    .about-jobs .horizontal-image {
+        position: relative;
+        top: 50px;
+        right: 10px;
+        left: 0px;
+        width: auto;
+        height: 291px;
+        background-image: url('../images/home/img2.png');
+        background-size: cover;
+        border-radius: 5px;
+    }
+    
+    .about-jobs .small-card {
+        position: relative;
+        top: auto;
+        right: 0;
+        width: auto;
+        background-color: #f5f5f5;
+        padding: 20px;
+        border-radius: 5px;
+    }
+    
+}

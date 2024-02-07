@@ -1,0 +1,44 @@
+#dashboard-table, td {
+    border: 1px solid rgba(0, 110, 189, 0.15);
+    
+  }
+#dashboard-table{
+    text-align: center;
+    
+}
+.nav-link{
+    text-decoration: none;
+    color: black;
+}
+.nav-link:hover{
+    text-decoration: none;
+    color: black;
+}
+.side-nav-bar .active{
+    background-color: var(--primary) !important;
+    fill: white;
+}
+.viewed{
+    background-color: #7307C9;
+    font-weight: normal;
+    font-size: 15px;
+}
+.pending{
+    background-color: #DFA100;
+    font-weight: normal;
+    font-size: 15px;
+}
+.canceled{
+    background-color: #FF4820;
+    font-weight: normal;
+    font-size: 15px;
+}
+.success{
+    background-color: var(--primary);
+    font-weight: normal;
+    font-size: 15px;
+}
+.apply-now{
+    color: var(--primary);
+    text-decoration: none;
+}

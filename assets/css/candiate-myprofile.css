@@ -1,0 +1,32 @@
+.nav-link{
+    text-decoration: none;
+    color: black;
+}
+.nav-link:hover{
+    text-decoration: none;
+    color: black;
+}
+.side-nav-bar .active{
+    background-color: var(--primary) !important;
+    fill: white;
+}
+.custom-border{
+    border: 1px solid rgba(0, 110, 189, 0.15);
+}
+.navbar-active a,.navbar-active a svg{
+    color: white !important;
+    fill: white !important;
+}
+#drop-zone {
+    border: 2px dashed #ccc;
+    padding: 20px;
+    text-align: center;
+}
+
+#drop-zone.hover {
+    border: 2px dashed #333;
+}
+
+#file-input {
+    display: none;
+}

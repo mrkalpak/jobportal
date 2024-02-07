@@ -1,0 +1,32 @@
+.login-card{
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+.login-card-details{
+    padding-left: 5% !important;
+
+}
+.login-card a{
+    color: var(--primary);
+}
+.btn-outline-eye{
+    border: 1px solid lightgray !important;
+    border-left: none !important;
+    /* background-color: var(--primary); */
+}
+
+.login-img-background{
+    /* opacity: 0.15; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   background-color: #FEFBF6;
+/* z-index: 0; */
+}
+@media (max-width: 767px) {
+    .login-img-background{
+        display: none !important;
+    }
+}

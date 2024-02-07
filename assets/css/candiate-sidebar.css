@@ -1,0 +1,7 @@
+.side-nav-bar>.nav-item > .active{
+    background-color: var(--primary) !important;
+    color: white !important;
+}
+.side-nav-bar>.nav-item > .active  svg{
+    fill: white !important;
+}

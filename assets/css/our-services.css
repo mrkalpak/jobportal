@@ -1,0 +1,53 @@
+
+.card-margin{
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+}
+.about-company{
+    background-color: #f5f5f5;
+}
+.about-us-content{
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+.text-about-us{
+    transform: translatex(10%);
+    max-width: 50%;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+}
+.image-about{
+    width: 110%;
+}
+@media (max-width: 767px) {
+    .card-margin{
+        margin-left: auto !important;
+        margin-right: auto !important;
+        
+    }
+    .about-us-content{
+        display: block !important;
+        position: relative;
+        height:100vh;
+        /* z-index: 1; */
+    }
+    .img-about{
+        position: absolute;
+        top: 0;
+        z-index: 0;
+    }
+    .text-about-us{
+        position: absolute;
+        transform: translatey(0%);
+        max-width: 90%;
+        padding-top: 0%;
+        top: 20%;
+        left: 5%;
+        z-index: 2;
+    }
+    .image-about{
+        width: 100%;
+    }
+}
