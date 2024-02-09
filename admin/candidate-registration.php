@@ -21,27 +21,14 @@ $card_status = isset($_GET['card_status']) ? $_GET['card_status'] : '';
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link href="img/logo/logo.png" rel="icon">
-    <title>RuangAdmin - Dashboard</title>
-    <link href="css/ruang-admin.css" rel="stylesheet">
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="css/ruang-admin.min.css" rel="stylesheet">
-
-
-
-
-
     <!-- Include Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
     <!-- Include DataTables CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
+    <nav>
+                <?php include 'admin-header.php'; ?>
+            </nav>
 
     <style>
         /* Increase the size of the DataTables entry size dropdown */
@@ -54,24 +41,14 @@ $card_status = isset($_GET['card_status']) ? $_GET['card_status'] : '';
         }
     </style>
 
-</head>
-
 <body id="page-top">
     <div id="wrapper">
 
         <div id="content-wrapper" class="d-flex flex-column bg-light">
-            <nav>
-                <?php include 'admin-header.php'; ?>
-            </nav>
             <div class="row" id="content">
-                <!-- TopBar -->
-
                 <!-- Sidebar -->
                 <?php include 'sidebar.php'; ?>
                 <!-- Sidebar -->
-
-                <!-- Topbar -->
-
                 <!-- Container Fluid-->
                 <div class="col" id="container-wrapper">
 

@@ -30,18 +30,14 @@ require('connection.php');
     <!-- Include DataTables CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
 
-
-
-
-
-
-
-
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="css/ruang-admin.css" rel="stylesheet">
     <link href="css/ruang-admin.min.css" rel="stylesheet">
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <nav>
+                <?php include 'admin-header.php'; ?>
+                <nav>
     <style>
         /* Increase the size of the DataTables entry size dropdown */
         .dataTables_length select {
@@ -61,18 +57,12 @@ require('connection.php');
     <div id="wrapper">
 
         <div id="content-wrapper" class="d-flex flex-column bg-light">
-            <nav>
-                <?php include 'admin-header.php'; ?>
-                <nav>
+        
                     <div class="row" id="content">
-                        <!-- TopBar -->
 
-                        <!-- Sidebar -->
+                       <!-- Sidebar -->
                         <?php include 'sidebar.php'; ?>
                         <!-- Sidebar -->
-
-                        <!-- Topbar -->
-
                         <!-- Container Fluid-->
                         <div class="col" id="container-wrapper">
                             <div class="row justify-content-between  bdr-custom-padding fs-4">

@@ -60,7 +60,6 @@ $blog_count = $countrow4['blog_count'];
 
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 

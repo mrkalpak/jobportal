@@ -14,22 +14,6 @@ $card_status = isset($_GET['card_status']) ? $_GET['card_status'] : '';
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <script src="table2excel.js"></script>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link href="img/logo/logo.png" rel="icon">
-    <title>Admin Dashboard</title>
-
-
-
-
 
 
     <link href="css/ruang-admin.css" rel="stylesheet">
@@ -43,9 +27,6 @@ $card_status = isset($_GET['card_status']) ? $_GET['card_status'] : '';
 
     <!-- Include DataTables CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
-
-
-</head>
 
 <body id="page-top">
     <div id="wrapper">
@@ -348,7 +329,7 @@ $card_status = isset($_GET['card_status']) ? $_GET['card_status'] : '';
                                                         <?php
                                                                 }
                                                             } else {
-                                                                echo "No matching records found.";
+                                                                // echo "No matching records found.";
                                                             }
                                                         }
                                                         ?>
@@ -421,6 +402,7 @@ $card_status = isset($_GET['card_status']) ? $_GET['card_status'] : '';
         <script src="js/ruang-admin.min.js"></script>
         <script src="vendor/chart.js/Chart.min.js"></script>
         <script src="js/demo/chart-area-demo.js"></script>
+        <script src="table2excel.js"></script>
 
         <!-- Page level plugins -->
         <script src="vendor/datatables/jquery.dataTables.min.js"></script>
@@ -429,4 +411,3 @@ $card_status = isset($_GET['card_status']) ? $_GET['card_status'] : '';
 
 </body>
 
-</html>

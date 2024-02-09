@@ -6,35 +6,15 @@ if (empty($_SESSION['username']) || ($_SESSION['type'] != 'admin')) {
 
 require('connection.php');
 
-
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link href="img/logo/logo.png" rel="icon">
-    <title>Admin Dashboard</title>
-    <link href="css/ruang-admin.css" rel="stylesheet">
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="css/ruang-admin.min.css" rel="stylesheet">
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
-</head>
-
 <body id="page-top">
     <div id="wrapper">
-
         <div id="content-wrapper" class="d-flex flex-column bg-light">
             <nav>
                 <?php include 'admin-header.php'; ?>
-                <nav>
+</nav>
                     <div class="row" id="content">
                         <!-- TopBar -->
 
@@ -151,29 +131,20 @@ require('connection.php');
                                     </div>
                                 </div>
 
-                                <!--Row-->
-
-
-
-                                <!-- Modal Logout -->
-
-
                             </div>
-                            <!---Container Fluid-->
+                           
                         </div>
                         <!-- Footer -->
 
                         <footer class="sticky-footer">
                             <?php include 'footer.php'; ?>
-                            <!-- <?php include 'company-job-post.php'; ?> -->
+                        
                         </footer>
                         <!-- Footer -->
                     </div>
         </div>
 
         <!-- Scroll to top -->
-
-
         <script src="vendor/jquery/jquery.min.js"></script>
         <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
