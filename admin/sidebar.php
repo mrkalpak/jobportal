@@ -69,6 +69,12 @@
       <span>Job Approval
       </span></a>
   </li>
+  <li class="nav-item ">
+    <a class="nav-link" href="admin_jobfair.php">
+      <i class="fa fa-credit-card"></i>
+      <span>Job Fair
+      </span></a>
+  </li>
 
 
   <li class="nav-item ">

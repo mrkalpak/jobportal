@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="./css/jobpost.css">
 
 
-   
+
 </head>
 
 <body id="page-top">
@@ -38,7 +38,7 @@
 
                         <!-- Container Fluid-->
                         <div class="col" id="container-wrapper">
-                            
+
                             <div class="row justify-content-between  bdr-custom-padding fs-4">
                                 <div class="col-md-6" style="font-size: 40px;color: #4A0063;">
                                     Job Posting
@@ -53,69 +53,60 @@
                             </div>
 
 
-                            <div class="row  mx-5 my-4 table-responsive">
-
-
-
-
+                            <div class="row mx-auto my-4 table-responsive">
                                 <table class="" id="myTable">
-                                    <tr style="background-color: var(--primary); ">
+                                    <tr style="background-color: #4a0063; ">
                                         <th>Job Title</th>
                                         <th>Applications</th>
                                         <th id="action_col">Action</th>
                                     </tr>
-                                   
-                                    <div class="">
+
+                                    <tr>
+                                        <td>
+                                            Manager- Account & Finance <span class="badge rounded-pill  active-plan">Active</span>
+                                            <br>
+                                            <span style="color: #595959;">Anywhere in India | Posted On: 02 April, 2023</span> <br>
+
+                                        </td>
+                                        <td>
+                                            35 <br> Total Applications
+                                        </td>
+
+                                        <td>
+                                            <a href="./joblist-candidate.php">
+
+                                                <button class="btn btn-outline-custom  mt-2 me-2 " data-bs-toggle="modal" data-bs-target="#proceed-modal">View candidates</button>
+                                            </a>
+                                        </td>
 
 
-                                        <tr>
-                                            <td>
-                                                Manager- Account & Finance <span class="badge rounded-pill  active-plan">Active</span>
-                                                <br>
-                                                <span style="color: #595959;">Anywhere in India | Posted On: 02 April, 2023</span> <br>
-
-                                            </td>
-                                            <td>
-                                                35 <br> Total Applications
-                                            </td>
-
-                                            <td>
-                                                <a href="./joblist-candidate.php">
-
-                                                    <button class="btn btn-outline-custom  mt-2 me-2 " data-bs-toggle="modal" data-bs-target="#proceed-modal">View candidates</button>
-                                                </a>
-                                            </td>
+                                    </tr>
 
 
-                                        </tr>
-                                       
-                                        
-                                    </div>
-                                    <div class="">
 
 
-                                        <tr>
-                                            <td>
-                                                Manager- Account & Finance <span class="badge rounded-pill  expire-plan">Expired</span>
-                                                <br>
-                                                <span style="color: #595959;">Anywhere in India | Posted On: 02 April, 2023</span> <br>
+                                    <tr>
+                                        <td>
+                                            Manager- Account & Finance <span class="badge rounded-pill  expire-plan">Expired</span>
+                                            <br>
+                                            <span style="color: #595959;">Anywhere in India | Posted On: 02 April, 2023</span> <br>
 
-                                            </td>
-                                            <td>
-                                                35 <br> Total Applications
-                                            </td>
+                                        </td>
+                                        <td>
+                                            35 <br> Total Applications
+                                        </td>
 
-                                            <td>
-                                                <a href="./joblist-candidate.php">
+                                        <td>
+                                            <a href="./joblist-candidate.php">
 
-                                                    <button class="btn btn-outline-custom  mt-2 me-2 " data-bs-toggle="modal" data-bs-target="#proceed-modal">View candidates</button>
-                                                </a>
-                                            </td>
+                                                <button class="btn btn-outline-custom  mt-2 me-2 " data-bs-toggle="modal" data-bs-target="#proceed-modal">View candidates</button>
+                                            </a>
+                                        </td>
 
 
-                                        </tr>
-                                        
-                                    </div>
+                                    </tr>
+
+
 
                                 </table>
 
