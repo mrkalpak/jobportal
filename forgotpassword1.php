@@ -142,13 +142,31 @@ if (isset($_POST['update_pass']) && ($_POST['user_type'] == "candidate")) {
 
             $url = "$idParameterEncoded";
 
+            $to_email = 'nihal5930@gmail.com';
+            $subject = "Reset Link Please click and Reset Password";
+            $body = $link;
+            $headers = "From: nm371136@gmail.com";
+            
+            if (mail($to_email, $subject, $body, $headers)) {
+              echo "
+              <script>
+                alert('Reset Link has been sent to your Registered Mail Id  ');
+              </script>
+            ";
+                // echo "Email successfully sent to $to_email...";
+            } else {
+                echo "Email sending failed...";
+            }
 
-            echo "
-            <script>
-              alert('Your Accound is found.we send mail on $email,Thank you ');
-              window.location.href='forgotpassword1.php?url=$url';
-            </script>
-          ";
+ 
+
+
+          //   echo "
+          //   <script>
+          //     alert('Your Accound is found.we send mail on $email,Thank you ');
+          //     window.location.href='forgotpassword1.php?url=$url';
+          //   </script>
+          // ";
         } else {
 
             echo "
@@ -197,14 +215,28 @@ if (isset($_POST['update_pass']) && ($_POST['user_type'] == "company")) {
             $idParameterEncoded = urlencode($link);
 
             $url = "$idParameterEncoded";
+            $to_email = 'nihal5930@gmail.com';
+            $subject = "Reset Link Please click and Reset Password";
+            $body = $link;
+            $headers = "From: nm371136@gmail.com";
+            
+            if (mail($to_email, $subject, $body, $headers)) {
+              echo "
+              <script>
+                alert('Reset Link has been sent to your Registered Mail Id  ');
+              </script>
+            ";
+                // echo "Email successfully sent to $to_email...";
+            } else {
+                echo "Email sending failed...";
+            }
 
-
-            echo "
-            <script>
-              alert('Your Accound is found.we send mail on $email,Thank you ');
-              window.location.href='forgotpassword1.php?url=$url';
-            </script>
-          ";
+            // echo "
+            // <script>
+            //   alert('Your Accound is found.we send mail on $email,Thank you ');
+            //   window.location.href='forgotpassword1.php?url=$url';
+            // </script>
+          // ";
         } else {
 
             echo "

@@ -1,10 +1,10 @@
 <?php
-session_start();
-if (empty($_SESSION['username']) || ($_SESSION['type'] != 'admin')) {
-    header("Location: ../index.php");
-}
-require('connection.php');
-$_SESSION['username'];
+// session_start();
+// if (empty($_SESSION['username']) || ($_SESSION['type'] != 'admin')) {
+//     header("Location: ../index.php");
+// }
+// require('connection.php');
+// $_SESSION['username'];
 
 
 ?>

@@ -203,12 +203,24 @@ if (isset($_POST['accept'])) {
     $run = mysqli_query($con, $delete);
     if ($run) {
 
-        echo "
-               <script>
-                 alert('Job Approved Sucessfully');
-                 window.location.href='job-post-aprovalmain.php';
-               </script>
-             ";
+        $to_email = 'nihal5930@gmail.com';
+        $subject = "Reset Link Please click and Reset Password";
+        $body = 'Job Approved Sucessfully';
+        $headers = "From: nm371136@gmail.com";
+        
+        if (mail($to_email, $subject, $body, $headers)) {
+            echo "
+            <script>
+              alert('Job Approved Sucessfully');
+              window.location.href='job-post-aprovalmain.php';
+            </script>
+          ";
+            // echo "Email successfully sent to $to_email...";
+        } else {
+            echo "Email sending failed...";
+        }
+
+
     } else {
 
         echo "
