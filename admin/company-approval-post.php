@@ -211,13 +211,24 @@ if (isset($_POST['accept'])) {
     $delete = "UPDATE `company` SET `active` = '1'  WHERE username ='$id'";
     $run = mysqli_query($con, $delete);
     if ($run) {
+        $to_email = 'nihal5930@gmail.com';
+            $subject = "Reset Link Please click and Reset Password";
+            $body = 'Your Company Approved';
+            $headers = "From: nm371136@gmail.com";
+            
+            if (mail($to_email, $subject, $body, $headers)) {
+                echo "
+                <script>
+                  alert('Approved Sucessfully');
+                  window.location.href='company-approval.php';
+                </script>
+              ";
+                // echo "Email successfully sent to $to_email...";
+            } else {
+                echo "Email sending failed...";
+            }
 
-        echo "
-               <script>
-                 alert('Approved Sucessfully');
-                 window.location.href='company-approval.php';
-               </script>
-             ";
+
     } else {
 
         echo "
