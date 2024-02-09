@@ -17,160 +17,19 @@ if ($result) {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+<?php include './header.php'; ?>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Job Category</title>
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <!-- Bootstrap icon -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous">
-    <!-- Custom css -->
-    <link rel="stylesheet" href="assets/css/custom.css">
-    <!-- page -->
     <link rel="stylesheet" href="./assets/css/company-dashboard.css">
     <link rel="stylesheet" href="./assets/css/company-joblist.css">
-    <!-- Jquery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-    <!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-        <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"> -->
-    <style>
-        .upe-mutistep-form .step {
-            display: none;
-
-        }
-
-        .upe-mutistep-form .step-header .steplevel {
-            position: relative;
-            flex: 1;
-            padding-bottom: 30px;
-            text-align: center;
-
-        }
-
-        .upe-mutistep-form .step-header .steplevel.active {
-            font-weight: 600;
-        }
-
-        .bi-x-lg {
-            font-weight: bold;
-        }
-
-        .modal-custom-width {
-            max-width: 75%;
-        }
-
-
-        .modal-content {
-            margin: 0 auto;
-        }
-
-        .upe-mutistep-form .step-header .steplevel.finish {
-            font-weight: 600;
-            color: grey;
-        }
-
-        .upe-mutistep-form .step-header .steplevel::before {
-            content: "";
-            position: absolute;
-            left: 50%;
-            bottom: 0;
-            transform: translateX(-50%);
-            z-index: 9;
-            width: 20px;
-            height: 20px;
-            background-color: grey;
-            border-radius: 50%;
-            border: 3px solid #ecf5f4;
-        }
-
-        .upe-mutistep-form .step-header .steplevel.active::before {
-            background-color: var(--primary);
-            border: 3px solid var(--primary);
-        }
-
-        .upe-mutistep-form .step-header .steplevel.finish::before {
-            background-color: var(--primary);
-            border: 3px solid var(--primary);
-        }
-
-        .upe-mutistep-form .step-header .steplevel::after {
-            content: "";
-            position: absolute;
-            left: 50%;
-            bottom: 8px;
-            width: 100%;
-            height: 3px;
-            background-color: #f3f3f3;
-        }
-
-        .upe-mutistep-form .step-header .steplevel.active::after {
-            background-color: lightgrey;
-        }
-
-        .upe-mutistep-form .step-header .steplevel.finish::after {
-            background-color: #009688;
-        }
-
-        .upe-mutistep-form .step-header .steplevel:last-child:after {
-            display: none;
-        }
-
-        .input-radio {
-            display: none;
-        }
-
-        .btn.radio-outline-custom {
-            border: 2px solid gray;
-            color: gray !important;
-            background-color: transparent;
-        }
-
-        .form-check-input:checked+.btn.radio-outline-custom {
-
-            border: 2px solid var(--primary);
-            color: var(--primary) !important;
-            background-color: transparent;
-
-        }
-
-        .job-post-heading {
-            color: #5E6C84;
-        }
-
-        @media (max-width: 767px) {
-            .modal-custom-width {
-                max-width: 98%;
-            }
-
-            .hide-text {
-                display: none;
-            }
-        }
-    </style>
-</head>
-
-<body>
     <!-- navbar -->
     <?php include './profileNavbar.php'; ?>
-
+    
 
     <!-- comapany Navbar -->
     <?php
     $activePage = "joblist";
     include './company-navbar.php';
-
+    
     ?>
 
 

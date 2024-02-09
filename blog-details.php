@@ -21,203 +21,181 @@ if (!$blog) {
 ?>
 
 
-<!DOCTYPE html>
-<html lang="en">
+<?php include './header.php'; ?>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Blog Detail</title>
-  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-  <!-- Bootstrap icon -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous">
-  <!-- Custom css -->
-  <link rel="stylesheet" href="assets/css/custom.css">
-  <!-- page -->
-  <link rel="stylesheet" href="assets/css/blog-detail.css">
-  <!-- Jquery -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-</head>
-
-<body>
-  <!-- navbar  -->
-  <?php include './navbar.php'; ?>
-  <!-- breadcrumb -->
-  <div class="breadcrumb-section">
-    <div class="container">
-      <h2 class="title">Blog Detail</h2>
-      <nav aria-label="breadcrumb" class="text-center mt-3">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="./">Home</a></li>
-          <li class="breadcrumb-item"><a href="./blog.php">Blogs</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Blog Detail</li>
-        </ol>
-      </nav>
-    </div>
+<!-- page -->
+<link rel="stylesheet" href="assets/css/blog-detail.css">
+<!-- navbar  -->
+<?php include './navbar.php'; ?>
+<!-- breadcrumb -->
+<div class="breadcrumb-section">
+  <div class="container">
+    <h2 class="title">Blog Detail</h2>
+    <nav aria-label="breadcrumb" class="text-center mt-3">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="./">Home</a></li>
+        <li class="breadcrumb-item"><a href="./blog.php">Blogs</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Blog Detail</li>
+      </ol>
+    </nav>
   </div>
-  <!-- Recent article-->
-  <section class="paddingTB60 blog-detail">
-    <div class="container ms-auto me-auto">
+</div>
+<!-- Recent article-->
+<section class="paddingTB60 blog-detail">
+  <div class="container ms-auto me-auto">
 
-      <img src="admin/blog/.<?php echo $blog['other_image']; ?>" class="card-img-top" alt="Image">
-      <div class="main-row">
-        <br>
-        <br>
-        <br>
-        <div class="date-square">
-          <?php echo date('d M', strtotime($blog['blog_date'])); ?>
-        </div>
-        <div class="comment-count"> comments</div>
-        <div class="user-name">
-          <?php echo $blog['blog_name']; ?>
+    <img src="admin/blog/.<?php echo $blog['other_image']; ?>" class="card-img-top" alt="Image">
+    <div class="main-row">
+      <br>
+      <br>
+      <br>
+      <div class="date-square">
+        <?php echo date('d M', strtotime($blog['blog_date'])); ?>
+      </div>
+      <div class="comment-count"> comments</div>
+      <div class="user-name">
+        <?php echo $blog['blog_name']; ?>
+      </div>
+    </div>
+    <h1 class="blog-title">
+      <?php echo $blog['blog_title']; ?>
+    </h1>
+    <p class="blog-text textjustify">
+      <?php echo $blog['blog_description']; ?>
+    </p>
+
+
+
+
+
+
+
+    <div class="ms-auto me-auto row">
+      <img src="./assets/images/home/blog_details_1.png" class="mx-2 col" alt="">
+      <img src="./assets/images/home/blog_details_2.png" class="mx-2 col" alt="">
+    </div>
+    <div class="row my-4">
+      <div class="col-md-8">
+        <span class="tags fw-semibold blog-text">Tag:</span>
+        <?php echo $blog['blog_tags']; ?>
+      </div>
+
+
+
+      <ul class="social-media-icons-share col-md-4 justify-content-end">
+        <span> Share :</span>
+        <li><a href="#"><i class="bi bi-facebook"></i></a></li>
+        <li><a href="#"><i class="bi bi-twitter"></i></a></li>
+        <li><a href="#"><i class="bi bi-instagram"></i></a></li>
+        <li><a href="#"><i class="bi bi-linkedin"></i></a></li>
+      </ul>
+
+    </div>
+    <div class="row my-lg-5">
+
+
+      <div class="col">
+        <div class="row">
+
+          <div class="col-auto">
+
+            <img src="./assets/images/home/img1.png" height="56px" width="56px" alt="">
+          </div>
+          <div class="col mt-lg-3"><a href="">Previous Post </a></div>
         </div>
       </div>
-      <h1 class="blog-title">
-        <?php echo $blog['blog_title']; ?>
-      </h1>
-      <p class="blog-text textjustify">
-        <?php echo $blog['blog_description']; ?>
-      </p>
 
+      <div class="col">
+        <div class="row">
+          <div class="col d-flex justify-content-end mt-lg-3"><a href=""> Next Post</a></div>
+          <div class="col-auto">
 
-
-
-
-
-
-      <div class="ms-auto me-auto row">
-        <img src="./assets/images/home/blog_details_1.png" class="mx-2 col" alt="">
-        <img src="./assets/images/home/blog_details_2.png" class="mx-2 col" alt="">
-      </div>
-      <div class="row my-4">
-        <div class="col-md-8">
-          <span class="tags fw-semibold blog-text">Tag:</span>
-          <?php echo $blog['blog_tags']; ?>
-        </div>
-
-
-
-        <ul class="social-media-icons-share col-md-4 justify-content-end">
-          <span> Share :</span>
-          <li><a href="#"><i class="bi bi-facebook"></i></a></li>
-          <li><a href="#"><i class="bi bi-twitter"></i></a></li>
-          <li><a href="#"><i class="bi bi-instagram"></i></a></li>
-          <li><a href="#"><i class="bi bi-linkedin"></i></a></li>
-        </ul>
-
-      </div>
-      <div class="row my-lg-5">
-
-
-        <div class="col">
-          <div class="row">
-
-            <div class="col-auto">
-
-              <img src="./assets/images/home/img1.png" height="56px" width="56px" alt="">
-            </div>
-            <div class="col mt-lg-3"><a href="">Previous Post </a></div>
+            <img src="./assets/images/home/img1.png" height="56px" width="56px" alt="">
           </div>
         </div>
-
-        <div class="col">
-          <div class="row">
-            <div class="col d-flex justify-content-end mt-lg-3"><a href=""> Next Post</a></div>
-            <div class="col-auto">
-
-              <img src="./assets/images/home/img1.png" height="56px" width="56px" alt="">
-            </div>
-          </div>
-        </div>
       </div>
-      <div class="row my-5 w-100">
-        <div class="col-md-12">
-          Comments:
-        </div>
-        <?php
-        $query6 = "SELECT * FROM `comments` WHERE blog_id='$blog_id'  ORDER BY comment_date DESC";
+    </div>
+    <div class="row my-5 w-100">
+      <div class="col-md-12">
+        Comments:
+      </div>
+      <?php
+      $query6 = "SELECT * FROM `comments` WHERE blog_id='$blog_id'  ORDER BY comment_date DESC";
 
 
-        if ($result6 = mysqli_query($con, $query6)) {
-          if (mysqli_num_rows($result6) > 0) {
-            $count = 1;
-            while ($row = mysqli_fetch_assoc($result6)) {
-        ?>
-              <div class="row my-3">
-                <div class="col-auto">
-                  <img src="./assets/images/home/profile2.png" height="50px" width="50px" alt="">
+      if ($result6 = mysqli_query($con, $query6)) {
+        if (mysqli_num_rows($result6) > 0) {
+          $count = 1;
+          while ($row = mysqli_fetch_assoc($result6)) {
+      ?>
+            <div class="row my-3">
+              <div class="col-auto">
+                <img src="./assets/images/home/profile2.png" height="50px" width="50px" alt="">
+              </div>
+              <div class="col">
+                <div class="row">
+                  <?= $count++ ?>
+                  <div class="col-auto"><?= $row['person_name'] ?>,</div>
+                  <div class="col-auto" style="color: #595959; font-family: Exo ;"><?= $row['comment_date'] ?></div>
+
                 </div>
-                <div class="col">
-                  <div class="row">
-                    <?= $count++ ?>
-                    <div class="col-auto"><?= $row['person_name'] ?>,</div>
-                    <div class="col-auto" style="color: #595959; font-family: Exo ;"><?= $row['comment_date'] ?></div>
+                <div class="row">
+                  <div class="col">
 
-                  </div>
-                  <div class="row">
-                    <div class="col">
-
-                      <?= $row['comment'] ?>
-                    </div>
+                    <?= $row['comment'] ?>
                   </div>
                 </div>
               </div>
+            </div>
 
-        <?php
-            }
-          } else {
-            echo "No Comments.";
+      <?php
           }
+        } else {
+          echo "No Comments.";
         }
-        ?>
+      }
+      ?>
 
-      </div>
-
-      <div class="form  mx-5 border-0  p-4" style=" background-color:#F8F8F8">
-        <form action="" method="post">
-          <h3 class="my-3" style="font-family: 'Exo'; font-style: normal;font-weight: 400;font-size: 19px;">
-            Leave A Reply
-          </h3>
-          <div class="row">
-
-            <div class="col-auto mb-3">
-              <label for="name" class="form-label">Your Name*</label>
-              <input type="text" class="form-control" name="name" id="name" required>
-              <input type="hidden" class="form-control" name="blog_id" value="<?= $blog_id ?>" id="name">
-            </div>
-
-            <div class="col-auto mb-3">
-              <label for="email" class="form-label">Email*</label>
-              <input type="email" class="form-control" name="email" required id="email" placeholder="name@example.com">
-            </div>
-          </div>
-          <div class="mb-3">
-            <label for="msg" class="form-label">Message</label>
-            <textarea required class="form-control" id="msg" name="msg" rows="5"></textarea>
-          </div>
-          <div class="mb-3">
-            <input type="submit" name="comment" class="btn text-light px-4" value="Send Message" style="background-color: var(--primary);">
-          </div>
-        </form>
-
-      </div>
     </div>
+
+    <div class="form  mx-5 border-0  p-4" style=" background-color:#F8F8F8">
+      <form action="" method="post">
+        <h3 class="my-3" style="font-family: 'Exo'; font-style: normal;font-weight: 400;font-size: 19px;">
+          Leave A Reply
+        </h3>
+        <div class="row">
+
+          <div class="col-auto mb-3">
+            <label for="name" class="form-label">Your Name*</label>
+            <input type="text" class="form-control" name="name" id="name" required>
+            <input type="hidden" class="form-control" name="blog_id" value="<?= $blog_id ?>" id="name">
+          </div>
+
+          <div class="col-auto mb-3">
+            <label for="email" class="form-label">Email*</label>
+            <input type="email" class="form-control" name="email" required id="email" placeholder="name@example.com">
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="msg" class="form-label">Message</label>
+          <textarea required class="form-control" id="msg" name="msg" rows="5"></textarea>
+        </div>
+        <div class="mb-3">
+          <input type="submit" name="comment" class="btn text-light px-4" value="Send Message" style="background-color: var(--primary);">
+        </div>
+      </form>
+
     </div>
-    </div>
-  </section>
-  <!-- footer -->
-  <?php include './footer.php'; ?>
+  </div>
+  </div>
+  </div>
+</section>
+<!-- footer -->
+<?php include './footer.php'; ?>
 
 
-  <!-- bootstrap -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+<!-- bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>
 
 <?php
