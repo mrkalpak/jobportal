@@ -196,7 +196,7 @@
 
                                         <div class="card-body">
 
-                                            <form class="upe-mutistep-form px-4" id="Upemultistepsform" action="">
+                                            <form class="upe-mutistep-form px-4" id="Upemultistepsform" action="/admin_postdata.php">
                                                 <div class="step-header d-flex mb-2">
                                                     <span class="steplevel "> <span class="hide-text">
                                                             Job details

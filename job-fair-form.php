@@ -13,7 +13,7 @@ $result = mysqli_query($con, $query);
 if ($result->num_rows > 0) {
     $row = mysqli_fetch_assoc($result);
 } else {
-    echo "0 results";
+    $NoData="No Data present";
 }
 ?>
 
@@ -47,8 +47,7 @@ if ($result->num_rows > 0) {
             <h4 class="main-title"><?php echo $row["fair_Organizer"] ?></h4>
         </div>
         <div class="text-center">
-
-            <img src="./assets/images/home/jobcard.jpg" width="60%" height="auto" alt="" srcset="">
+            <img src="./assets/fair/<?php echo $row["fileName"] ?>" width="40%" height="auto" alt="" srcset="">
         </div>
         <div class="d-flex justify-content-between mx-5 px-5 mt-4">
             <div class="">
@@ -73,7 +72,7 @@ if ($result->num_rows > 0) {
                     </div>
                     <div class="mb-3 col">
                         <label for="candiateAge" class="form-label">Birthdate*</label>
-                        <input type="date" class="form-control" id="candiateAge" required>
+                        <input type="date" name="candidateDOB" class="form-control" id="candiateAge" required>
                     </div>
                 </div>
 
@@ -268,7 +267,7 @@ if ($result->num_rows > 0) {
                 <div class="row">
                     <div class="mb-3 col">
                         <label for="linkdin" class="form-label">Linkedin</label>
-                        <input type="text" class="form-control" id="linkdin">
+                        <input required type="text" name="linkedInProfile" class="form-control" id="linkdin">
 
                     </div>
                     <div class="mb-3 col ">

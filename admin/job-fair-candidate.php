@@ -94,21 +94,22 @@
                                 ?>
 
                             </div>
-                            <?php
-                            while($row = $result->fetch_assoc()) {
-
-                            echo'<div class="candidate-card me-auto ms-auto mt-3">
+                            <div class="candidate-card me-auto ms-auto mt-3">
                                 <div class=" d-flex justify-content-end ">
                                     <button class="btn btn-sm btn-outline-custom text-white "><i class="bi bi-download"></i>&nbsp; Download Excel</button>
                                 </div>
                             </div>
+                            <?php
+                            while($row = $result->fetch_assoc()) {
+
+                            echo'
                             <div class="border border-1 candidate-card mt-3 rounded ms-auto me-auto p-3">
                                 <div class="row">
                                     <div class="col fw-bold">
                                         '.$row['candidateName'].'
                                     </div>
                                     <div class="col d-flex justify-content-end">
-                                        <a href="" target="_blank" class="btn btn-sm btn-outline-secondary ">
+                                        <a href="../assets/candidateResume/'.$row['candidateResume'].'" target="_blank" class="btn btn-sm btn-outline-secondary " download>
                                             <i class="bi bi-download"></i>&nbsp;
                                             Resume
                                         </a>
@@ -120,12 +121,12 @@
                                         <div class="col-auto"> <i class="bi bi-geo-alt-fill"></i>'.$row['candiateLocation'].' </div>
                                         <div class="col-auto">
 
-                                            D.O.B : 12/12/2012.</div>
+                                            D.O.B : '.$row['candidateDOB'].'</div>
                                     </div>
                                 </div>
                                 <div class="row mt-2 col-md-11">
                                     <div class="col-md-2">
-                                        <i class="bi bi-mortarboard-fill"></i>&nbsp; Qualification :
+                                        <i class="bi bi-mortarboard-fill"></i>&nbsp; Qualification 
                                     </div>
                                     <div class="col-auto">
                                     '.$row['qualification'].'
@@ -172,7 +173,7 @@
                                         <i class="bi bi-linkedin"></i>&nbsp; LinkedIn :
                                     </div>
                                     <div class="col-auto">
-                                        <a href="https://www.linkedin.com/feed/">https://www.linkedin.com/</a>
+                                        <a href="https://www.linkedin.com/feed/">'.$row['linkedInProfile'].'/</a>
                                     </div>
                                 </div>
                                 <div class="row mt-2 col-md-11 bg-light">

@@ -353,25 +353,29 @@ if (isset($_POST['admin_jobfair'])) {
       $result = mysqli_query($con, $query);
       // var_dump($result);
 
-  }
-
-
-  if ($result) {
-    echo "
+      if ($result) {
+        echo "
+                     <script>
+                       alert('Fair Uploaded Sucessfully');
+                       window.location.href='admin_jobfair.php';
+                     </script>
+                   ";
+      } else {
+        echo "
                  <script>
-                   alert('Fair Uploaded Sucessfully');
+                   alert('Somrthing went Wrong');
                    window.location.href='admin_jobfair.php';
                  </script>
                ";
-  } else {
+    }
+  }else{
     echo "
-             <script>
-               alert('Somrthing went Wrong');
-               window.location.href='admin_jobfair.php';
-             </script>
-           ";
+        <script>
+          alert('Please Fill the form Propely');
+          window.location.href='admin_jobfair.php';
+        </script>
+      ";
   }
-
 }
 ?>
 <?php
@@ -384,6 +388,8 @@ if (isset($_POST['updateFair'])) {
   $fileName=$_FILES['BannerImg']['name'];
   $updateId=$_POST['updateId'];
   // print_r($_FILES);
+  if($fairName!='' && $fairDate!='' && $fairTime!='' && $location!='' && $organizer!=''){
+
   if (isset($_FILES['BannerImg']['name']) && $_FILES['BannerImg']['size']>0) {
     
     $image2 = $_FILES['BannerImg']['name'];
@@ -432,6 +438,14 @@ if (isset($_POST['updateFair'])) {
                window.location.href='admin_jobfair.php';
              </script>
            ";
+  }
+  }else{
+    echo "
+    <script>
+      alert('Please Fill the form Propely');
+      window.location.href='admin_jobfair.php';
+    </script>
+  ";
   }
 
 }
