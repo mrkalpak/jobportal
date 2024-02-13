@@ -1,20 +1,20 @@
 <?php include './header.php'; ?>
 <?php
-    require('connection.php');
-    $url= $_SERVER['REQUEST_URI'];  
-    $urlArray = explode('=',$url);
-    $last = $urlArray[sizeof($urlArray)-1];
-    // echo $last;  
+require('connection.php');
+$url = $_SERVER['REQUEST_URI'];
+$urlArray = explode('=', $url);
+$last = $urlArray[sizeof($urlArray) - 1];
+// echo $last;  
 
 
-    // Query to fetch data from the job_fair table
-    $query = "SELECT * FROM job_fair Where id=".$last."";
-    $result = mysqli_query($con, $query);
-    if ($result->num_rows > 0) {
-        $row = mysqli_fetch_assoc($result);
-    } else {
-        echo "0 results";
-    }
+// Query to fetch data from the job_fair table
+$query = "SELECT * FROM job_fair Where id=" . $last . "";
+$result = mysqli_query($con, $query);
+if ($result->num_rows > 0) {
+    $row = mysqli_fetch_assoc($result);
+} else {
+    $NoData="No Data present";
+}
 ?>
 
 <link rel="stylesheet" href="./assets/css/candiate-myprofile.css">
@@ -47,18 +47,17 @@
             <h4 class="main-title"><?php echo $row["fair_Organizer"] ?></h4>
         </div>
         <div class="text-center">
-
-            <img src="./assets/images/home/jobcard.jpg" width="60%" height="auto" alt="" srcset="">
+            <img src="./assets/fair/<?php echo $row["fileName"] ?>" width="40%" height="auto" alt="" srcset="">
         </div>
         <div class="d-flex justify-content-between mx-5 px-5 mt-4">
             <div class="">
                 Location : <?php echo $row["location"] ?><a target='_blank' href="http://maps.google.com/?q='<?php echo $row["location"] ?>'">Click here</a>
             </div>
             <div class="">
-                Date : <?php echo $row["fairDate"]?>
+                Date : <?php echo $row["fairDate"] ?>
             </div>
             <div class="">
-                Time : <?php echo $row["fairTime"]?>
+                Time : <?php echo $row["fairTime"] ?>
 
             </div>
         </div>
@@ -73,7 +72,7 @@
                     </div>
                     <div class="mb-3 col">
                         <label for="candiateAge" class="form-label">Birthdate*</label>
-                        <input type="date" class="form-control" id="candiateAge" required>
+                        <input type="date" name="candidateDOB" class="form-control" id="candiateAge" required>
                     </div>
                 </div>
 
@@ -265,10 +264,16 @@
 
                     </div>
                 </div>
+                <div class="row">
+                    <div class="mb-3 col">
+                        <label for="linkdin" class="form-label">Linkedin</label>
+                        <input required type="text" name="linkedInProfile" class="form-control" id="linkdin">
 
-                <div class="mb-3 ">
-                    <label for="formFile" class="form-label">Upload Resume</label>
-                    <input name="candidateResume" class="form-control" required type="file" id="formFile" accept="application/pdf">
+                    </div>
+                    <div class="mb-3 col ">
+                        <label for="formFile" class="form-label">Upload Resume</label>
+                        <input name="candidateResume" class="form-control" required type="file" id="formFile" accept="application/pdf">
+                    </div>
                 </div>
 
                 <div class="mb-3">
@@ -276,7 +281,7 @@
                     <textarea name="discription" class="form-control" required id="shortdesc" rows="5"></textarea>
                     <input type="hidden" name="fairId" value="<?php echo $last ?>">
                 </div>
-                <button type="submit" name="candidateData" class="btn py-2 px-3 mb-3 text-white btn-lg" style="background-color: var(--primary);" value="" >Submit</button>
+                <button type="submit" name="candidateData" class="btn py-2 px-3 mb-3 text-white btn-lg" style="background-color: var(--primary);" value="">Submit</button>
 
             </form>
         </div>
@@ -315,7 +320,7 @@
 <!-- footer -->
 <?php include './footer.php'; ?>
 
- 
+
 <!-- Plugin js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
 <script src="assets/js/our-trusted-company.js"></script>

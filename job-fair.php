@@ -9,7 +9,7 @@
     if (mysqli_num_rows($result)>0) {
         $row = mysqli_query($con,$query);
     } else {
-        echo "0 results";
+        $NoData="No Data present";
     }
 ?>
 
@@ -43,10 +43,16 @@
         <div class="col-12  ">
             <h3 class="main-title">Get ready for the <span class="main-title-span">upcoming Job Fair </span></h3>
         </div>
+        <div class="row my-2 mx-5">
+        <?php
+            if (mysqli_num_rows($result)<0) {
+
+                echo '<h4 class="text-danger text-center">'.$NoData.'</h4>';
+            }
+        ?>
         <?php
             while($row = $result->fetch_assoc()) {
                 echo '
-                <div class="row my-2 mx-5">
                 <div class="col-md-4 my-2">
                     <div class="card">
                         <img src="./assets/fair/'.$row['fileName'].'" class="card-img-top" alt="'.$row['fileName'].'">
@@ -57,10 +63,10 @@
                             <a href="./job-fair-form.php?fair_Id='.$row['id'].'" class="btn btn-primary-custom"> Apply</a>
                         </div>
                     </div>
-                </div>
                 </div>';
             }
         ?>
+                </div>
 
         &nbsp; &nbsp; &nbsp; &nbsp; At the job fair in India, there are more beneficial options that can provide specific solutions for your quest of getting a perfect and efficient job where you can be comfortable with your skills, payments, and all. Job Fair India organises the job fair in Maharashtra which is the hub of industries of different types therefore, the job fair always cares for the concerns of every member so that you can be comfortable attending it. It often happens that despite having perfect qualifications and skills, you are not able to find the job and you are unable to explore the vacancy and all in the respective companies. <br><br>
         &nbsp; &nbsp; &nbsp; &nbsp; The upcoming job fair always helps you be prepared to join your desired company as per your skill and certification. Therefore, if you are willing to find a good job and willing to establish your career, then register by filling in all the details and get ready for the upcoming job fair where all the experts from different companies help you be more knowledgeable about the interview and all. It’s the way that can lead you to success and perfection. Hence, you are always welcome to join the upcoming job fair either to join as a fresher or to switch your existing job for a better salary hike. <br><br>

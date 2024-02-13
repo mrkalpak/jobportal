@@ -11,7 +11,7 @@
     if (mysqli_num_rows($result)>0) {
         $row = mysqli_query($con,$query);
     } else {
-        echo "0 results";
+        $NoData="No Data Found";
     }
 
 ?>
@@ -52,6 +52,7 @@
                 </tr>
                 <?php
                 while($row = $result->fetch_assoc()) {
+                    
                     $query2 = "SELECT * FROM job_faircandidate WHERE fairId=".$row['id']."";
                     $result2 = mysqli_query($con, $query2);
                     // print_r($result2->num_rows);
@@ -67,8 +68,9 @@
 
                     }
                 echo' <tr>
+
                     <td>
-                    '.$row['fair_Organizer'].'<span class="badge badge-'.$badege.' rounded-pill  ">'.$fairStatus.'</span><br>
+                    '.$row['fair_Organizer'].'<span class="badge ms-2 badge-'.$badege.' rounded-pill  ">'.$fairStatus.'</span><br>
                         <span style="color: #595959;">'.$row['location'].' | Date: '.$row['fairDate'].'</span> <br>
 
                     </td>
@@ -86,8 +88,14 @@
 
 
                 </tr>';
+
             }?>
             </table>
+            <?php
+            if (mysqli_num_rows($result)<0) {
+                echo '<h4 class="text-danger text-center">'.$NoData.'</h4>';
+            }
+            ?>
         </div>
     </div>
     <!---Container Fluid-->

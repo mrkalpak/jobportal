@@ -218,8 +218,10 @@ if(isset($_POST['candidateData'])){
     $discription=$_POST['discription'];
     $fairId=$_POST['fairId'];
     $fileName=$_FILES['candidateResume']['name'];
+    $linkedInProfile=$_POST['linkedInProfile'];
+    $candidateDOB=$_POST['candidateDOB'];
 
-    if($candidateName!='' && $candiateLocation!='' && $candidatePhone!='' && $candidateEmail!='' && $candidateDesignation!='' && $exp!=''&& $jobType!='' && $qualification && $discription){
+    if($candidateName!='' && $candidateDOB!='' && $linkedInProfile!='' && $candiateLocation!='' && $candidatePhone!='' && $candidateEmail!='' && $candidateDesignation!='' && $exp!=''&& $jobType!='' && $qualification && $discription){
 
       // function validateName($name) {
       //   // Regular expression pattern to match only letters and spaces
@@ -261,32 +263,30 @@ if(isset($_POST['candidateData'])){
       // var_dump($time);
       // // var_dump($imageFileType2);
       // return;
+      try {
 
-
-      $query = "INSERT INTO `job_faircandidate`(`candidateName`, `candiateLocation`, `candidatePhone`, `candidateEmail`, `currentProfile`,`candidateDesignation`,`exp`,`jobType`,`qualification`,`discription`,`fairId`)
-      VALUES ('$candidateName', '$candiateLocation', '$candidatePhone', '$candidateEmail', '$currentProfile','$candidateDesignation','$exp','$jobType','$qualification','$discription','$fairId')";
-      $result = mysqli_query($con, $query);
-      // var_dump($result);
-      // return;
+      $query = "INSERT INTO `job_faircandidate`(`candidateName`,`candidateDOB`,`linkedInProfile`, `candiateLocation`, `candidatePhone`, `candidateEmail`, `currentProfile`,`candidateDesignation`,`candidateResume`,`exp`,`jobType`,`qualification`,`discription`,`fairId`)
+      VALUES ('$candidateName','$candidateDOB','$linkedInProfile', '$candiateLocation', '$candidatePhone', '$candidateEmail', '$currentProfile','$candidateDesignation','$Final_image_name2','$exp','$jobType','$qualification','$discription','$fairId')";
+      // var_dump($query);      
+        $result = mysqli_query($con, $query);
+        if ($result) {
+          echo "
+            <script>
+              alert('Uploaded Sucessfully');
+              window.location.href='job-fair.php';
+            </script>";
+        } 
+        } catch(Exception $e) {
+          echo "<script>
+                  alert('You have already Registered with Same Phone Number or Email');
+                  window.location.href='job-fair.php';
+                </script>";
+        }
 
   }
 
 
-  if ($result) {
-    echo "
-                 <script>
-                   alert('Uploaded Sucessfully');
-                   window.location.href='job-fair.php';
-                 </script>
-               ";
-  } else {
-    echo "
-             <script>
-               alert('Somrthing went Wrong');
-               window.location.href='job-fair.php';
-             </script>
-           ";
-  }
+ 
 }
 ?>
 
