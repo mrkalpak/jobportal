@@ -173,11 +173,6 @@ if (isset($_POST['updatejob'])) {
       $result = mysqli_query($con, $query);
 
       if ($result) {
-
-
-
-
-
         $query3 = "UPDATE `company` SET `coins` = $db_coins-$jobcost  WHERE `company`.`username` = '$username'";
         $result2 = mysqli_query($con, $query3);
         echo "
@@ -202,6 +197,95 @@ if (isset($_POST['updatejob'])) {
             </script>
           ";
     }
+  }
+}
+?>
+
+<?php
+if(isset($_POST['candidateData'])){
+  //  var_dump($_POST);   
+  //   return;
+    // var_dump($_FILES);
+    $candidateName=$_POST['candidateName'];
+    $candiateLocation=$_POST['candiateLocation'];
+    $candidatePhone=$_POST['candidatePhone'];
+    $currentProfile=$_POST['currentProfile'];
+    $candidateEmail=$_POST['candidateEmail'];
+    $candidateDesignation=$_POST['candidateDesignation'];
+    $exp=$_POST['exp'];
+    $jobType=$_POST['jobType'];
+    $qualification=$_POST['qualification'];
+    $discription=$_POST['discription'];
+    $fairId=$_POST['fairId'];
+    $fileName=$_FILES['candidateResume']['name'];
+
+    if($candidateName!='' && $candiateLocation!='' && $candidatePhone!='' && $candidateEmail!='' && $candidateDesignation!='' && $exp!=''&& $jobType!='' && $qualification && $discription){
+
+      // function validateName($name) {
+      //   // Regular expression pattern to match only letters and spaces
+      //   $pattern = '/^[a-zA-Z ]+$/';
+      //   // Check if the name matches the pattern
+      //   preg_match($pattern, $name);
+      // };
+
+      // function isValidDate($date, $format = 'Y-m-d') {
+      //   $dateTime = DateTime::createFromFormat($format, $date);
+      //   return $dateTime && $dateTime->format($format) === $date;
+      // }
+
+
+
+      
+      // $name=validateName($fairName);
+      // $organizerName=validateName($organizer);
+      // $date = isValidDate($fairDate);
+    
+
+
+      if (isset($_FILES['candidateResume']['name'])) {
+
+        $image2 = $_FILES['candidateResume']['name'];
+        $target_file2 = basename($image2);
+        $imageFileType2 = strtolower(pathinfo($target_file2, PATHINFO_EXTENSION));
+        $check2 = $_FILES['candidateResume']['tmp_name'];
+        $extension2 = substr($image2, strlen($image2) - 4, strlen($image2));
+        $image_ext2 = pathinfo($image2, PATHINFO_FILENAME);
+        $Final_image_name2 = $image_ext2.".".$imageFileType2;
+        $destination2 = "./assets/candidateResume/$Final_image_name2";
+        move_uploaded_file($check2, $destination2);
+      }
+
+      // // var_dump($name);
+      // var_dump($organizerName);
+      // // var_dump($date);
+      // var_dump($time);
+      // // var_dump($imageFileType2);
+      // return;
+
+
+      $query = "INSERT INTO `job_faircandidate`(`candidateName`, `candiateLocation`, `candidatePhone`, `candidateEmail`, `currentProfile`,`candidateDesignation`,`exp`,`jobType`,`qualification`,`discription`,`fairId`)
+      VALUES ('$candidateName', '$candiateLocation', '$candidatePhone', '$candidateEmail', '$currentProfile','$candidateDesignation','$exp','$jobType','$qualification','$discription','$fairId')";
+      $result = mysqli_query($con, $query);
+      // var_dump($result);
+      // return;
+
+  }
+
+
+  if ($result) {
+    echo "
+                 <script>
+                   alert('Uploaded Sucessfully');
+                   window.location.href='job-fair.php';
+                 </script>
+               ";
+  } else {
+    echo "
+             <script>
+               alert('Somrthing went Wrong');
+               window.location.href='job-fair.php';
+             </script>
+           ";
   }
 }
 ?>

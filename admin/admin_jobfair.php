@@ -1,6 +1,20 @@
+
 <nav>
-    <?php include 'admin-header.php'; ?>
+    <?php 
+    include 'admin-header.php'; 
+    ?>
 </nav>
+<?php
+    require('connection.php');
+    $query = "SELECT * FROM job_fair";
+    $result = mysqli_query($con, $query);
+    if (mysqli_num_rows($result)>0) {
+        $row = mysqli_query($con,$query);
+    } else {
+        echo "0 results";
+    }
+
+?>
 <link rel="stylesheet" href="./css/jobpost.css">
 <style>
     .form-control {
@@ -36,67 +50,45 @@
                     <th>Applications</th>
                     <th id="action_col">Action</th>
                 </tr>
+                <?php
+                while($row = $result->fetch_assoc()) {
+                    $query2 = "SELECT * FROM job_faircandidate WHERE fairId=".$row['id']."";
+                    $result2 = mysqli_query($con, $query2);
+                    // print_r($result2->num_rows);
+                    $today=date("Y-m-d");
+                    // echo $today;
+                    $fairStatus="";
+                    if($today==$row['fairDate'] || $today<$row['fairDate']){
+                        $fairStatus="Active";
+                        $badege="success";
+                    }else{
+                        $fairStatus="Expired";
+                        $badege="danger";
 
-                <tr>
+                    }
+                echo' <tr>
                     <td>
-                    Shivsena Saeed Khan<span class="badge rounded-pill  active-plan">Active</span>
-                        <br>
-                        <span style="color: #595959;">Pune | Date: 02 April, 2023</span> <br>
+                    '.$row['fair_Organizer'].'<span class="badge badge-'.$badege.' rounded-pill  ">'.$fairStatus.'</span><br>
+                        <span style="color: #595959;">'.$row['location'].' | Date: '.$row['fairDate'].'</span> <br>
 
                     </td>
                     <td>
-                        35 <br> Total Applications
+                        '.$result2->num_rows.' Total Applications
                     </td>
 
                     <td class="d-flex">
-                        
-
-                            <button class="btn btn-outline-custom  mt-2 me-2 " data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Edit</button>
-                        
-                        <a href="./job-fair-candidate.php">
-
-                            <button class="btn btn-outline-custom  mt-2 me-2 " data-bs-toggle="modal" data-bs-target="#proceed-modal">View candidates</button>
-                        </a>
+                            <button onclick="editFair('.$row['id'].')"  value="'.$row['id'].'" class=" btn btn-outline-custom  mt-2 me-2 " data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Edit</button>
+                            
+                            <a href="./job-fair-candidate.php?fair_Id='.$row['id'].'">
+                                <button class="btn btn-outline-custom  mt-2 me-2 " data-bs-toggle="modal" data-bs-target="#proceed-modal">View candidates</button>
+                            </a>
                     </td>
 
 
-                </tr>
-                <tr>
-                    <td>
-                    Shivsena Saeed Khan<span class="badge rounded-pill  expire-plan">Expired</span>
-                        <br>
-                        <span style="color: #595959;">Pune | Date: 02 April, 2023</span> <br>
-
-                    </td>
-                    <td>
-                        35 <br> Total Applications
-                    </td>
-
-                    <td>
-                    <button class="btn btn-outline-custom  mt-2 me-2 " data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Edit</button>
-                        <a href="./job-fair-candidate.php">
-
-                            <button class="btn btn-outline-custom  mt-2 me-2 " data-bs-toggle="modal" data-bs-target="#proceed-modal">View candidates</button>
-                        </a>
-                    </td>
-
-
-                </tr>
-
-
-
-
-                
-
-
-
+                </tr>';
+            }?>
             </table>
-
         </div>
-
-
-
-
     </div>
     <!---Container Fluid-->
 </div>
@@ -117,43 +109,51 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalCenterTitle">Create Job fair</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <button type="button" onclick="closeModal()" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form action="">
+                <form id="jobFairForm" action="admin_postdata.php" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="Name">Name</label>
-                        <input type="text" class="form-control" id="Name" placeholder="Enter Name">
+                        <input required type="text" class="form-control" name="fairName" id="Name" placeholder="Enter Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="Name">Fair Organizer</label>
+                        <input required type="text" class="form-control" name="organizer" id="organizer" placeholder="Organizer Name">
                     </div>
                     <div class="form-group">
                         <label for="date">Date</label>
-                        <input type="date" class="form-control" id="date" placeholder="Enter date">
+                        <input required type="date" class="form-control" name="fairDate" id="date" placeholder="Enter date">
                     </div>
                     <div class="form-group">
                         <label for="time">Time</label>
-                        <input type="time" class="form-control" id="time" placeholder="Enter date">
+                        <input required type="time" class="form-control" name="fairTime" id="time" placeholder="Enter date">
                     </div>
                     <div class="form-group">
                         <label for="banner">Banner Image</label>
-                        <input type="file" class="form-control " id="banner">
+                        <input required type="file" class="form-control" name="BannerImg" id="banner">
+                        <span id="currentFile" class="text-primary"></span>
                     </div>
                     <div class="form-group">
                         <label for="location">Location</label>
-                        <input type="text" class="form-control " id="location">
+                        <input required type="text" class="form-control" name="location" onkeyup="mapLocation()" id="location">
+                        <input id="updateThisId" name="updateId" type="hidden" value="">
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="Maplink">Map Link</label>
                         <input type="text" class="form-control " id="Maplink">
+                    </div> -->
+                    <iframe id="embedMap" width="450" height="250" frameborder="0" style="border:0" referrerpolicy="no-referrer-when-downgrade"allowfullscreen></iframe>
+                    <div class="modal-footer">
+                        <button type="submit" name="admin_jobfair" id="upload" class="btn text-white mx-auto" style=" background:#4A0063; ">Save changes</button>
                     </div>
                 </form>
             </div>
-            <div class="modal-footer">
 
-                <button type="button" class="btn text-white mx-auto" style=" background:#4A0063; ">Save changes</button>
-            </div>
         </div>
     </div>
 </div>
+
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

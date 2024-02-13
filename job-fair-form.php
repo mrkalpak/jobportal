@@ -1,4 +1,21 @@
 <?php include './header.php'; ?>
+<?php
+    require('connection.php');
+    $url= $_SERVER['REQUEST_URI'];  
+    $urlArray = explode('=',$url);
+    $last = $urlArray[sizeof($urlArray)-1];
+    // echo $last;  
+
+
+    // Query to fetch data from the job_fair table
+    $query = "SELECT * FROM job_fair Where id=".$last."";
+    $result = mysqli_query($con, $query);
+    if ($result->num_rows > 0) {
+        $row = mysqli_fetch_assoc($result);
+    } else {
+        echo "0 results";
+    }
+?>
 
 <link rel="stylesheet" href="./assets/css/candiate-myprofile.css">
 <style>
@@ -27,7 +44,7 @@
 
         <div class="col-12  text-center">
             <h3 class="main-title">Job <span class="main-title-span">Application</span></h3>
-            <h4 class="main-title">Shivsena Saeed Khan</h4>
+            <h4 class="main-title"><?php echo $row["fair_Organizer"] ?></h4>
         </div>
         <div class="text-center">
 
@@ -35,49 +52,47 @@
         </div>
         <div class="d-flex justify-content-between mx-5 px-5 mt-4">
             <div class="">
+                Location : <?php echo $row["location"] ?><a target='_blank' href="http://maps.google.com/?q='<?php echo $row["location"] ?>'">Click here</a>
+            </div>
+            <div class="">
+                Date : <?php echo $row["fairDate"]?>
+            </div>
+            <div class="">
+                Time : <?php echo $row["fairTime"]?>
 
-                Location : Pune <a href="">Click here</a>
-            </div>
-            <div class="">
-                Date : 2021-09-20
-            </div>
-            <div class="">
-                Time : 10:00
             </div>
         </div>
         <div class=" p-5 ">
-            <form action="" class=" px-5" id="myForms">
+            <form action="postdata.php" method="POST" enctype="multipart/form-data" class=" px-5" id="myForms">
                 <div class="row mt-3">
 
                     <div class="mb-3 col">
-                        <label for="candiatename" class="form-label">Name*</label>
-                        <input type="text" class="form-control" id="candiatename" required>
+                        <label for="candidateName" class="form-label">Name*</label>
+                        <input type="text" name="candidateName" class="form-control" id="candiatename" required>
 
                     </div>
                     <div class="mb-3 col">
-                        <label for="candiateage" class="form-label">Birthdate*</label>
-                        <input type="date" class="form-control" id="candiateage" required>
-
-
+                        <label for="candiateAge" class="form-label">Birthdate*</label>
+                        <input type="date" class="form-control" id="candiateAge" required>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="mb-3 col">
                         <label for="location" class="form-label">Current Location*</label>
-                        <input type="text" class="form-control" id="location" required>
+                        <input type="text" name="candiateLocation" class="form-control" id="location" required>
 
                     </div>
                     <div class="mb-3 col">
                         <label for="c_no" class="form-label">Phone Number*</label>
-                        <input type="number" class="form-control" id="c_no" required>
+                        <input type="number" name="candidatePhone" class="form-control" id="c_no" required>
 
                     </div>
                 </div>
                 <div class="row">
                     <div class="mb-3 col">
                         <label for="email" class="form-label">Emial*</label>
-                        <input type="email" class="form-control" id="email" required>
+                        <input type="email" name="candidateEmail" class="form-control" id="email" required>
 
                     </div>
                     <!-- <div class="mb-3 col">
@@ -87,26 +102,26 @@
                             </div> -->
                     <div class="mb-3 col">
                         <label for="cu-job-place" class="form-label">Current Job Place(Optional)</label>
-                        <input type="text" class="form-control" id="cu-job-place">
+                        <input type="text" name="currentProfile" class="form-control" id="cu-job-place">
 
                     </div>
                 </div>
                 <div class="row">
                     <div class="mb-3 col">
                         <label for="designation" class="form-label">Designation(Optional)</label>
-                        <input type="text" class="form-control" id="designation">
+                        <input type="text" name="candidateDesignation" class="form-control" id="designation">
 
                     </div>
                     <div class="mb-3 col">
                         <label for="exprience" class="form-label">Exprience*</label>
-                        <input type="Number" value="" min="0" max="99" required placeholder="In years" class="form-control" id="exprience" name="exprience">
+                        <input type="Number" name="exp" value="" min="0" max="99" required placeholder="In years" class="form-control" id="exprience" name="candidateExprience">
                     </div>
 
                 </div>
                 <div class="row">
                     <div class="mb-3 col">
                         <label for="linkedin" class="form-label">Serching Job As a</label>
-                        <select required class="form-select" aria-label="Default select example">
+                        <select name="jobType" required class="form-select" aria-label="Default select example">
 
                             <option selected value="Developer">Developer</option>
                             <option value="2">Two</option>
@@ -116,7 +131,7 @@
                     </div>
                     <div class="mb-3 col">
                         <label for="qualification" class="form-label">Qualification*</label>
-                        <select required class="form-select" id="qualification" aria-label="Default select example">
+                        <select name="qualification" required class="form-select" id="qualification" aria-label="Default select example">
 
                             <option value="10th">10th</option>
                             <option value="11th">11th</option>
@@ -253,14 +268,15 @@
 
                 <div class="mb-3 ">
                     <label for="formFile" class="form-label">Upload Resume</label>
-                    <input class="form-control" required type="file" id="formFile" accept="application/pdf">
+                    <input name="candidateResume" class="form-control" required type="file" id="formFile" accept="application/pdf">
                 </div>
 
                 <div class="mb-3">
                     <label for="shortdesc" class="form-label">Describe Yourself</label>
-                    <textarea class="form-control" required id="shortdesc" rows="5"></textarea>
+                    <textarea name="discription" class="form-control" required id="shortdesc" rows="5"></textarea>
+                    <input type="hidden" name="fairId" value="<?php echo $last ?>">
                 </div>
-                <button type="button" class="btn py-2 px-3 mb-3 text-white btn-lg" style="background-color: var(--primary);" value="" data-bs-toggle="modal" data-bs-target="#submitmodal">Submit</button>
+                <button type="submit" name="candidateData" class="btn py-2 px-3 mb-3 text-white btn-lg" style="background-color: var(--primary);" value="" >Submit</button>
 
             </form>
         </div>

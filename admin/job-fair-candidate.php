@@ -1,3 +1,25 @@
+<?php
+    require('connection.php');
+    $url= $_SERVER['REQUEST_URI'];  
+    $urlArray = explode('=',$url);
+    $last = $urlArray[sizeof($urlArray)-1];
+    // echo $last;  
+
+
+    // Query to fetch data from the job_fair table
+    $query = "SELECT * FROM job_faircandidate Where fairId=".$last."";
+    $result = mysqli_query($con, $query);
+
+   
+
+    $query2 = "SELECT * FROM job_fair Where id=".$last."";
+    $result2 = mysqli_query($con, $query2);
+
+    // print_r($result->num_rows);
+    // echo '<br>';
+    // print_r($result2);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,24 +75,29 @@
 
                             <div class="candidate-card me-auto ms-auto border border-1 p-2 rounded">
 
-
-                                <div class="row px-4 mb-2">
-                                    <div class="col-md-9">
-                                        Shivsena Saeed Khan<span class="badge rounded-pill  active-plan">Active</span>
-                                        <br>
-                                        <span style="color: #595959;">Pune | Date: 02 April, 2023</span> <br>
-
+                                <?php
+                                 while($row2 = $result2->fetch_assoc()) {
+                                    // print_r($row['fair_Organizer']);
+                                    echo'
+                                    <div class="row px-4 mb-2">
+                                        <div class="col-md-9">
+                                            '.$row2['fair_Organizer'].'<span class="badge rounded-pill  active-plan">Active</span>
+                                                <br>
+                                            <span style="color: #595959;">'.$row2['location'].' | Date: '.$row2['fairDate'].'</span> <br>
+                                            </div>
+                                            <div class="col-md-3 border-start">
+                                                '.$result->num_rows.' <br> Total Applications
+                                            </div>
                                     </div>
-                                    <div class="col-md-3 border-start">
-                                        35 <br> Total Applications
-                                    </div>
+                                    ';
+                                }
+                                ?>
 
-
-
-
-                                </div>
                             </div>
-                            <div class="candidate-card me-auto ms-auto mt-3">
+                            <?php
+                            while($row = $result->fetch_assoc()) {
+
+                            echo'<div class="candidate-card me-auto ms-auto mt-3">
                                 <div class=" d-flex justify-content-end ">
                                     <button class="btn btn-sm btn-outline-custom text-white "><i class="bi bi-download"></i>&nbsp; Download Excel</button>
                                 </div>
@@ -78,7 +105,7 @@
                             <div class="border border-1 candidate-card mt-3 rounded ms-auto me-auto p-3">
                                 <div class="row">
                                     <div class="col fw-bold">
-                                        Shubham Hase
+                                        '.$row['candidateName'].'
                                     </div>
                                     <div class="col d-flex justify-content-end">
                                         <a href="" target="_blank" class="btn btn-sm btn-outline-secondary ">
@@ -90,7 +117,7 @@
                                 <div class="row">
                                     <div class="col-md-8 row text-secondary">
 
-                                        <div class="col-auto"> <i class="bi bi-geo-alt-fill"></i> Icici Bank, Pune. </div>
+                                        <div class="col-auto"> <i class="bi bi-geo-alt-fill"></i>'.$row['candiateLocation'].' </div>
                                         <div class="col-auto">
 
                                             D.O.B : 12/12/2012.</div>
@@ -101,7 +128,7 @@
                                         <i class="bi bi-mortarboard-fill"></i>&nbsp; Qualification :
                                     </div>
                                     <div class="col-auto">
-                                        Diploma, Btech
+                                    '.$row['qualification'].'
                                     </div>
                                 </div>
                                 <div class="row mt-2 col-md-11">
@@ -113,7 +140,7 @@
                                         &nbsp; Skills :
                                     </div>
                                     <div class="col-auto">
-                                        Web dev, app dev
+                                    '.$row['jobType'].'
                                     </div>
                                 </div>
                                 <div class="row mt-2 col-md-11">
@@ -121,7 +148,7 @@
                                         <i class="bi bi-telephone-fill"></i>&nbsp; Phone :
                                     </div>
                                     <div class="col-auto">
-                                        55555555555
+                                    '.$row['candidatePhone'].'
                                     </div>
                                 </div>
                                 <div class="row mt-2 col-md-11">
@@ -129,7 +156,7 @@
                                         <i class="bi bi-envelope-fill"></i>&nbsp; Email :
                                     </div>
                                     <div class="col-auto">
-                                        user@user.com
+                                    '.$row['candidateEmail'].'
                                     </div>
                                 </div>
                                 <div class="row mt-2 col-md-11">
@@ -137,7 +164,7 @@
                                         <i class="bi bi-person-badge-fill"></i>&nbsp; Exprience
                                     </div>
                                     <div class="col-auto">
-                                        4
+                                    '.$row['exp'].'
                                     </div>
                                 </div>
                                 <div class="row mt-2 col-md-11">
@@ -153,13 +180,15 @@
                                         <i class="bi bi-card-text"></i>&nbsp; Description :
                                     </div>
                                     <div class="col-auto">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, animi.
+                                    '.$row['discription'].'
                                     </div>
                                 </div>
 
 
-                            </div>
-                            <div class="border border-1 candidate-card mt-3 rounded ms-auto me-auto p-3">
+                            </div>';
+                            }
+                            ?>
+                            <!-- <div class="border border-1 candidate-card mt-3 rounded ms-auto me-auto p-3">
                                 <div class="row">
                                     <div class="col fw-bold">
                                         Shubham Hase
@@ -242,7 +271,7 @@
                                 </div>
 
 
-                            </div>
+                            </div> -->
                             <footer class="sticky-footer">
                                 <?php include 'footer.php'; ?>
                                 <?php include 'company-job-post.php'; ?>
