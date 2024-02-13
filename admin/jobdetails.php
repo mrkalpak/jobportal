@@ -195,7 +195,7 @@
 
                                         <div class="card-body">
 
-                                            <form class="upe-mutistep-form px-4" id="Upemultistepsform" action="/admin_postdata.php">
+                                            <form class="upe-mutistep-form px-4" id="Upemultistepsform" method="POST" action="admin_postdata.php">
                                                 <div class="step-header d-flex mb-2">
                                                     <span class="steplevel "> <span class="hide-text">
                                                             Job details
@@ -222,12 +222,12 @@
                                                         <div class="col mb-3 mt-3">
                                                             <label for="companyName" class="form-label">Company you're
                                                                 hiring for</label>
-                                                            <input type="text" class="form-control" id="companyName" value="Sanspots Pvt Ltd">
+                                                            <input name="CompanyName" type="text" class="form-control" id="companyName" value="">
                                                         </div>
                                                         <div class="col mb-3 mt-3">
                                                             <label for="companyName" class="form-label">Job title /
                                                                 Designation</label>
-                                                            <input type="text" required class="form-control" id="jobtitle" placeholder="Eg. Software Developer">
+                                                            <input name="jobDesignation" type="text" required class="form-control" id="jobtitle" placeholder="Eg. Software Developer">
                                                         </div>
                                                     </div>
                                                     <div class="mb-3 ">
@@ -235,22 +235,22 @@
 
                                                         <br>
                                                         <div class="form-check form-check-inline">
-                                                            <input class="form-check-input input-radio" checked type="radio" name="jobtype" id="fulltime" value="fulltime">
+                                                            <input name="jobTime" class="form-check-input input-radio" checked type="radio" name="jobtype" id="fulltime" value="fulltime">
                                                             <label class="form-check-label btn radio-outline-custom rounded-5" for="fulltime">Full
                                                                 Time</label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
-                                                            <input class="form-check-input input-radio" type="radio" name="jobtype" id="parttime" value="fulltime">
+                                                            <input name="jobTime" class="form-check-input input-radio" type="radio" name="jobtype" id="parttime" value="fulltime">
                                                             <label class="form-check-label btn radio-outline-custom rounded-5" for="parttime">Part
                                                                 Time</label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
-                                                            <input class="form-check-input input-radio" type="radio" name="jobtype" id="bothtype" value="fulltime">
+                                                            <input name="jobTime" class="form-check-input input-radio" type="radio" name="jobtype" id="bothtype" value="fulltime">
                                                             <label class="form-check-label btn radio-outline-custom rounded-5" for="bothtype">Both
                                                                 (Full-Time and Part-Time)</label>
                                                         </div>
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value="" id="nightshift">
+                                                            <input name="jobShift" class="form-check-input" type="checkbox" value="" id="nightshift">
                                                             <label class="form-check-label" for="nightshift">
                                                                 This is a night shift job
                                                             </label>
@@ -267,15 +267,15 @@
                                                         </span> <br>
 
                                                         <div class="form-check form-check-inline">
-                                                            <input class="form-check-input input-radio" checked type="radio" name="joblocation" id="wfo" value="Work from office">
+                                                            <input name="jobLocation" class="form-check-input input-radio" checked type="radio" name="joblocation" id="wfo" value="Work from office">
                                                             <label class="form-check-label btn radio-outline-custom rounded-5" for="wfo">Work from office</label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
-                                                            <input class="form-check-input input-radio" type="radio" name="joblocation" id="wfh" value="Work from home">
+                                                            <input name="jobLocation" class="form-check-input input-radio" type="radio" name="joblocation" id="wfh" value="Work from home">
                                                             <label class="form-check-label btn radio-outline-custom rounded-5" for="wfh">Work from home</label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
-                                                            <input class="form-check-input input-radio" type="radio" name="joblocation" id="fieldjob" value="Field job">
+                                                            <input name="jobLocation" class="form-check-input input-radio" type="radio" name="joblocation" id="fieldjob" value="Field job">
                                                             <label class="form-check-label btn radio-outline-custom rounded-5" for="fieldjob">Field job</label>
                                                         </div>
                                                     </div>
@@ -290,16 +290,16 @@
                                                         <label for="" class="form-label">What is the pay type? </label>
                                                         <br>
                                                         <div class="form-check form-check-inline">
-                                                            <input class="form-check-input input-radio" checked type="radio" name="jobsalaytype" id="fixed" value="Fixed only">
+                                                            <input name="jobPayType" class="form-check-input input-radio" checked type="radio" name="jobsalaytype" id="fixed" value="Fixed only">
                                                             <label class="form-check-label btn radio-outline-custom rounded-5" for="fixed">Fixed only</label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
-                                                            <input class="form-check-input input-radio" type="radio" name="jobsalaytype" id="fixedincen" value="Fixed + Incentive">
+                                                            <input name="jobPayType" class="form-check-input input-radio" type="radio" name="jobsalaytype" id="fixedincen" value="Fixed + Incentive">
                                                             <label class="form-check-label btn radio-outline-custom rounded-5" for="fixedincen">Fixed +
                                                                 Incentive</label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
-                                                            <input class="form-check-input input-radio" type="radio" name="jobsalaytype" id="incen" value="Incentive only">
+                                                            <input name="jobPayType" class="form-check-input input-radio" type="radio" name="jobsalaytype" id="incen" value="Incentive only">
                                                             <label class="form-check-label btn radio-outline-custom rounded-5" for="incen">Incentive
                                                                 only</label>
                                                         </div>
@@ -309,10 +309,9 @@
                                                             <label for="minsalary" class="form-label">Fixed salary /
                                                                 month *</label>
                                                             <div class="row ms-0 me-0 col-md-6">
-
-                                                                <input type="number" required class="form-control col" id="minsalary" placeholder="80000">
+                                                                <input name="jobMaxSalary"  type="number" required class="form-control col" id="minsalary" placeholder="80000">
                                                                 <div class="col-auto pt-2" style="background-color: lightgray;">To</div>
-                                                                <input type="number" required class="form-control col" id="maxsalary" placeholder="90000">
+                                                                <input name="jobMinSalary" type="number" required class="form-control col" id="maxsalary" placeholder="90000">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -327,7 +326,7 @@
                                                     </span> <br>
                                                     <div class="col-md-6 mb-3 mt-3">
                                                         <label for="minedu" class="form-label">Minimum Education</label>
-                                                        <select class="form-select" aria-label="Default select example" id="minedu">
+                                                        <select name="jobQualification" class="form-select" aria-label="Default select example" id="minedu">
                                                             <option value="10th pass" selected>10th Pass</option>
                                                             <option value="12th pass">12th Pass</option>
                                                             <option value="Btech">Btech</option>
@@ -340,21 +339,21 @@
                                                             (In Years)</label>
                                                         <div class="row ms-0 me-0 col-md-6">
 
-                                                            <input type="number" required class="form-control col" id="minyr" placeholder="0">
+                                                            <input type="number" name="jobMinExp" required class="form-control col" id="minyr" placeholder="0">
                                                             <div class="col-auto pt-2" style="background-color: lightgray;">-</div>
-                                                            <input type="number" required class="form-control col" id="maxyr" placeholder="3">
+                                                            <input type="number" name="jobMaxExp" required class="form-control col" id="maxyr" placeholder="3">
                                                         </div>
                                                     </div>
                                                     <div class="mb-3 col-md-6">
                                                         <label for="vacancy" class="form-label">Vacancy:</label>
 
-                                                        <input type="number" required class="form-control " id="vacancy" placeholder="Max number of vacancy">
+                                                        <input type="number" name="jobvacancy" required class="form-control " id="vacancy" placeholder="Max number of vacancy">
 
                                                     </div>
                                                     <div class="mb-3 col-md-6">
                                                         <label for="gender" class="form-label">Gender:</label>
 
-                                                        <select class="form-select" id="gender" aria-label="Default select example">
+                                                        <select name="jobGender" class="form-select" id="gender" aria-label="Default select example">
                                                             <option value="Both" selected>Both</option>
                                                             <option value="male">Male</option>
                                                             <option value="Female">Female</option>
@@ -365,16 +364,16 @@
                                                 <div class="step">
                                                     <div class="mb-3">
                                                         <label for="jd" class="form-label">Job Description</label>
-                                                        <textarea class="form-control" id="jd" rows="3"></textarea>
+                                                        <textarea name="jobResponsibility" class="form-control" id="jd" rows="3"></textarea>
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="jres" class="form-label">Job Responsibility:</label>
-                                                        <textarea class="form-control" id="jres" rows="6"></textarea>
+                                                        <textarea name="jobResponsibility" class="form-control" id="jres" rows="6"></textarea>
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="addreq" class="form-label">Additional
                                                             Requirements:</label>
-                                                        <textarea class="form-control" id="addreq" rows="3"></textarea>
+                                                        <textarea name="jobRequirement" class="form-control" id="addreq" rows="3"></textarea>
                                                     </div>
 
                                                 </div>
@@ -516,21 +515,10 @@
                                                 <div class="d-flex justify-content-center btn-row">
                                                     <button class="btn col-md-2 btn-outline-secondary m-2" id="prevBtn" onclick="nextPrev(-1)" type="button " style=" background:#F18101; border: white;color: white;">Back</button>
                                                     <!-- <button  class="btn col-md-2 " style=" background:#4A0063; color: white;">Back  </button> -->
-                                                    <button class="btn col-md-2 btn-custom m-2" id="nextBtn" onclick="nextPrev(1)" type="button" style=" background:#4A0063; color: white;">Continue</button>
+                                                    <button class="btn col-md-2 btn-custom m-2" id="nextBtn" name="admin_jobpost" onclick="nextPrev(1)" type="submit" style=" background:#4A0063; color: white;">Continue</button>
 
                                                 </div>
                                             </form>
-
-
-
-
-
-
-
-
-
-
-
                                         </div>
 
                                     </div>
@@ -581,6 +569,8 @@
                     // alert("hello");
                     updateSummary();
                     document.getElementById("nextBtn").type = "submit";
+
+
                 } else {
                     document.getElementById("nextBtn").innerHTML = "Continue";
                 }
