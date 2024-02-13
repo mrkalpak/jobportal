@@ -10,6 +10,21 @@ $_SESSION['username'];
 ?>
 
 
+<!-- Include Bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<!-- Include DataTables CSS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
+
+<style>
+    /* Increase the size of the DataTables entry size dropdown */
+    .dataTables_length select {
+        padding: 6px 16px;
+        /* You can adjust the padding to your desired size */
+        font-size: 14px;
+        /* You can adjust the font size to your desired size */
+    }
+</style>
 
 
 <body id="page-top">
@@ -76,7 +91,7 @@ $_SESSION['username'];
                                             <input class="btn btn-dark" style="background:#4A0063;" type="reset" value="Print">
                                             <br>
                                             <br>
-                                            <span style="font-size: 20px;padding: 5px 9px 16px 6px;">Show</span>
+                                            <!-- <span style="font-size: 20px;padding: 5px 9px 16px 6px;">Show</span>
 
                                             <select class="form-group col-md-0" aria-label=".form-select-lg example" style="height:11%;border-radius: 5px; width: 45px;">
                                                 <option selected></option>
@@ -84,16 +99,16 @@ $_SESSION['username'];
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
                                             </select>
-                                            <span style="font-size: 20px;padding: 5px 9px 16px 6px;">Entries</span>
+                                            <span style="font-size: 20px;padding: 5px 9px 16px 6px;">Entries</span> -->
                                             <form class="form-inline" style="float: right;margin-right: 66px;">
 
-                                                <div class="form-group mb-2">
+                                                <!-- <div class="form-group mb-2">
                                                     <h6 style="margin: auto;color: black;">Search:</h6>
                                                 </div>
                                                 <div class="form-group mx-sm-3 mb-2">
                                                     <label for="search" class="sr-only">Search</label>
                                                     <input type="text" class="form-control" id="search" placeholder="Search">
-                                                </div>
+                                                </div> -->
                                             </form>
 
 
@@ -175,6 +190,18 @@ $_SESSION['username'];
                         <!-- Footer -->
                     </div>
         </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Include DataTables JavaScript -->
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#table-id').DataTable({
+            searching: true
+        });
+    });
+</script>
 
         <!-- Scroll to top -->
 

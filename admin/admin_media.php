@@ -9,7 +9,11 @@ require('connection.php');
 
 ?>
 
-<html lang="en">
+ <!-- Include Bootstrap CSS -->
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<!-- Include DataTables CSS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
 
                 <nav>
                 <?php include 'admin-header.php'; ?>
@@ -167,9 +171,18 @@ require('connection.php');
                     </div>
         </div>
 
+        <script>
+        $(document).ready(function() {
+            $('#table-id').DataTable({
+                searching: true
+            });
+        });
+    </script>
         <!-- Scroll to top -->
 
-
+<!-- Include DataTables JavaScript -->
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
         <script src="vendor/jquery/jquery.min.js"></script>
         <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
@@ -244,5 +257,3 @@ if (isset($_POST['deletePost'])) {
     }
 }
 ?>
-
-</html>
