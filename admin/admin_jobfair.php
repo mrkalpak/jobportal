@@ -68,7 +68,7 @@
                     }
                 echo' <tr>
                     <td>
-                    '.$row['fair_Organizer'].'<span class="badge badge-'.$badege.' rounded-pill  ">'.$fairStatus.'</span><br>
+                    '.$row['fair_Organizer'].'<span class="badge ms-2 badge-'.$badege.' rounded-pill  ">'.$fairStatus.'</span><br>
                         <span style="color: #595959;">'.$row['location'].' | Date: '.$row['fairDate'].'</span> <br>
 
                     </td>
