@@ -364,7 +364,7 @@
                                                 <div class="step">
                                                     <div class="mb-3">
                                                         <label for="jd" class="form-label">Job Description</label>
-                                                        <textarea name="jobResponsibility" class="form-control" id="jd" rows="3"></textarea>
+                                                        <textarea name="jobDescription" class="form-control" id="jd" rows="3"></textarea>
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="jres" class="form-label">Job Responsibility:</label>
@@ -515,7 +515,8 @@
                                                 <div class="d-flex justify-content-center btn-row">
                                                     <button class="btn col-md-2 btn-outline-secondary m-2" id="prevBtn" onclick="nextPrev(-1)" type="button " style=" background:#F18101; border: white;color: white;">Back</button>
                                                     <!-- <button  class="btn col-md-2 " style=" background:#4A0063; color: white;">Back  </button> -->
-                                                    <button class="btn col-md-2 btn-custom m-2" id="nextBtn" name="admin_jobpost" onclick="nextPrev(1)" type="submit" style=" background:#4A0063; color: white;">Continue</button>
+                                                    <button class="btn col-md-2 btn-custom m-2" id="nextBtn"  onclick="nextPrev(1)" type="button" style=" background:#4A0063; color: white;">Continue</button>
+                                                    <button class="btn col-md-2 btn-custom m-2" id="submitBtn" name="admin_jobpost" type="submit" style=" background:#4A0063; color: white; display: none;">Submit</button>
 
                                                 </div>
                                             </form>
@@ -564,15 +565,18 @@
                 } else {
                     document.getElementById("prevBtn").style.display = "inline";
                 }
-                if (n == x.length - 1) {
-                    document.getElementById("nextBtn").innerHTML = "Submit";
+                if (n == x.length -1 ) {
+                    document.getElementById("nextBtn").style.display = "none";
+                    document.getElementById("submitBtn").style.display = "block";
                     // alert("hello");
                     updateSummary();
-                    document.getElementById("nextBtn").type = "submit";
+                    // document.getElementById("nextBtn").type = "submit";
 
 
                 } else {
                     document.getElementById("nextBtn").innerHTML = "Continue";
+                    document.getElementById("nextBtn").type = "button";
+
                 }
                 activelevel(n);
             }
@@ -607,9 +611,9 @@
                 // Collect inputs from the form
                 var companyName = document.getElementById('companyName').value;
                 var jobTitle = document.getElementById('jobtitle').value;
-                var jobType = document.querySelector('input[name="jobtype"]:checked').value;
-                var jobLocation = document.querySelector('input[name="joblocation"]:checked').value;
-                var salaryType = document.querySelector('input[name="jobsalaytype"]:checked').value;
+                var jobType = document.querySelector('input[name="jobTime"]:checked').value;
+                var jobLocation = document.querySelector('input[name="jobLocation"]:checked').value;
+                var salaryType = document.querySelector('input[name="jobPayType"]:checked').value;
                 var minSalary = document.getElementById('minsalary').value;
                 var maxSalary = document.getElementById('maxsalary').value;
 
