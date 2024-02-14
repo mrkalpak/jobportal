@@ -275,6 +275,8 @@ if(isset($_POST['candidateData'])){
               alert('Uploaded Sucessfully');
               window.location.href='job-fair.php';
             </script>";
+
+
         } 
         } catch(Exception $e) {
           echo "<script>
@@ -289,4 +291,5 @@ if(isset($_POST['candidateData'])){
  
 }
 ?>
+
 
