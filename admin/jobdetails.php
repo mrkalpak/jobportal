@@ -195,7 +195,7 @@
 
                                         <div class="card-body">
 
-                                            <form class="upe-mutistep-form px-4" id="Upemultistepsform" method="POST" action="admin_postdata.php">
+                                            <form name="admin_jobpost" class="upe-mutistep-form px-4" id="Upemultistepsform" method="POST" action="admin_postdata.php">
                                                 <div class="step-header d-flex mb-2">
                                                     <span class="steplevel "> <span class="hide-text">
                                                             Job details
@@ -250,7 +250,7 @@
                                                                 (Full-Time and Part-Time)</label>
                                                         </div>
                                                         <div class="form-check">
-                                                            <input name="jobShift" class="form-check-input" type="checkbox" value="" id="nightshift">
+                                                            <input name="jobShift" class="form-check-input" type="checkbox" value="NightShift" id="nightshift">
                                                             <label class="form-check-label" for="nightshift">
                                                                 This is a night shift job
                                                             </label>
@@ -290,16 +290,16 @@
                                                         <label for="" class="form-label">What is the pay type? </label>
                                                         <br>
                                                         <div class="form-check form-check-inline">
-                                                            <input name="jobPayType" class="form-check-input input-radio" checked type="radio" name="jobsalaytype" id="fixed" value="Fixed only">
+                                                            <input name="jobPayType" class="form-check-input input-radio" checked type="radio" name="jobPayType" id="fixed" value="Fixed only">
                                                             <label class="form-check-label btn radio-outline-custom rounded-5" for="fixed">Fixed only</label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
-                                                            <input name="jobPayType" class="form-check-input input-radio" type="radio" name="jobsalaytype" id="fixedincen" value="Fixed + Incentive">
+                                                            <input name="jobPayType" class="form-check-input input-radio" type="radio" name="jobPayType" id="fixedincen" value="Fixed + Incentive">
                                                             <label class="form-check-label btn radio-outline-custom rounded-5" for="fixedincen">Fixed +
                                                                 Incentive</label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
-                                                            <input name="jobPayType" class="form-check-input input-radio" type="radio" name="jobsalaytype" id="incen" value="Incentive only">
+                                                            <input name="jobPayType" class="form-check-input input-radio" type="radio" name="jobPayType" id="incen" value="Incentive only">
                                                             <label class="form-check-label btn radio-outline-custom rounded-5" for="incen">Incentive
                                                                 only</label>
                                                         </div>

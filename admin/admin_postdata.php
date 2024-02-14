@@ -452,10 +452,91 @@ if (isset($_POST['updateFair'])) {
 ?>
 
 <?php
-  print_r($_POST);
 
-// if (isset($_POST['admin_jobpost'])) {
+  if(isset($_POST['admin_jobpost'])){
+    var_dump($_POST);
+    $CompanyName=$_POST['CompanyName'];
+    $jobDesignation=$_POST['jobDesignation'];
+    $jobTime=$_POST['jobTime'];
+    $jobShift=$_POST['jobShift'];
+    $jobLocation=$_POST['jobLocation'];
+    $jobPayType=$_POST['jobPayType'];
+    $jobMaxSalary=$_POST['jobMaxSalary'];
+    $jobMinSalary=$_POST['jobMinSalary'];
+    $jobQualification=$_POST['jobQualification'];
+    $jobMinExp=$_POST['jobLocation'];
+    $jobMaxExp=$_POST['jobMaxExp'];
+    $jobvacancy=$_POST['jobvacancy'];
+    $jobGender=$_POST['jobGender'];
+    $jobResponsibility=$_POST['jobResponsibility'];
+    $jobRequirement=$_POST['jobRequirement'];
+    
+    if($CompanyName!='' && $jobDesignation!='' && $jobTime!='' && $jobLocation!=''  && $jobMaxSalary!='' && $jobMinSalary!='' && $jobQualification!='' && $jobMinExp!='' && $jobMaxExp!='' && $jobvacancy!='' && $jobGender!='' && $jobResponsibility!='' && $jobRequirement!=''){
+      try {
 
-// }
+        $query = "INSERT INTO `admin_jobpost`(
+          `companyName`, 
+          `jobTitle`, 
+          `jobType`, 
+          `shift`,
+          `workingFrom`,
+          `compensation`,
+          `minSalary`,
+          `maxSalary`,
+          `minEducation`,
+          `minExp`,
+          `maxExp`,
+          `vacancy`,
+          `gender`,
+          `description`,
+          `responsibility`,
+          `requirement`
+          )
+        VALUES (
+          '$CompanyName',
+          '$jobDesignation', 
+          '$jobTime', 
+          '$jobShift', 
+          '$jobLocation',
+          '$jobPayType',
+          '$jobMaxSalary',
+          '$jobMinSalary',
+          '$jobQualification',
+          '$jobMinExp',
+          '$jobMaxExp',
+          '$jobvacancy',
+          '$jobGender',
+          '$jobResponsibility',
+          '$jobRequirement')";
+        $result = mysqli_query($con, $query);
+
+        if ($result) {
+          echo "<script>
+                alert('Job Uploaded Sucessfully');
+                window.location.href='job-posting.php';
+              </script>
+              ";
+          } else {
+            echo "<script>
+                  alert('Somrthing went Wrong');
+                  window.location.href='job-posting.php';
+                </script>
+                ";
+        }
+      }
+      catch(Exception $e) {
+      echo $e;
+      }
+      
+    }else{
+      echo "
+      <script>
+        alert('Please Fill the form Propely');
+        window.location.href='job-posting.php';
+      </script>
+    ";
+    }
+
+  }
 
 ?>
