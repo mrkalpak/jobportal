@@ -98,9 +98,9 @@
 
                                         <td>
                                             <a href="./joblist-candidate.php">
-
                                                 <button class="btn btn-outline-custom  mt-2 me-2 " data-bs-toggle="modal" data-bs-target="#proceed-modal">View candidates</button>
                                             </a>
+
                                         </td>
 
 
@@ -109,6 +109,9 @@
 
 
                                 </table>
+                                <a href="./sendSMS.php">
+                                    <button class="btn btn-outline-custom  mt-2 me-2 " >Send SMS </button>
+                                </a>
 
                             </div>
                             <!---Container Fluid-->
