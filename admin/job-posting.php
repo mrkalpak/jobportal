@@ -7,20 +7,26 @@
 
     // Query to fetch data from the job_fair table
     $query = "SELECT * FROM admin_jobpost ORDER BY id DESC";
-
-
     $query2 = "SELECT phone FROM users_candidate where cardtype=1";
+    $query3 = "SELECT * FROM admin_jobpost ORDER BY id DESC limit 1";
 
     $result = mysqli_query($con, $query);
     $result2 = mysqli_query($con, $query2);
+    $result3 = mysqli_query($con, $query3);
+    while($createUrl = $result3->fetch_assoc()) {
+        // var_dump($createUrl);
+        $jobTd=$createUrl['id'];
+        $jobTitle=$createUrl['jobTitle'];
+        $string = preg_replace('/\s+/', '', $jobTitle);
+        $url="http://localhost/jobportal/card-candidate-jobdetail.php?job=".$jobTd."";
+        //echo $url
+    }
     $phoneNumbersString = '';
 
     if (mysqli_num_rows($result)>0) {
         $row = mysqli_query($con,$query);
 
-        // $rowdata = $result->fetch_assoc();
-        // $rowdata2 = $result2->fetch_assoc();
-        // print_r($rowdata2);
+
     } else {
         $NoData="No Data Found";
     }
@@ -32,18 +38,7 @@
     if (!empty($phoneNumbersString)) {
         $phoneNumbersString = rtrim($phoneNumbersString, ',');
     }
-        // echo $phoneNumbersString;
 
-    
-
-   
-
-    // $query2 = "SELECT * FROM job_fair Where id=".$last."";
-    // $result2 = mysqli_query($con, $query2);
-
-    // print_r($result->num_rows);
-    // echo '<br>';
-    // print_r($result2);
 
 ?>
 <!DOCTYPE html>
@@ -109,6 +104,8 @@
                                         <th id="action_col">Action</th>
                                     </tr>
                                     <?php
+                                    // var_dump($createUrl['id'],$createUrl['jobTitle']);
+
                                     while($row = $result->fetch_assoc()) {
                                         $query2 = "SELECT * FROM job_faircandidate WHERE fairId=".$row['id']."";
                                             $result2 = mysqli_query($con, $query2);
@@ -152,55 +149,15 @@
                                             echo '<h4 class="text-danger text-center">'.$NoData.'</h4>';
                                         }
                                         // print_r($phone);
+                                        
 
                                     ?>
+                                    
                                 </table>
                                 <a>
                                     <button onclick="sendSms()"  class="btn btn-outline-custom  mt-2 me-2 " >Send SMS </button>
                                 </a>
-                                <script>
-                                    function sendSms(){ 
-                                        // alert('Are you sure you want to send');
-                                        Swal.fire({
-                                            title: "Are you sure you want to send?",
-                                            showCancelButton: true,
-                                            denyButtonText: `Don't Send`,
 
-                                            }).then((result) => {
-                                            /* Read more about isConfirmed, isDenied below */
-                                            if (result.isConfirmed) {
-                                                $.ajax({
-                                                    url:"http://panel2.messagewale.com/http-jsonapi.php?&username=JobFair&password=Jobfair@23&senderid=JOBCRD&route=1&number=<?php echo $phoneNumbersString?>&message=Dear Candidate For todays opening click on link https://shorturl.at/BCUW5 Ref-NCP NASHIK Reg- - - Job Card and Job Fair India&templateid=1407168327034496963",
-                                                    type:'GET',
-                                                    dataType: "jsonp",
-                                                    cors: true ,
-                                                    contentType:'application/json',
-                                                    secure: true,
-                                                    headers: {
-                                                        "Access-Control-Allow-Origin": "*",
-                                                    },
-                                                    beforeSend: function (xhr) {
-                                                        xhr.setRequestHeader ("Authorization", "Basic " + btoa(""));
-                                                    },
-                                                    success: function (result) {
-                                                        console.log('Success');
-                                                        console.log(result);
-                                                    },
-                                                    error: function (status,textStatus,errorThrown) {
-                                                        location.reload()  
-                                                    //     console.log(status);
-                                                    //     console.log(errorThrown);
-                                                    //     console.log(textStatus);
-
-                                                    }
-                                                    
-                                                });
-                                            }
-
-
-                                        });
-                                    }    
-                                </script>
 
                             </div>
                             <!---Container Fluid-->
@@ -225,6 +182,71 @@
         <script src="vendor/chart.js/Chart.min.js"></script>
         <script src="js/demo/chart-area-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        
+        <script>
+            function sendSms(){ 
+                // alert('Are you sure you want to send');
+                Swal.fire({
+                    title: "Are you sure you want to send?",
+                    showCancelButton: true,
+                    denyButtonText: `Don't Send`,
+
+                    }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            
+                            url:"http://panel2.messagewale.com/http-api.php?username=JobFair&password=Jobfair@23&senderid=JOBCRD&route=1&number=<?php echo $phoneNumbersString?>&message=Dear Candidate For todays opening click on link https://shorturl.at/amQT0 Ref-NCP NASHIK Reg- - - Job Card and Job Fair India&templateid=1407168327034496963",
+                            type:'GET',
+                            dataType: "jsonp",
+                            // cors: true ,
+                            contentType:'application/json; charset=utf-8;',
+                            // secure: true,
+                            headers: {
+                                "Access-Control-Allow-Origin": "*",
+                            },
+                            success: function (data, status, xhr) {
+                                console.log('data: ', data);
+                            },
+                            error: function (xhr,textStatus,error) {
+                                location.reload()  
+                                console.log(xhr);
+                                console.log(error);
+
+                            }
+                            
+                        });
+                        // Define the API URL
+                    // const apiKey = '38384a6f62466169723734381707812329';
+                    // const apiUrl = 'http://panel2.messagewale.com/http-jsonapi.php?&username=JobFair&password=Jobfair@23&senderid=JOBCRD&route=1&number=<?php echo $phoneNumbersString?>&message=Dear Candidate For todays opening click on link https://shorturl.at/koJO3 Ref-NCP NASHIK Reg- - - Job Card and Job Fair India&templateid=1407168327034496963';
+                    // const requestOptions = {
+                    //     method: 'GET',
+                    //     headers: {
+                    //         'Authorization': `Bearer ${apiKey}`,
+                    //         "Access-Control-Allow-Origin": "*",
+
+                    //     },
+                    //     };
+                    // // Make a GET request
+                    // fetch(apiUrl,requestOptions)
+                    // .then(response => {
+                    //     if (!response.ok) {
+                    //     throw new Error('Network response was not ok');
+                    //     }
+                    //     return response.json();
+                    // })
+                    // .then(data => {
+                    //     console.log(data);
+                    // })
+                    // .catch(error => {
+                    //     console.error('Error:', error);
+                    // });
+                    }
+
+
+                });
+            }        
+        </script>
 </body>
 
 </html>

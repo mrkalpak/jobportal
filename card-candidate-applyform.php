@@ -1,13 +1,39 @@
 <?php include './header.php'; ?>
 <?php include './navbar.php' ?>
+<?php
+    require('connection.php');
+    // print_r($_GET['job']);
+    $query = "SELECT * FROM admin_jobpost where id=".$_GET['job']."";
+    $result = mysqli_query($con, $query);
+    $row = $result->fetch_assoc();
+    $today=date("Y-m-d");
+    // // echo $today;
+    $fairStatus="";
+        
+    // }else{
+
+
+    // }
+
+
+?>
 <div class="container">
     <div class="topimg d-flex justify-content-center">
         <!-- jobpost banner -->
         <img src="./assets/images/image 5.png" height="100px" class="" alt="">
     </div>
     <!-- heading -->
-    <h3 class="text-center mt-3">Company Name</h3>
-    <h5 class="text-center">Job Position</h5>
+    <?php
+    if($row>0){
+    if( $today==$row['applyTill'] || $today<$row['applyTill'] ){
+    ?>
+    <h3 class="text-center mt-3"><?php echo $row['companyName']?></h3>
+    
+    <h5 class="text-center"><?php echo $row['jobTitle']?></h5>
+    <?php
+        }
+    }
+    ?>
     <div class="border mt-5">
         <form action="" class=" px-5">
             <div class="row mt-3">
