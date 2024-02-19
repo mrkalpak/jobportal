@@ -1,3 +1,137 @@
+<?php
+    require('connection.php');
+    $url= $_SERVER['REQUEST_URI'];  
+    $urlArray = explode('=',$url);
+    $last = $urlArray[sizeof($urlArray)-1];
+    // var_dump(isset($last),is_numeric($last));
+    
+    $companyName="";
+    $jobDesignation="";
+    $fullTimechecked ='';
+    $halfTimeChecked ='';
+    $shiftChecked='';
+    $bothChecked ='';
+    $fiexedChecked='';
+    $fiexedIncenChecked='';
+    $IncenChecked='';
+    $minSalary='';
+    $maxSalary='';
+    $workFromHome='';
+    $workFromOffice='';
+    $workOnField='';
+    $applyTill='';
+    $vacancy='';
+    $minExp='';
+    $maxExp='';
+    $description='';
+    $responsibility='';
+    $requirement='';
+    $submitDataOn='admin_jobpost';
+    $updateId='';
+
+    $EducationData=['10th Pass','12th Pass','B-tech','M-tech','Diploma'];
+    $minEducation='';
+
+    $Gender=['Both','male','Female'];
+    $jobGender='';
+    
+
+
+    if(isset($last) && is_numeric($last)){
+        $submitDataOn="updateAdmin_jobpost";
+        $query = "SELECT * FROM admin_jobpost WHERE id=".$last."";
+        $result = mysqli_query($con,$query);
+        $data = $result->fetch_assoc();
+        // var_dump($data);
+        $companyName=$data['companyName'];
+        // var_dump($data['jobType']);
+
+        if($data['jobType']=='fulltime'){
+            $fullTimechecked='Checked';
+        }elseif($data['jobType']=='parttime'){
+            $halfTimeChecked='Checked';
+        }elseif ($data['jobType']=='both') {
+            $bothChecked='Checked';
+        }else{
+            $fullTimechecked='';
+            $halfTimeChecked='';
+            $bothChecked='';
+        }
+
+
+        if($data['workingFrom']=='Work from office'){
+            $workFromHome='Checked';
+        }elseif($data['workingFrom']=='Work from home'){
+            $workFromOffice='Checked';
+        }elseif($data['workingFrom']=='Field job'){
+            $workOnField='Checked'; 
+        }else{
+            $workFromHome='';
+            $workFromOffice='';
+            $workOnField=''; 
+        }
+
+
+        
+
+
+
+        if($data['shift']==''){
+            $shiftChecked='';
+        }else{
+            if($data['shift']=='NightShift')
+            $shiftChecked='Checked';
+        }
+
+
+        if($data['compensation']=='Fixed only'){
+            $fiexedChecked='Checked';
+        }elseif($data['compensation']=='Fixed + Incentive'){
+            $fiexedIncenChecked='Checked';
+        }elseif ($data['compensation']=='Incentive only') {
+            $IncenChecked='Checked';
+        }else{
+            $fiexedChecked='';
+            $fiexedIncenChecked='';
+            $IncenChecked='';
+        }
+
+        $jobDesignation=$data['jobTitle'];  
+        $minSalary=$data['minSalary'];
+        $maxSalary=$data['maxSalary'];  
+        $applyTill=$data['applyTill'];
+        $vacancy=$data['vacancy'];
+        $minExp=$data['minExp'];
+        $maxExp=$data['maxExp'];
+        $description=$data['description'];
+        $responsibility=$data['responsibility'];
+        $requirement=$data['requirement'];
+        $minEducation=$data['minEducation'];
+        $selectGender=$data['gender'];
+        $updateId=$data['id'];
+        // var_dump($data);
+    }
+
+    // Query to fetch data from the job_fair table
+    $query = "SELECT * FROM admin_jobpost";
+    if($last)
+    $result = mysqli_query($con, $query);
+    if (mysqli_num_rows($result)>0) {
+        $row = mysqli_query($con,$query);
+    } else {
+        $NoData="No Data Found";
+    }
+
+   
+
+    // $query2 = "SELECT * FROM job_fair Where id=".$last."";
+    // $result2 = mysqli_query($con, $query2);
+
+    // print_r($result->num_rows);
+    // echo '<br>';
+    // print_r($result2);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -222,12 +356,12 @@
                                                         <div class="col mb-3 mt-3">
                                                             <label for="companyName" class="form-label">Company you're
                                                                 hiring for</label>
-                                                            <input name="CompanyName" type="text" class="form-control" id="companyName" value="">
+                                                            <input name="CompanyName" type="text" class="form-control" id="companyName" value="<?php echo $companyName ?>">
                                                         </div>
                                                         <div class="col mb-3 mt-3">
                                                             <label for="companyName" class="form-label">Job title /
                                                                 Designation</label>
-                                                            <input name="jobDesignation" type="text" required class="form-control" id="jobtitle" placeholder="Eg. Software Developer">
+                                                            <input name="jobDesignation" type="text" required class="form-control" id="jobtitle" placeholder="Eg. Software Developer" value="<?php echo $jobDesignation ?>">
                                                         </div>
                                                     </div>
                                                     <div class="mb-3 ">
@@ -235,22 +369,22 @@
 
                                                         <br>
                                                         <div class="form-check form-check-inline">
-                                                            <input name="jobTime" class="form-check-input input-radio" checked type="radio" name="jobtype" id="fulltime" value="fulltime">
+                                                            <input name="jobTime" class="form-check-input input-radio" <?php echo $fullTimechecked?> type="radio" name="jobtype" id="fulltime" value="fulltime">
                                                             <label class="form-check-label btn radio-outline-custom rounded-5" for="fulltime">Full
                                                                 Time</label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
-                                                            <input name="jobTime" class="form-check-input input-radio" type="radio" name="jobtype" id="parttime" value="fulltime">
+                                                            <input name="jobTime" class="form-check-input input-radio" <?php echo $halfTimeChecked?> type="radio" name="jobtype" id="parttime" value="parttime">
                                                             <label class="form-check-label btn radio-outline-custom rounded-5" for="parttime">Part
                                                                 Time</label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
-                                                            <input name="jobTime" class="form-check-input input-radio" type="radio" name="jobtype" id="bothtype" value="fulltime">
+                                                            <input name="jobTime" class="form-check-input input-radio" <?php echo $bothChecked?> type="radio" name="jobtype" id="bothtype" value="both">
                                                             <label class="form-check-label btn radio-outline-custom rounded-5" for="bothtype">Both
                                                                 (Full-Time and Part-Time)</label>
                                                         </div>
                                                         <div class="form-check">
-                                                            <input name="jobShift" class="form-check-input" type="checkbox" value="NightShift" id="nightshift">
+                                                            <input name="jobShift" <?php echo $shiftChecked?> class="form-check-input" type="checkbox" value="NightShift" id="nightshift">
                                                             <label class="form-check-label" for="nightshift">
                                                                 This is a night shift job
                                                             </label>
@@ -267,15 +401,15 @@
                                                         </span> <br>
 
                                                         <div class="form-check form-check-inline">
-                                                            <input name="jobLocation" class="form-check-input input-radio" checked type="radio" name="joblocation" id="wfo" value="Work from office">
+                                                            <input name="jobLocation" class="form-check-input input-radio" <?php echo $workFromHome ?> type="radio" name="joblocation" id="wfo" value="Work from office">
                                                             <label class="form-check-label btn radio-outline-custom rounded-5" for="wfo">Work from office</label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
-                                                            <input name="jobLocation" class="form-check-input input-radio" type="radio" name="joblocation" id="wfh" value="Work from home">
+                                                            <input name="jobLocation" class="form-check-input input-radio" <?php echo $workFromOffice ?> type="radio" name="joblocation" id="wfh" value="Work from home">
                                                             <label class="form-check-label btn radio-outline-custom rounded-5" for="wfh">Work from home</label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
-                                                            <input name="jobLocation" class="form-check-input input-radio" type="radio" name="joblocation" id="fieldjob" value="Field job">
+                                                            <input name="jobLocation" class="form-check-input input-radio" <?php echo $workOnField ?> type="radio" name="joblocation" id="fieldjob" value="Field job">
                                                             <label class="form-check-label btn radio-outline-custom rounded-5" for="fieldjob">Field job</label>
                                                         </div>
                                                     </div>
@@ -290,16 +424,16 @@
                                                         <label for="" class="form-label">What is the pay type? </label>
                                                         <br>
                                                         <div class="form-check form-check-inline">
-                                                            <input name="jobPayType" class="form-check-input input-radio" checked type="radio" name="jobPayType" id="fixed" value="Fixed only">
+                                                            <input name="jobPayType" class="form-check-input input-radio" <?php echo $fiexedChecked ?>  type="radio" name="jobPayType" id="fixed" value="Fixed only">
                                                             <label class="form-check-label btn radio-outline-custom rounded-5" for="fixed">Fixed only</label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
-                                                            <input name="jobPayType" class="form-check-input input-radio" type="radio" name="jobPayType" id="fixedincen" value="Fixed + Incentive">
+                                                            <input name="jobPayType" class="form-check-input input-radio" type="radio" <?php echo $fiexedIncenChecked ?> name="jobPayType" id="fixedincen" value="Fixed + Incentive">
                                                             <label class="form-check-label btn radio-outline-custom rounded-5" for="fixedincen">Fixed +
                                                                 Incentive</label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
-                                                            <input name="jobPayType" class="form-check-input input-radio" type="radio" name="jobPayType" id="incen" value="Incentive only">
+                                                            <input name="jobPayType" class="form-check-input input-radio" type="radio" <?php echo $IncenChecked ?> name="jobPayType" id="incen" value="Incentive only">
                                                             <label class="form-check-label btn radio-outline-custom rounded-5" for="incen">Incentive
                                                                 only</label>
                                                         </div>
@@ -309,9 +443,9 @@
                                                             <label for="minsalary" class="form-label">Fixed salary /
                                                                 month *</label>
                                                             <div class="row ms-0 me-0 col-md-6">
-                                                                <input name="jobMaxSalary"  type="number" required class="form-control col" id="minsalary" placeholder="80000">
+                                                                <input name="jobMinSalary" value="<?php echo $minSalary ?>"  type="number" required class="form-control col" id="minsalary" placeholder="80000">
                                                                 <div class="col-auto pt-2" style="background-color: lightgray;">To</div>
-                                                                <input name="jobMinSalary" type="number" required class="form-control col" id="maxsalary" placeholder="90000">
+                                                                <input name="jobMaxSalary" value="<?php echo $maxSalary ?>" type="number" required class="form-control col" id="maxsalary" placeholder="90000">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -327,10 +461,17 @@
                                                     <div class="col-md-6 mb-3 mt-3">
                                                         <label for="minedu" class="form-label">Minimum Education</label>
                                                         <select name="jobQualification" class="form-select" aria-label="Default select example" id="minedu">
-                                                            <option value="10th pass" selected>10th Pass</option>
-                                                            <option value="12th pass">12th Pass</option>
-                                                            <option value="Btech">Btech</option>
-                                                            <option value="Diploma">Diploma</option>
+                                                            <option value='' selected>Select Education</option>
+                                                            <?php
+                                                                for($i=0;$i<count($EducationData);$i++){
+                                                                    if($EducationData[$i]==$minEducation){
+                                                                        $selectEdu='selected';
+                                                                    }else{
+                                                                        $selectEdu='';
+                                                                    }
+                                                                    echo '<option '.$selectEdu.' value="'.$EducationData[$i].'">'.$EducationData[$i].'</option>';
+                                                                }
+                                                            ?>
 
                                                         </select>
                                                     </div>
@@ -339,41 +480,58 @@
                                                             (In Years)</label>
                                                         <div class="row ms-0 me-0 col-md-6">
 
-                                                            <input type="number" name="jobMinExp" required class="form-control col" id="minyr" placeholder="0">
+                                                            <input type="number" name="jobMinExp" required class="form-control col" id="minyr" value="<?php echo $minExp ?>" placeholder="0">
                                                             <div class="col-auto pt-2" style="background-color: lightgray;">-</div>
-                                                            <input type="number" name="jobMaxExp" required class="form-control col" id="maxyr" placeholder="3">
+                                                            <input type="number" name="jobMaxExp" required class="form-control col" value="<?php echo $maxExp ?>" id="maxyr" placeholder="3">
                                                         </div>
                                                     </div>
                                                     <div class="mb-3 col-md-6">
                                                         <label for="vacancy" class="form-label">Vacancy:</label>
 
-                                                        <input type="number" name="jobvacancy" required class="form-control " id="vacancy" placeholder="Max number of vacancy">
+                                                        <input type="number" value="<?php echo $vacancy?>" name="jobvacancy" required class="form-control " id="vacancy" placeholder="Max number of vacancy">
 
                                                     </div>
                                                     <div class="mb-3 col-md-6">
                                                         <label for="gender" class="form-label">Gender:</label>
 
                                                         <select name="jobGender" class="form-select" id="gender" aria-label="Default select example">
-                                                            <option value="Both" selected>Both</option>
+                                                            <option value='' selected>Select Gender</option>
+                                                            <?php
+                                                                for($i=0;$i<count($Gender);$i++){
+                                                                    if($Gender[$i]==$selectGender){
+                                                                        $GenderData='selected';
+                                                                    }else{
+                                                                        $GenderData='';
+                                                                    }
+                                                                    echo '<option '.$GenderData.' value="'.$Gender[$i].'">'.$Gender[$i].'</option>';
+                                                                }
+                                                            ?>
+                                                            <!-- <option value="Both">Both</option>
                                                             <option value="male">Male</option>
-                                                            <option value="Female">Female</option>
+                                                            <option value="Female">Female</option> -->
                                                         </select>
+                                                    </div>
+                                                    <div class="mb-3 col-md-6">
+                                                        <label for="applyTill" class="form-label">Apply Before:</label>
+                                                        <input id="applyTill" type="date" class="form-control" name="applyTill" value="<?php echo $applyTill?>">
+
                                                     </div>
 
                                                 </div>
                                                 <div class="step">
                                                     <div class="mb-3">
                                                         <label for="jd" class="form-label">Job Description</label>
-                                                        <textarea name="jobDescription" class="form-control" id="jd" rows="3"></textarea>
+                                                        <textarea name="jobDescription"  class="form-control" id="jd" rows="3"><?php echo $description?></textarea>
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="jres" class="form-label">Job Responsibility:</label>
-                                                        <textarea name="jobResponsibility" class="form-control" id="jres" rows="6"></textarea>
+                                                        <textarea name="jobResponsibility"  class="form-control" id="jres" rows="6"><?php echo $responsibility?></textarea>
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="addreq" class="form-label">Additional
                                                             Requirements:</label>
-                                                        <textarea name="jobRequirement" class="form-control" id="addreq" rows="3"></textarea>
+                                                        <textarea name="jobRequirement" class="form-control" id="addreq" rows="3"><?php echo $requirement?></textarea>
+                                                        <input type="hidden" name="updateID" value="<?php echo $updateId?>">
                                                     </div>
 
                                                 </div>
@@ -516,7 +674,7 @@
                                                     <button class="btn col-md-2 btn-outline-secondary m-2" id="prevBtn" onclick="nextPrev(-1)" type="button " style=" background:#F18101; border: white;color: white;">Back</button>
                                                     <!-- <button  class="btn col-md-2 " style=" background:#4A0063; color: white;">Back  </button> -->
                                                     <button class="btn col-md-2 btn-custom m-2" id="nextBtn"  onclick="nextPrev(1)" type="button" style=" background:#4A0063; color: white;">Continue</button>
-                                                    <button class="btn col-md-2 btn-custom m-2" id="submitBtn" name="admin_jobpost" type="submit" style=" background:#4A0063; color: white; display: none;">Submit</button>
+                                                    <button class="btn col-md-2 btn-custom m-2" id="submitBtn" name="<?php echo $submitDataOn ?>" type="submit" style=" background:#4A0063; color: white; display: none;">Submit</button>
 
                                                 </div>
                                             </form>

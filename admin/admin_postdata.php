@@ -295,7 +295,7 @@ if (isset($_POST['generate_cards2'])) {
 <?php
 if (isset($_POST['admin_jobfair'])) {
     // var_dump($_POST);
-    // return;
+    
     // var_dump($_FILES);
     $fairName=$_POST['fairName'];
     $fairDate=$_POST['fairDate'];
@@ -303,29 +303,31 @@ if (isset($_POST['admin_jobfair'])) {
     $location=$_POST['location'];
     $organizer=$_POST['organizer'];
     $fileName=$_FILES['BannerImg']['name'];
-
-    if($fairName!='' && $fairDate!='' && $fairTime!='' && $location!='' && $organizer!='' && $fileName!=''){
-
-      function validateName($name) {
-        // Regular expression pattern to match only letters and spaces
-        $pattern = '/^[a-zA-Z ]+$/';
-        // Check if the name matches the pattern
-        preg_match($pattern, $name);
-      };
-
-      function isValidDate($date, $format = 'Y-m-d') {
-        $dateTime = DateTime::createFromFormat($format, $date);
-        return $dateTime && $dateTime->format($format) === $date;
-      }
-
-
-
-      
-      $name=validateName($fairName);
-      $organizerName=validateName($organizer);
-      $date = isValidDate($fairDate);
     
 
+    if($fairName!='' && $fairDate!='' && $fairTime!='' && $location!='' && $organizer!='' && $fileName!=''){
+      // $resultName=false;
+      // $resultFairDate=false;
+      // function validate(&$name,$resultName) {
+      //   $pattern = '/^[a-zA-Z ]+$/';
+      //   $checkName=preg_match($pattern, $name);
+      //   var_dump($resultName);
+      //   if($checkName!=0){
+      //     $resultName=true;
+      //   }
+      // };
+      // validate($fairName,$resultName);
+
+      // function validateDate($date){
+      //   $dateTime = DateTime::createFromFormat($format='Y-m-d', $date);
+      //   if($dateTime && $dateTime->format($format) === $date){
+      //     $resultFairDate=true;
+      //   }
+      // }
+      // validateDate($fairDate);
+
+      // var_dump($resultName);
+      // return;
 
       if (isset($_FILES['BannerImg']['name'])) {
 
@@ -340,33 +342,37 @@ if (isset($_POST['admin_jobfair'])) {
         move_uploaded_file($check2, $destination2);
       }
 
-      // // var_dump($name);
-      // var_dump($organizerName);
-      // // var_dump($date);
-      // var_dump($time);
-      // // var_dump($imageFileType2);
-      // return;
-
-
       $query = "INSERT INTO `job_fair`(`fairName`, `fairDate`, `fairTime`, `location`, `fair_Organizer`,`fileName`)
       VALUES ('$fairName', '$fairDate', '$fairTime', '$location', '$organizer','$Final_image_name2')";
-      $result = mysqli_query($con, $query);
-      // var_dump($result);
-
+      // var_dump($resultName,$resultFairDate);
+      // return;
+      // if($resultName && $resultFairDate){
+        $result = mysqli_query($con, $query);
+      // }
+      // else{
+      //   if(!$resultName || !$resultFairDate){
+      //     echo "<script>
+      //           alert('Please Fill The Form Fileds Correctly');
+      //           window.location.href='admin_jobfair.php';
+      //         </script>";
+      //         $resultName=false;
+      //         $resultFairDate=false;
+      //   }
+      // }
       if ($result) {
         echo "
-                     <script>
-                       alert('Fair Uploaded Sucessfully');
-                       window.location.href='admin_jobfair.php';
-                     </script>
-                   ";
+              <script>
+                alert('Fair Uploaded Sucessfully');
+                window.location.href='admin_jobfair.php';
+              </script>
+            ";
       } else {
         echo "
-                 <script>
-                   alert('Somrthing went Wrong');
-                   window.location.href='admin_jobfair.php';
-                 </script>
-               ";
+              <script>
+                alert('Somrthing went Wrong');
+                window.location.href='admin_jobfair.php';
+              </script>
+            ";
     }
   }else{
     echo "
@@ -454,25 +460,31 @@ if (isset($_POST['updateFair'])) {
 <?php
 
   if(isset($_POST['admin_jobpost'])){
-    var_dump($_POST);
+    // var_dump($_POST);
     $CompanyName=$_POST['CompanyName'];
     $jobDesignation=$_POST['jobDesignation'];
     $jobTime=$_POST['jobTime'];
-    $jobShift=$_POST['jobShift'];
+    if(isset($_POST['jobShift'])){
+      $jobShift=$_POST['jobShift'];
+    }else{
+      $jobShift=NULL;
+    }
     $jobLocation=$_POST['jobLocation'];
     $jobPayType=$_POST['jobPayType'];
     $jobMaxSalary=$_POST['jobMaxSalary'];
     $jobMinSalary=$_POST['jobMinSalary'];
     $jobQualification=$_POST['jobQualification'];
-    $jobMinExp=$_POST['jobLocation'];
+    $jobMinExp=$_POST['jobMinExp'];
     $jobMaxExp=$_POST['jobMaxExp'];
     $jobvacancy=$_POST['jobvacancy'];
     $jobGender=$_POST['jobGender'];
+    $jobDescription=$_POST["jobDescription"];
     $jobResponsibility=$_POST['jobResponsibility'];
     $jobRequirement=$_POST['jobRequirement'];
+    $applyTill=$_POST['applyTill'];
     
     if($CompanyName!='' && $jobDesignation!='' && $jobTime!='' && $jobLocation!=''  && $jobMaxSalary!='' && $jobMinSalary!='' && $jobQualification!='' && $jobMinExp!='' && $jobMaxExp!='' && $jobvacancy!='' && $jobGender!='' && $jobResponsibility!='' && $jobRequirement!=''){
-      try {
+      
 
         $query = "INSERT INTO `admin_jobpost`(
           `companyName`, 
@@ -490,7 +502,8 @@ if (isset($_POST['updateFair'])) {
           `gender`,
           `description`,
           `responsibility`,
-          `requirement`
+          `requirement`,
+          `applyTill`
           )
         VALUES (
           '$CompanyName',
@@ -499,34 +512,33 @@ if (isset($_POST['updateFair'])) {
           '$jobShift', 
           '$jobLocation',
           '$jobPayType',
-          '$jobMaxSalary',
           '$jobMinSalary',
+          '$jobMaxSalary',
           '$jobQualification',
           '$jobMinExp',
           '$jobMaxExp',
           '$jobvacancy',
           '$jobGender',
+          '$jobDescription',
           '$jobResponsibility',
-          '$jobRequirement')";
-        $result = mysqli_query($con, $query);
-
-        if ($result) {
-          echo "<script>
-                alert('Job Uploaded Sucessfully');
-                window.location.href='job-posting.php';
-              </script>
-              ";
-          } else {
-            echo "<script>
-                  alert('Somrthing went Wrong');
-                  window.location.href='job-posting.php';
-                </script>
-                ";
-        }
-      }
-      catch(Exception $e) {
-      echo $e;
-      }
+          '$jobRequirement',
+          '$applyTill'
+          )";
+        try {
+          $result = mysqli_query($con, $query);
+            if ($result) {
+              echo "<script>
+                    alert('Job Uploaded Sucessfully');
+                    window.location.href='job-posting.php';
+                  </script>";
+              }
+          }
+          catch(Exception $e) {
+              echo "<script>
+                    alert("+$e+");
+                    window.location.href='job-posting.php';
+                  </script>";
+            }
       
     }else{
       echo "
@@ -539,4 +551,79 @@ if (isset($_POST['updateFair'])) {
 
   }
 
+?>
+<?php
+  if(isset($_POST['updateAdmin_jobpost'])){
+
+    $CompanyName=$_POST['CompanyName'];
+    $jobDesignation=$_POST['jobDesignation'];
+    $jobTime=$_POST['jobTime'];
+    if(isset($_POST['jobShift'])){
+      $jobShift=$_POST['jobShift'];
+    }else{
+      $jobShift=NULL;
+    }
+    $jobLocation=$_POST['jobLocation'];
+    $jobPayType=$_POST['jobPayType'];
+    $jobMaxSalary=$_POST['jobMaxSalary'];
+    $jobMinSalary=$_POST['jobMinSalary'];
+    $jobQualification=$_POST['jobQualification'];
+    $jobMinExp=$_POST['jobMinExp'];
+    $jobMaxExp=$_POST['jobMaxExp'];
+    $jobvacancy=$_POST['jobvacancy'];
+    $jobGender=$_POST['jobGender'];
+    $jobDescription=$_POST["jobDescription"];
+    $jobResponsibility=$_POST['jobResponsibility'];
+    $jobRequirement=$_POST['jobRequirement'];
+    $applyTill=$_POST['applyTill'];
+    $updateId=$_POST['updateID'];
+
+    if($CompanyName!='' && $jobDesignation!='' && $jobTime!='' && $jobLocation!=''  && $jobMaxSalary!='' && $jobMinSalary!='' && $jobQualification!='' && $jobMinExp!='' && $jobMaxExp!='' && $jobvacancy!='' && $jobGender!='' && $jobResponsibility!='' && $jobRequirement!=''){
+      $query ="UPDATE admin_jobpost SET 
+      companyName='$CompanyName', 
+      jobTitle='$jobDesignation', 
+      jobType='$jobTime', 
+      shift='$jobShift',
+      workingFrom='$jobLocation',
+      compensation='$jobPayType',
+      minSalary='$jobMinSalary',
+      maxSalary='$jobMaxSalary',
+      minEducation='$jobQualification',
+      minExp='$jobMinExp',
+      maxExp='$jobMaxExp',
+      vacancy='$jobvacancy',
+      gender='$jobGender',
+      description='$jobDescription',
+      responsibility='$jobResponsibility',
+      requirement='$jobRequirement',
+      applyTill='$applyTill'
+      WHERE id='$updateId'";
+      // var_dump($query);
+      try {
+        $result = mysqli_query($con, $query);
+          if ($result) {
+            echo "<script>
+                  alert('Job Updated Sucessfully');
+                  window.location.href='job-posting.php';
+                </script>";
+            }
+        }
+        catch(Exception $e) {
+            echo "<script>
+                  alert(Somthing Went Wrong);
+                  window.location.href='job-posting.php';
+                </script>";
+          }
+    
+  }else{
+    // var_dump($_POST);
+    // return;
+    echo "
+    <script>
+      alert('Please Fill the form Propely');
+      window.location.href='job-posting.php';
+    </script>
+  ";
+  }
+  }
 ?>

@@ -209,7 +209,7 @@ if(isset($_POST['candidateData'])){
     $candidateName=$_POST['candidateName'];
     $candiateLocation=$_POST['candiateLocation'];
     $candidatePhone=$_POST['candidatePhone'];
-    $currentProfile=$_POST['currentProfile'];
+    $candidateCurrentJobLocation=$_POST['candidateCurrentJobLocation'];
     $candidateEmail=$_POST['candidateEmail'];
     $candidateDesignation=$_POST['candidateDesignation'];
     $exp=$_POST['exp'];
@@ -221,29 +221,8 @@ if(isset($_POST['candidateData'])){
     $linkedInProfile=$_POST['linkedInProfile'];
     $candidateDOB=$_POST['candidateDOB'];
 
-    if($candidateName!='' && $candidateDOB!='' && $linkedInProfile!='' && $candiateLocation!='' && $candidatePhone!='' && $candidateEmail!='' && $candidateDesignation!='' && $exp!=''&& $jobType!='' && $qualification && $discription){
-
-      // function validateName($name) {
-      //   // Regular expression pattern to match only letters and spaces
-      //   $pattern = '/^[a-zA-Z ]+$/';
-      //   // Check if the name matches the pattern
-      //   preg_match($pattern, $name);
-      // };
-
-      // function isValidDate($date, $format = 'Y-m-d') {
-      //   $dateTime = DateTime::createFromFormat($format, $date);
-      //   return $dateTime && $dateTime->format($format) === $date;
-      // }
-
-
-
+    if($candidateName!='' && $candidateDOB!='' && $linkedInProfile!='' && $candiateLocation!='' && $candidatePhone!='' && $candidateEmail!='' && $exp!=''&& $jobType!='' && $qualification!='' && $discription!=''){
       
-      // $name=validateName($fairName);
-      // $organizerName=validateName($organizer);
-      // $date = isValidDate($fairDate);
-    
-
-
       if (isset($_FILES['candidateResume']['name'])) {
 
         $image2 = $_FILES['candidateResume']['name'];
@@ -256,17 +235,10 @@ if(isset($_POST['candidateData'])){
         $destination2 = "./assets/candidateResume/$Final_image_name2";
         move_uploaded_file($check2, $destination2);
       }
-
-      // // var_dump($name);
-      // var_dump($organizerName);
-      // // var_dump($date);
-      // var_dump($time);
-      // // var_dump($imageFileType2);
-      // return;
       try {
 
-      $query = "INSERT INTO `job_faircandidate`(`candidateName`,`candidateDOB`,`linkedInProfile`, `candiateLocation`, `candidatePhone`, `candidateEmail`, `currentProfile`,`candidateDesignation`,`candidateResume`,`exp`,`jobType`,`qualification`,`discription`,`fairId`)
-      VALUES ('$candidateName','$candidateDOB','$linkedInProfile', '$candiateLocation', '$candidatePhone', '$candidateEmail', '$currentProfile','$candidateDesignation','$Final_image_name2','$exp','$jobType','$qualification','$discription','$fairId')";
+      $query = "INSERT INTO `job_faircandidate`(`candidateName`,`candidateDOB`,`linkedInProfile`, `candiateLocation`, `candidatePhone`, `candidateEmail`, `candidateCurrentJobLocation`,`candidateDesignation`,`candidateResume`,`exp`,`jobType`,`qualification`,`discription`,`fairId`)
+      VALUES ('$candidateName','$candidateDOB','$linkedInProfile', '$candiateLocation', '$candidatePhone', '$candidateEmail', '$candidateCurrentJobLocation','$candidateDesignation','$Final_image_name2','$exp','$jobType','$qualification','$discription','$fairId')";
       // var_dump($query);      
         $result = mysqli_query($con, $query);
         if ($result) {
@@ -275,16 +247,19 @@ if(isset($_POST['candidateData'])){
               alert('Uploaded Sucessfully');
               window.location.href='job-fair.php';
             </script>";
-
-
         } 
         } catch(Exception $e) {
           echo "<script>
                   alert('You have already Registered with Same Phone Number or Email');
-                  window.location.href='job-fair.php';
+                  window.location.href='job-fair-form.php?fair_Id=".$fairId."';
                 </script>";
         }
 
+  }else{
+    echo "<script>
+    alert('Fill the form properly');
+    window.location.href='job-fair-form.php?fair_Id=".$fairId."';
+    </script>";
   }
 
 

@@ -21,7 +21,7 @@
   }
 </style>
 <nav class="navbar navbar-expand   topbar    static-top" style="background-color: white;">
-  <img src="img/logo/logo.png" style-="width: 123px;">
+  <a href="http://localhost/jobportal/index.php"><img src="img/logo/logo.png" style-="width: 123px;"></a>
   <button id="sidebarToggleTop" class="btn  rounded-circle mr-3" style="margin-left: -9px;">
     <i class="fa fa-bars"></i>
   </button>
