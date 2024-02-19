@@ -729,11 +729,12 @@
                     // alert("hello");
                     updateSummary();
                     // document.getElementById("nextBtn").type = "submit";
-
-
+                    
+                    
                 } else {
-                    document.getElementById("nextBtn").innerHTML = "Continue";
-                    document.getElementById("nextBtn").type = "button";
+                    document.getElementById("submitBtn").style.display = "none";
+                    document.getElementById("nextBtn").style.display = "block";
+
 
                 }
                 activelevel(n);
