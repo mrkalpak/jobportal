@@ -15,6 +15,143 @@ if ($result->num_rows > 0) {
 } else {
     $NoData="No Data present";
 }
+
+                           
+
+$EducationData=[
+    '10th',
+    '11th',
+    '12th',
+    'Diploma',
+    'ITI (Industrial Training Institute)',
+    'BE (Bachelor of Engineering)',
+    'BA (Bachelor of Arts)',
+    'BSc (Bachelor of Science)',
+    'BCom (Bachelor of Commerce)',
+    'BBA (Bachelor of Business Administration)',
+    'BCA (Bachelor of Computer Applications)',
+    'BSW (Bachelor of Social Work)',
+    'BFA (Bachelor of Fine Arts)',
+    'B.Ed (Bachelor of Education)',
+    'B.Tech (Bachelor of Technology)',
+    'MBBS (Bachelor of Medicine, Bachelor of Surgery)',
+    'BDS (Bachelor of Dental Surgery)',
+    'BHMS (Bachelor of Homeopathic Medicine and Surgery)',
+    'BAMS (Bachelor of Ayurvedic Medicine and Surgery)',
+    'BUMS (Bachelor of Unani Medicine and Surgery)',
+    'BNYS (Bachelor of Naturopathy and Yogic Sciences)',
+    'LLB (Bachelor of Laws)',
+    'BPharm (Bachelor of Pharmacy)',
+    'B.VSc & AH (Bachelor of Veterinary Science and Animal Husbandry)',
+    'BPT (Bachelor of Physiotherapy)',
+    'BHM (Bachelor of Hotel Management)',
+    'BFA (Bachelor of Fine Arts)',
+    'BPE (Bachelor of Physical Education)',
+    'BPEd (Bachelor of Physical Education)',
+    'B.Des (Bachelor of Design)',
+    'BFA (Bachelor of Fine Arts)',
+    'BMM (Bachelor of Mass Media)',
+    'BBA LLB (Integrated Bachelor of Business Administration and Bachelor of Laws)',
+    'B.Arch (Bachelor of Architecture)',
+    'BFA (Bachelor of Fine Arts)',
+    'BFSc (Bachelor of Fisheries Science)',
+    'BFST (Bachelor of Food Science and Technology)',
+    'BBA (Bachelor of Business Administration',
+    'BMS (Bachelor of Management Studies)',
+    'BCOM (Bachelor of Commerce)',
+    'BCA (Bachelor of Computer Applications)',
+    'BSW (Bachelor of Social Work)',
+    'BPE (Bachelor of Physical Education)',
+    'BPEd (Bachelor of Physical Education)',
+    'BLibSc (Bachelor of Library Science)',
+    'BFA (Bachelor of Fine Arts)',
+    'BPT (Bachelor of Physiotherapy)',
+    'BBA (Bachelor of Business Administration)',
+    'BHM (Bachelor of Hotel Management)',
+    'BCA (Bachelor of Computer Applications)',
+    'BFA (Bachelor of Fine Arts)',
+    'BMM (Bachelor of Mass Media)',
+    'BRTS (Bachelor of Radiologic Technology and Science)',
+    'BVSc & AH (Bachelor of Veterinary Science and Animal Husbandry)',
+    'B.Des (Bachelor of Design)',
+    'B.Optom (Bachelor of Optometry)',
+    'BOptom (Bachelor of Optometry)',
+    'B.El.Ed (Bachelor of Elementary Education)',
+    'BFSc (Bachelor of Fisheries Science)',
+    'BFST (Bachelor of Food Science and Technology)',
+    'BDS (Bachelor of Dental Surgery)',
+    'BHMS (Bachelor of Homeopathic Medicine and Surgery)',
+    'BNYS (Bachelor of Naturopathy and Yogic Sciences)',
+    'BUMS (Bachelor of Unani Medicine and Surgery)',
+    'BA LLB (Integrated Bachelor of Arts and Bachelor of Laws)',
+    'BAMS (Bachelor of Ayurvedic Medicine and Surgery)',
+    'BSc Nursing (Bachelor of Science in Nursing)',
+    'BMLT (Bachelor of Medical Laboratory Technology)',
+    'BPT (Bachelor of Physiotherapy)',
+    'B.Pharm (Bachelor of Pharmacy)',
+    'BTTM (Bachelor in Travel and Tourism Management)',
+    'BUMS (Bachelor of Unani Medicine and Surgery)',
+    'BNYS (Bachelor of Naturopathy and Yogic Sciences)',
+    'BSMS (Bachelor of Siddha Medicine and Surgery)',
+    'BAMS (Bachelor of Ayurvedic Medicine and Surgery)',
+    'BSMS (Bachelor of Siddha Medicine and Surgery)',
+    'BHMS (Bachelor of Homeopathic Medicine and Surgery)',
+    'BPT (Bachelor of Physiotherapy)',
+    'BOptom (Bachelor of Optometry)',
+    'BDS (Bachelor of Dental Surgery)',
+    'BASLP (Bachelor in Audiology and Speech-Language Pathology)',
+    'BAMS (Bachelor of Ayurvedic Medicine and Surgery)',
+    'BSc Nursing (Bachelor of Science in Nursing)',
+    'BMLT (Bachelor of Medical Laboratory Technology)',
+    'BPT (Bachelor of Physiotherapy)',
+    'B.Pharm (Bachelor of Pharmacy)',
+    'BTTM (Bachelor in Travel and Tourism Management)',
+    'BUMS (Bachelor of Unani Medicine and Surgery)',
+    'BNYS (Bachelor of Naturopathy and Yogic Sciences)',
+    'BSMS (Bachelor of Siddha Medicine and Surgery)',
+    'BASLP (Bachelor in Audiology and Speech-Language Pathology)',
+    'MCA (Master of Computer Applications)',
+    'MSc (Master of Science)',
+    'MA (Master of Arts)',
+    'MBA (Master of Business Administration)',
+    'MBM (Master of Business Management)',
+    'MCom (Master of Commerce)',
+    'MSW (Master of Social Work)',
+    'MFA (Master of Fine Arts)',
+    'MPT (Master of Physiotherapy)',
+    'M.Tech (Master of Technology)',
+    'ME (Master of Engineering)',
+    'M.Plan (Master of Planning)',
+    'M.Des (Master of Design)',
+    'M.Optom (Master of Optometry)',
+    'MOptom (Master of Optometry)',
+    'M.El.Ed (Master of Elementary Education)',
+    'M.Ed (Master of Education)',
+    'MLibSc (Master of Library Science)',
+    'MFA (Master of Fine Arts)',
+    'M.Sc Nursing (Master of Science in Nursing)',
+    'MMLT (Master of Medical Laboratory Technology)',
+    'MPT (Master of Physiotherapy)',
+    'M.Pharm (Master of Pharmacy)',
+    'MBA (Master of Business Administration)',
+    'MHA (Master of Health Administration)',
+    'MHM (Master of Hotel Management)',
+    'MSc IT (Master of Science in Information Technology)',
+    'MMS (Master of Management Studies)',
+    'PGDM (Post Graduate Diploma in Management)',
+    'PGP (Post Graduate Program in Management)',
+    'MD (Doctor of Medicine)',
+    'MS (Master of Surgery)',
+    'DM (Doctorate of Medicine)',
+    'MCh (Master of Chirurgiae)',
+    'DNB (Diplomate of National Board)',
+    'PhD (Doctor of Philosophy)',
+    'Other'
+];
+
+
+
+$jobCategory=['Developer','Engineer','Designer','Architecture'];
 ?>
 
 <link rel="stylesheet" href="./assets/css/candiate-myprofile.css">
@@ -101,7 +238,7 @@ if ($result->num_rows > 0) {
                             </div> -->
                     <div class="mb-3 col">
                         <label for="cu-job-place" class="form-label">Current Job Place(Optional)</label>
-                        <input type="text" name="currentProfile" class="form-control" id="cu-job-place">
+                        <input type="text" name="candidateCurrentJobLocation" class="form-control" id="cu-job-place">
 
                     </div>
                 </div>
@@ -121,145 +258,24 @@ if ($result->num_rows > 0) {
                     <div class="mb-3 col">
                         <label for="linkedin" class="form-label">Serching Job As a</label>
                         <select name="jobType" required class="form-select" aria-label="Default select example">
-
-                            <option selected value="Developer">Developer</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <option>Search Job as</option>
+                        <?php
+                            for($i=0;$i<count($jobCategory);$i++){
+                                echo '<option  value="'.$jobCategory[$i].'">'.$jobCategory[$i].'</option>';
+                            }
+                        ?>  
                         </select>
 
                     </div>
                     <div class="mb-3 col">
                         <label for="qualification" class="form-label">Qualification*</label>
                         <select name="qualification" required class="form-select" id="qualification" aria-label="Default select example">
-
-                            <option value="10th">10th</option>
-                            <option value="11th">11th</option>
-                            <option value="12th">12th</option>
-                            <option value="Diploma">Diploma</option>
-                            <option value="ITI">ITI (Industrial Training Institute)</option>
-                            <option value="BE">BE (Bachelor of Engineering)</option>
-                            <option value="BA">BA (Bachelor of Arts)</option>
-                            <option value="BSc">BSc (Bachelor of Science)</option>
-                            <option value="BCom">BCom (Bachelor of Commerce)</option>
-                            <option value="BBA">BBA (Bachelor of Business Administration)</option>
-                            <option value="BCA">BCA (Bachelor of Computer Applications)</option>
-                            <option value="BSW">BSW (Bachelor of Social Work)</option>
-                            <option value="BFA">BFA (Bachelor of Fine Arts)</option>
-                            <option value="B.Ed">B.Ed (Bachelor of Education)</option>
-                            <option value="B.Tech">B.Tech (Bachelor of Technology)</option>
-                            <option value="MBBS">MBBS (Bachelor of Medicine, Bachelor of Surgery)</option>
-                            <option value="BDS">BDS (Bachelor of Dental Surgery)</option>
-                            <option value="BHMS">BHMS (Bachelor of Homeopathic Medicine and Surgery)</option>
-                            <option value="BAMS">BAMS (Bachelor of Ayurvedic Medicine and Surgery)</option>
-                            <option value="BUMS">BUMS (Bachelor of Unani Medicine and Surgery)</option>
-                            <option value="BNYS">BNYS (Bachelor of Naturopathy and Yogic Sciences)</option>
-                            <option value="LLB">LLB (Bachelor of Laws)</option>
-                            <option value="BPharm">BPharm (Bachelor of Pharmacy)</option>
-                            <option value="B.VSc & AH">B.VSc & AH (Bachelor of Veterinary Science and Animal Husbandry)</option>
-                            <option value="BPT">BPT (Bachelor of Physiotherapy)</option>
-                            <option value="BHM">BHM (Bachelor of Hotel Management)</option>
-                            <option value="BFA">BFA (Bachelor of Fine Arts)</option>
-                            <option value="BPE">BPE (Bachelor of Physical Education)</option>
-                            <option value="BPEd">BPEd (Bachelor of Physical Education)</option>
-                            <option value="B.Des">B.Des (Bachelor of Design)</option>
-                            <option value="BFA">BFA (Bachelor of Fine Arts)</option>
-                            <option value="BMM">BMM (Bachelor of Mass Media)</option>
-                            <option value="BBA LLB">BBA LLB (Integrated Bachelor of Business Administration and Bachelor of Laws)</option>
-                            <option value="B.Arch">B.Arch (Bachelor of Architecture)</option>
-                            <option value="BFA">BFA (Bachelor of Fine Arts)</option>
-                            <option value="BFSc">BFSc (Bachelor of Fisheries Science)</option>
-                            <option value="BFST">BFST (Bachelor of Food Science and Technology)</option>
-                            <option value="BBA">BBA (Bachelor of Business Administration)</option>
-                            <option value="BMS">BMS (Bachelor of Management Studies)</option>
-                            <option value="BCOM">BCOM (Bachelor of Commerce)</option>
-                            <option value="BCA">BCA (Bachelor of Computer Applications)</option>
-                            <option value="BSW">BSW (Bachelor of Social Work)</option>
-                            <option value="BPE">BPE (Bachelor of Physical Education)</option>
-                            <option value="BPEd">BPEd (Bachelor of Physical Education)</option>
-                            <option value="BLibSc">BLibSc (Bachelor of Library Science)</option>
-                            <option value="BFA">BFA (Bachelor of Fine Arts)</option>
-                            <option value="BPT">BPT (Bachelor of Physiotherapy)</option>
-                            <option value="BBA">BBA (Bachelor of Business Administration)</option>
-                            <option value="BHM">BHM (Bachelor of Hotel Management)</option>
-                            <option value="BCA">BCA (Bachelor of Computer Applications)</option>
-                            <option value="BFA">BFA (Bachelor of Fine Arts)</option>
-                            <option value="BMM">BMM (Bachelor of Mass Media)</option>
-                            <option value="BRTS">BRTS (Bachelor of Radiologic Technology and Science)</option>
-                            <option value="BVSc & AH">BVSc & AH (Bachelor of Veterinary Science and Animal Husbandry)</option>
-                            <option value="B.Des">B.Des (Bachelor of Design)</option>
-                            <option value="B.Optom">B.Optom (Bachelor of Optometry)</option>
-                            <option value="BOptom">BOptom (Bachelor of Optometry)</option>
-                            <option value="B.El.Ed">B.El.Ed (Bachelor of Elementary Education)</option>
-                            <option value="BFSc">BFSc (Bachelor of Fisheries Science)</option>
-                            <option value="BFST">BFST (Bachelor of Food Science and Technology)</option>
-                            <option value="BDS">BDS (Bachelor of Dental Surgery)</option>
-                            <option value="BHMS">BHMS (Bachelor of Homeopathic Medicine and Surgery)</option>
-                            <option value="BNYS">BNYS (Bachelor of Naturopathy and Yogic Sciences)</option>
-                            <option value="BUMS">BUMS (Bachelor of Unani Medicine and Surgery)</option>
-                            <option value="BA LLB">BA LLB (Integrated Bachelor of Arts and Bachelor of Laws)</option>
-                            <option value="BAMS">BAMS (Bachelor of Ayurvedic Medicine and Surgery)</option>
-                            <option value="BSc Nursing">BSc Nursing (Bachelor of Science in Nursing)</option>
-                            <option value="BMLT">BMLT (Bachelor of Medical Laboratory Technology)</option>
-                            <option value="BPT">BPT (Bachelor of Physiotherapy)</option>
-                            <option value="B.Pharm">B.Pharm (Bachelor of Pharmacy)</option>
-                            <option value="BTTM">BTTM (Bachelor in Travel and Tourism Management)</option>
-                            <option value="BUMS">BUMS (Bachelor of Unani Medicine and Surgery)</option>
-                            <option value="BNYS">BNYS (Bachelor of Naturopathy and Yogic Sciences)</option>
-                            <option value="BSMS">BSMS (Bachelor of Siddha Medicine and Surgery)</option>
-                            <option value="BAMS">BAMS (Bachelor of Ayurvedic Medicine and Surgery)</option>
-                            <option value="BSMS">BSMS (Bachelor of Siddha Medicine and Surgery)</option>
-                            <option value="BHMS">BHMS (Bachelor of Homeopathic Medicine and Surgery)</option>
-                            <option value="BPT">BPT (Bachelor of Physiotherapy)</option>
-                            <option value="BOptom">BOptom (Bachelor of Optometry)</option>
-                            <option value="BDS">BDS (Bachelor of Dental Surgery)</option>
-                            <option value="BASLP">BASLP (Bachelor in Audiology and Speech-Language Pathology)</option>
-                            <option value="BAMS">BAMS (Bachelor of Ayurvedic Medicine and Surgery)</option>
-                            <option value="BSc Nursing">BSc Nursing (Bachelor of Science in Nursing)</option>
-                            <option value="BMLT">BMLT (Bachelor of Medical Laboratory Technology)</option>
-                            <option value="BPT">BPT (Bachelor of Physiotherapy)</option>
-                            <option value="B.Pharm">B.Pharm (Bachelor of Pharmacy)</option>
-                            <option value="BTTM">BTTM (Bachelor in Travel and Tourism Management)</option>
-                            <option value="BUMS">BUMS (Bachelor of Unani Medicine and Surgery)</option>
-                            <option value="BNYS">BNYS (Bachelor of Naturopathy and Yogic Sciences)</option>
-                            <option value="BSMS">BSMS (Bachelor of Siddha Medicine and Surgery)</option>
-                            <option value="BASLP">BASLP (Bachelor in Audiology and Speech-Language Pathology)</option>
-                            <option value="MCA">MCA (Master of Computer Applications)</option>
-                            <option value="MSc">MSc (Master of Science)</option>
-                            <option value="MA">MA (Master of Arts)</option>
-                            <option value="MBA">MBA (Master of Business Administration)</option>
-                            <option value="MBM">MBM (Master of Business Management)</option>
-                            <option value="MCom">MCom (Master of Commerce)</option>
-                            <option value="MSW">MSW (Master of Social Work)</option>
-                            <option value="MFA">MFA (Master of Fine Arts)</option>
-                            <option value="MPT">MPT (Master of Physiotherapy)</option>
-                            <option value="M.Tech">M.Tech (Master of Technology)</option>
-                            <option value="ME">ME (Master of Engineering)</option>
-                            <option value="M.Plan">M.Plan (Master of Planning)</option>
-                            <option value="M.Des">M.Des (Master of Design)</option>
-                            <option value="M.Optom">M.Optom (Master of Optometry)</option>
-                            <option value="MOptom">MOptom (Master of Optometry)</option>
-                            <option value="M.El.Ed">M.El.Ed (Master of Elementary Education)</option>
-                            <option value="M.Ed">M.Ed (Master of Education)</option>
-                            <option value="MLibSc">MLibSc (Master of Library Science)</option>
-                            <option value="MFA">MFA (Master of Fine Arts)</option>
-                            <option value="M.Sc Nursing">M.Sc Nursing (Master of Science in Nursing)</option>
-                            <option value="MMLT">MMLT (Master of Medical Laboratory Technology)</option>
-                            <option value="MPT">MPT (Master of Physiotherapy)</option>
-                            <option value="M.Pharm">M.Pharm (Master of Pharmacy)</option>
-                            <option value="MBA">MBA (Master of Business Administration)</option>
-                            <option value="MHA">MHA (Master of Health Administration)</option>
-                            <option value="MHM">MHM (Master of Hotel Management)</option>
-                            <option value="MSc IT">MSc IT (Master of Science in Information Technology)</option>
-                            <option value="MMS">MMS (Master of Management Studies)</option>
-                            <option value="PGDM">PGDM (Post Graduate Diploma in Management)</option>
-                            <option value="PGP">PGP (Post Graduate Program in Management)</option>
-                            <option value="MD">MD (Doctor of Medicine)</option>
-                            <option value="MS">MS (Master of Surgery)</option>
-                            <option value="DM">DM (Doctorate of Medicine)</option>
-                            <option value="MCh">MCh (Master of Chirurgiae)</option>
-                            <option value="DNB">DNB (Diplomate of National Board)</option>
-                            <option value="PhD">PhD (Doctor of Philosophy)</option>
-                            <option value="Other">Other</option>
+                        <Option value="">Select Education</Option>
+                        <?php
+                            for($i=0;$i<count($EducationData);$i++){
+                                echo '<option  value="'.$EducationData[$i].'">'.$EducationData[$i].'</option>';
+                            }
+                        ?>  
                         </select>
 
                     </div>
@@ -267,7 +283,7 @@ if ($result->num_rows > 0) {
                 <div class="row">
                     <div class="mb-3 col">
                         <label for="linkdin" class="form-label">Linkedin</label>
-                        <input required type="text" name="linkedInProfile" class="form-control" id="linkdin">
+                        <input required type="url" name="linkedInProfile" class="form-control" id="linkdin">
 
                     </div>
                     <div class="mb-3 col ">
