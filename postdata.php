@@ -237,9 +237,11 @@ if(isset($_POST['candidateData'])){
           move_uploaded_file($check2, $destination2);
         }else{
           echo "<script>
-          alert('Please Upload pdf file Only');
-          window.location.href='job-fair-form.php?fair_Id=".$fairId."';
-        </script>";
+            alert('Please Upload pdf file Only');
+            window.location.href='job-fair-form.php?fair_Id=".$fairId."';
+          </script>";
+          return;
+
         }
       }
       try {
@@ -260,6 +262,7 @@ if(isset($_POST['candidateData'])){
                   alert(`".$e->getMessage()."`);
                   window.location.href='job-fair-form.php?fair_Id=".$fairId."';
                 </script>";
+
         }
 
   }else{
@@ -311,12 +314,14 @@ if(isset($_POST['cardCandidate'])){
         alert('Please Upload pdf file Only');
         window.location.href='card-candidate-applyform.php?job=".$jobId."';
       </script>";
+      return;
+
       }
     }
   try {
 
-    $query = "INSERT INTO `cardcandidate`(`jobId`,`candiatename`,`location`,`c_no`, `email`, `cu-job-place`, `designation`, `qualification`,`linkedIn`,`exprience`,`describeYourself`,`cardCandidateResume`)
-                                  VALUES ('$jobId','$candiatename','$location','$c_no', '$email', '$cujobplace', '$designation', '$qualification','$linkedIn','$exprience','$describe','$fileName')";
+    $query = "INSERT INTO `cardcandidate`(`jobId`,`candiatename`,`birthdate`,`location`,`c_no`, `email`, `cu-job-place`, `designation`, `qualification`,`linkedIn`,`exprience`,`describeYourself`,`cardCandidateResume`)
+                                  VALUES ('$jobId','$candiatename','$birthdate','$location','$c_no', '$email', '$cujobplace', '$designation', '$qualification','$linkedIn','$exprience','$describe','$fileName')";
     // var_dump($query);      
       $result = mysqli_query($con, $query);
       if ($result) {

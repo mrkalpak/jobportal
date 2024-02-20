@@ -337,9 +337,19 @@ if (isset($_POST['admin_jobfair'])) {
         $check2 = $_FILES['BannerImg']['tmp_name'];
         $extension2 = substr($image2, strlen($image2) - 4, strlen($image2));
         $image_ext2 = pathinfo($image2, PATHINFO_FILENAME);
-        $Final_image_name2 = $image_ext2.".".$imageFileType2;
-        $destination2 = "../assets/fair/$Final_image_name2";
-        move_uploaded_file($check2, $destination2);
+        if($extension2=='.jpeg' || $extension2=='.png'|| $extension2=='.jpg'){
+          $Final_image_name2 = $image_ext2.".".$imageFileType2;
+          $destination2 = "../assets/fair/$Final_image_name2";
+          move_uploaded_file($check2, $destination2);
+        }else{
+          echo "<script>
+              alert('Please Upload JPEG,JPG,PNG file extension Only');
+              window.location.href='admin_jobfair.php';
+            </script>";
+          return;
+        }
+
+        
       }
 
       $query = "INSERT INTO `job_fair`(`fairName`, `fairDate`, `fairTime`, `location`, `fair_Organizer`,`fileName`)

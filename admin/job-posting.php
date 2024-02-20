@@ -155,17 +155,23 @@
 
                                     </tr>';
                                     }?>
-                                    <?php
+
+                                    
+                                </table>
+                                <?php
+                                if (mysqli_num_rows($result)>0) {
+                                    echo'<a>
+                                        <button onclick="sendSms()"  class="btn btn-outline-custom  mt-2 me-2 " >Send SMS </button>
+                                    </a>';
+                                        }
+                                ?>
+                                <?php
                                         if (mysqli_num_rows($result)==0) {
                                             echo '<h4 class="text-danger text-center">'.$NoData.'</h4>';
                                         }
                                         // print_r($phone);
                                     ?>
-                                    
-                                </table>
-                                <a>
-                                    <button onclick="sendSms()"  class="btn btn-outline-custom  mt-2 me-2 " >Send SMS </button>
-                                </a>
+                                
 
 
                             </div>
