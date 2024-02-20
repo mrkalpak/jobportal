@@ -9,6 +9,7 @@
     $query = "SELECT * FROM admin_jobpost ORDER BY id DESC";
     $query2 = "SELECT phone FROM users_candidate where cardtype=1";
     $query3 = "SELECT * FROM admin_jobpost ORDER BY id DESC limit 1";
+    
 
     $result = mysqli_query($con, $query);
     $result2 = mysqli_query($con, $query2);
@@ -107,7 +108,13 @@
                                     // var_dump($createUrl['id'],$createUrl['jobTitle']);
 
                                     while($row = $result->fetch_assoc()) {
-                                        $query2 = "SELECT * FROM job_faircandidate WHERE fairId=".$row['id']."";
+                                        $query4 = "SELECT jobId FROM cardcandidate WHERE jobId=".$row['id']."";
+                                        $result4 = mysqli_query($con, $query4);
+                                        // echo'<pre>';
+                                        // print_r($result4);
+                                        // echo '</pre>';
+                                        // var_dump($result4);
+                                        $query2 = "SELECT * FROM admin_jobpost WHERE id=".$row['id']."";
                                             $result2 = mysqli_query($con, $query2);
                                             // print_r($result2->num_rows);
                                             $today=date("Y-m-d");
@@ -120,7 +127,7 @@
                                                 $fairStatus="Expired";
                                                 $badege="danger";
 
-                                            }
+                                            }                                            
                                     echo '<tr>
                                         <td>
                                             '.$row['jobTitle'].' <span class="badge ms-2 badge-'.$badege.' rounded-pill  ">'.$fairStatus.'</span>
@@ -129,7 +136,7 @@
 
                                         </td>
                                         <td>
-                                            2 Total Applications
+                                        '.$result4->num_rows.'
                                         </td>
 
                                         <td>
@@ -149,8 +156,6 @@
                                             echo '<h4 class="text-danger text-center">'.$NoData.'</h4>';
                                         }
                                         // print_r($phone);
-                                        
-
                                     ?>
                                     
                                 </table>

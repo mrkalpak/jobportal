@@ -535,7 +535,7 @@ if (isset($_POST['updateFair'])) {
           }
           catch(Exception $e) {
               echo "<script>
-                    alert("+$e+");
+                    alert(`".$e->getMessage()."`);
                     window.location.href='job-posting.php';
                   </script>";
             }
@@ -610,7 +610,7 @@ if (isset($_POST['updateFair'])) {
         }
         catch(Exception $e) {
             echo "<script>
-                  alert(Somthing Went Wrong);
+                  alert(`".$e->getMessage()."`);
                   window.location.href='job-posting.php';
                 </script>";
           }

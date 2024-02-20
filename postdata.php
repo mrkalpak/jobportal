@@ -231,9 +231,16 @@ if(isset($_POST['candidateData'])){
         $check2 = $_FILES['candidateResume']['tmp_name'];
         $extension2 = substr($image2, strlen($image2) - 4, strlen($image2));
         $image_ext2 = pathinfo($image2, PATHINFO_FILENAME);
-        $Final_image_name2 = $image_ext2.".".$imageFileType2;
-        $destination2 = "./assets/candidateResume/$Final_image_name2";
-        move_uploaded_file($check2, $destination2);
+        if($extension2=='.pdf'){
+          $Final_image_name2 = $image_ext2.".".$imageFileType2;
+          $destination2 = "./assets/candidateResume/$Final_image_name2";
+          move_uploaded_file($check2, $destination2);
+        }else{
+          echo "<script>
+          alert('Please Upload pdf file Only');
+          window.location.href='job-fair-form.php?fair_Id=".$fairId."';
+        </script>";
+        }
       }
       try {
 
@@ -250,7 +257,7 @@ if(isset($_POST['candidateData'])){
         } 
         } catch(Exception $e) {
           echo "<script>
-                  alert('You have already Registered with Same Phone Number or Email');
+                  alert(`".$e->getMessage()."`);
                   window.location.href='job-fair-form.php?fair_Id=".$fairId."';
                 </script>";
         }
@@ -266,5 +273,78 @@ if(isset($_POST['candidateData'])){
  
 }
 ?>
+<?php
+if(isset($_POST['cardCandidate'])){
+  // var_dump($_POST);
+  // return;
+  // var_dump($_FILES);
+  $candiatename=$_POST['candiatename'];
+  $birthdate=$_POST['birthdate'];
+  $location=$_POST['location'];
+  $c_no=$_POST['c_no'];
+  $email=$_POST['email'];
+  $cujobplace=$_POST['cu-job-place'];
+  $designation=$_POST['designation'];
+  $qualification=$_POST['qualification'];
+  $linkedIn=$_POST['linkedIn'];
+  $exprience=$_POST['exprience'];
+  $describe=$_POST['describeYourSelf'];
+  $jobId=$_POST['jobId'];
+  $fileName=$_FILES['cardCandidateResume']['name'];
 
+  if($candiatename!='' && $birthdate !='' && $location!='' && $c_no!='' && $email!='' && $qualification!='' && $linkedIn!='' && $exprience!='' && $fileName!='' && $describe!='' && $jobId!=''){
+    if (isset($_FILES['cardCandidateResume']['name'])) {
+      
+
+      $image2 = $_FILES['cardCandidateResume']['name'];
+      $target_file2 = basename($image2);
+      $imageFileType2 = strtolower(pathinfo($target_file2, PATHINFO_EXTENSION));
+      $check2 = $_FILES['cardCandidateResume']['tmp_name'];
+      $extension2 = substr($image2, strlen($image2) - 4, strlen($image2));
+      $image_ext2 = pathinfo($image2, PATHINFO_FILENAME);
+      if($extension2=='.pdf'){
+      $Final_image_name2 = $image_ext2.".".$imageFileType2;
+      $destination2 = "./assets/cardCandidateResume/$Final_image_name2";
+      move_uploaded_file($check2, $destination2);
+      }else{
+        echo "<script>
+        alert('Please Upload pdf file Only');
+        window.location.href='card-candidate-applyform.php?job=".$jobId."';
+      </script>";
+      }
+    }
+  try {
+
+    $query = "INSERT INTO `cardcandidate`(`jobId`,`candiatename`,`location`,`c_no`, `email`, `cu-job-place`, `designation`, `qualification`,`linkedIn`,`exprience`,`describeYourself`,`cardCandidateResume`)
+                                  VALUES ('$jobId','$candiatename','$location','$c_no', '$email', '$cujobplace', '$designation', '$qualification','$linkedIn','$exprience','$describe','$fileName')";
+    // var_dump($query);      
+      $result = mysqli_query($con, $query);
+      if ($result) {
+        echo "
+          <script>
+            alert('Uploaded Sucessfully');
+            window.location.href='http://localhost/jobportal';
+          </script>";
+      } 
+      } catch(Exception $e) {
+        // $error=$e->getMessage();
+        echo "
+        <script>
+          alert(`".$e->getMessage()."`);
+          window.location.href='card-candidate-applyform.php?job=".$jobId."';
+        </script>";
+      }
+
+}else{
+  echo "<script>
+  alert('Fill the form properly');
+  window.location.href='card-candidate-applyform.php?job=".$jobId."';
+  </script>";
+}
+
+
+}
+
+
+?>
 
