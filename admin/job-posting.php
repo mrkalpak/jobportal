@@ -60,7 +60,11 @@
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/jobpost.css">
 
-
+<style>
+    a{
+        text-decoration: none !important;
+    }
+</style>
 
 </head>
 
