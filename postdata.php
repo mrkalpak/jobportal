@@ -206,6 +206,7 @@ if(isset($_POST['candidateData'])){
   //  var_dump($_POST);   
   //   return;
     // var_dump($_FILES);
+    $username = $_SESSION['username'];
     $candidateName=$_POST['candidateName'];
     $candiateLocation=$_POST['candiateLocation'];
     $candidatePhone=$_POST['candidatePhone'];
@@ -238,7 +239,7 @@ if(isset($_POST['candidateData'])){
         }else{
           echo "<script>
             alert('Please Upload pdf file Only');
-            window.location.href='job-fair-form.php?fair_Id=".$fairId."';
+            window.history.back();
           </script>";
           return;
 
@@ -260,7 +261,7 @@ if(isset($_POST['candidateData'])){
         } catch(Exception $e) {
           echo "<script>
                   alert(`".$e->getMessage()."`);
-                  window.location.href='job-fair-form.php?fair_Id=".$fairId."';
+                  window.history.back();
                 </script>";
 
         }
@@ -268,7 +269,8 @@ if(isset($_POST['candidateData'])){
   }else{
     echo "<script>
     alert('Fill the form properly');
-    window.location.href='job-fair-form.php?fair_Id=".$fairId."';
+    window.history.back();
+
     </script>";
   }
 
@@ -278,9 +280,9 @@ if(isset($_POST['candidateData'])){
 ?>
 <?php
 if(isset($_POST['cardCandidate'])){
-  // var_dump($_POST);
-  // return;
+  
   // var_dump($_FILES);
+  $username = $_SESSION['username'];
   $candiatename=$_POST['candiatename'];
   $birthdate=$_POST['birthdate'];
   $location=$_POST['location'];
@@ -295,10 +297,24 @@ if(isset($_POST['cardCandidate'])){
   $jobId=$_POST['jobId'];
   $fileName=$_FILES['cardCandidateResume']['name'];
 
-  if($candiatename!='' && $birthdate !='' && $location!='' && $c_no!='' && $email!='' && $qualification!='' && $linkedIn!='' && $exprience!='' && $fileName!='' && $describe!='' && $jobId!=''){
-    if (isset($_FILES['cardCandidateResume']['name'])) {
-      
+  // if(strlen($username)>3){
+    
+    
+  // }else{
 
+  //   echo "
+  //       <script>
+  //         alert('Please Enter Candidate Name Greate Then 3 Words');
+  //         window.history.back();
+  //       </script>";
+
+  // }
+  // echo '<br>';
+  // var_dump($_POST);
+  // return;
+
+  if($candiatename!='' && $birthdate !='' && $location!='' && $c_no!='' && $email!='' && $qualification!='' && $exprience!='' && $fileName!='' && $describe!='' && $jobId!=''){
+    if (isset($_FILES['cardCandidateResume']['name'])) {
       $image2 = $_FILES['cardCandidateResume']['name'];
       $target_file2 = basename($image2);
       $imageFileType2 = strtolower(pathinfo($target_file2, PATHINFO_EXTENSION));
@@ -312,13 +328,13 @@ if(isset($_POST['cardCandidate'])){
       }else{
         echo "<script>
         alert('Please Upload pdf file Only');
-        window.location.href='card-candidate-applyform.php?job=".$jobId."';
+        window.history.back();
       </script>";
       return;
 
       }
     }
-  try {
+    try {
 
     $query = "INSERT INTO `cardcandidate`(`jobId`,`candiatename`,`birthdate`,`location`,`c_no`, `email`, `cu-job-place`, `designation`, `qualification`,`linkedIn`,`exprience`,`describeYourself`,`cardCandidateResume`)
                                   VALUES ('$jobId','$candiatename','$birthdate','$location','$c_no', '$email', '$cujobplace', '$designation', '$qualification','$linkedIn','$exprience','$describe','$fileName')";
@@ -336,14 +352,14 @@ if(isset($_POST['cardCandidate'])){
         echo "
         <script>
           alert(`".$e->getMessage()."`);
-          window.location.href='card-candidate-applyform.php?job=".$jobId."';
+          window.history.back();          
         </script>";
       }
 
 }else{
   echo "<script>
   alert('Fill the form properly');
-  window.location.href='card-candidate-applyform.php?job=".$jobId."';
+  window.history.back();
   </script>";
 }
 

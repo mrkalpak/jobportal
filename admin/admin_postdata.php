@@ -264,6 +264,7 @@ if (isset($_POST['generate_cards'])) {
 <?php
 
 if (isset($_POST['generate_cards2'])) {
+  $username = $_SESSION['username'];
   $query = "INSERT INTO `blogs`(`blog_name`, `blog_title`, `blog_image`, `blog_description`, `blog_tags`, `other_image`)
     VALUES ('$name', '$title', '$Final_image_name1', '$description', '$tag', '$Final_image_name2')
     ";
@@ -295,7 +296,7 @@ if (isset($_POST['generate_cards2'])) {
 <?php
 if (isset($_POST['admin_jobfair'])) {
     // var_dump($_POST);
-    
+    $username = $_SESSION['username'];
     // var_dump($_FILES);
     $fairName=$_POST['fairName'];
     $fairDate=$_POST['fairDate'];
@@ -344,7 +345,7 @@ if (isset($_POST['admin_jobfair'])) {
         }else{
           echo "<script>
               alert('Please Upload JPEG,JPG,PNG file extension Only');
-              window.location.href='admin_jobfair.php';
+              window.history.back();
             </script>";
           return;
         }
@@ -380,7 +381,7 @@ if (isset($_POST['admin_jobfair'])) {
         echo "
               <script>
                 alert('Somrthing went Wrong');
-                window.location.href='admin_jobfair.php';
+                window.history.back();
               </script>
             ";
     }
@@ -388,7 +389,7 @@ if (isset($_POST['admin_jobfair'])) {
     echo "
         <script>
           alert('Please Fill the form Propely');
-          window.location.href='admin_jobfair.php';
+          window.history.back();
         </script>
       ";
   }
@@ -396,6 +397,7 @@ if (isset($_POST['admin_jobfair'])) {
 ?>
 <?php
 if (isset($_POST['updateFair'])) {
+  $username = $_SESSION['username'];
   $fairName=$_POST['fairName'];
   $fairDate=$_POST['fairDate'];
   $fairTime=$_POST['fairTime'];
@@ -451,7 +453,7 @@ if (isset($_POST['updateFair'])) {
     echo "
              <script>
                alert('Somrthing went Wrong');
-               window.location.href='admin_jobfair.php';
+               window.history.back();
              </script>
            ";
   }
@@ -459,7 +461,7 @@ if (isset($_POST['updateFair'])) {
     echo "
     <script>
       alert('Please Fill the form Propely');
-      window.location.href='admin_jobfair.php';
+      window.history.back();
     </script>
   ";
   }
@@ -471,6 +473,7 @@ if (isset($_POST['updateFair'])) {
 
   if(isset($_POST['admin_jobpost'])){
     // var_dump($_POST);
+    $username = $_SESSION['username'];
     $CompanyName=$_POST['CompanyName'];
     $jobDesignation=$_POST['jobDesignation'];
     $jobTime=$_POST['jobTime'];
@@ -546,7 +549,7 @@ if (isset($_POST['updateFair'])) {
           catch(Exception $e) {
               echo "<script>
                     alert(`".$e->getMessage()."`);
-                    window.location.href='job-posting.php';
+                    window.history.back();
                   </script>";
             }
       
@@ -554,8 +557,8 @@ if (isset($_POST['updateFair'])) {
       echo "
       <script>
         alert('Please Fill the form Propely');
-        window.location.href='job-posting.php';
-      </script>
+        window.history.back();
+        </script>
     ";
     }
 
@@ -564,7 +567,7 @@ if (isset($_POST['updateFair'])) {
 ?>
 <?php
   if(isset($_POST['updateAdmin_jobpost'])){
-
+    $username = $_SESSION['username'];
     $CompanyName=$_POST['CompanyName'];
     $jobDesignation=$_POST['jobDesignation'];
     $jobTime=$_POST['jobTime'];
