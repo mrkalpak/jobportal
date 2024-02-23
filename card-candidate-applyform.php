@@ -226,7 +226,7 @@
             <div class="row">
                 <div class="mb-3 col">
                     <label for="linkdin" class="form-label">Linkedin</label>
-                    <input type="link" required name="linkedIn" class="form-control" id="linkdin">
+                    <input type="link"  name="linkedIn" class="form-control" id="linkdin">
 
                 </div>
                 <div class="mb-3 col">

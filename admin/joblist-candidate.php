@@ -15,7 +15,6 @@ $username = $_SESSION['username'];
     $query = "SELECT * FROM cardcandidate Where jobId=".$last."";
     $result = mysqli_query($con, $query);
 
-   
 
     $query2 = "SELECT * FROM admin_jobpost Where id=".$last."";
     $result2 = mysqli_query($con, $query2);
@@ -23,6 +22,8 @@ $username = $_SESSION['username'];
     // print_r($result->num_rows);
     // echo '<br>';
     // print_r($result2);
+
+ 
 
 ?>
 <!DOCTYPE html>
@@ -110,7 +111,7 @@ $username = $_SESSION['username'];
                             </div>
                             <div class="candidate-card me-auto ms-auto mt-3">
                                 <div class=" d-flex justify-content-end ">
-                                    <button class="btn btn-sm btn-outline-custom text-white "><i class="bi bi-download"></i>&nbsp; Download Excel</button>
+                                        <a href="exportExcel.php?AppliedCandidate=<?php echo $last ?>"><button  class="btn btn-sm btn-outline-custom text-white "><i class="bi bi-download"></i>&nbsp; Download Excel</button></a>
                                 </div>
                             </div>
                             <?php
@@ -187,7 +188,7 @@ $username = $_SESSION['username'];
                                         <i class="bi bi-linkedin"></i>&nbsp; LinkedIn :
                                     </div>
                                     <div class="col-auto">
-                                        <a href="https://www.linkedin.com/feed/">'.$row['linkedIn'].'/</a>
+                                        <a target="_blank" href="https://www.linkedin.com/feed/">'.$row['linkedIn'].'/</a>
                                     </div>
                                 </div>
                                 <div class="row mt-2 col-md-11 bg-light">

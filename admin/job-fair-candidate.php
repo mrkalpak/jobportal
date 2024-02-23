@@ -96,7 +96,7 @@
                             </div>
                             <div class="candidate-card me-auto ms-auto mt-3">
                                 <div class=" d-flex justify-content-end ">
-                                    <button class="btn btn-sm btn-outline-custom text-white "><i class="bi bi-download"></i>&nbsp; Download Excel</button>
+                                    <a href="exportExcel.php?fair_Id=<?php echo $last ?>"><button class="btn btn-sm btn-outline-custom text-white "><i class="bi bi-download"></i>&nbsp; Download Excel</button></a>
                                 </div>
                             </div>
                             <?php

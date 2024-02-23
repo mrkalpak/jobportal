@@ -6,7 +6,7 @@ if (empty($_SESSION['username']) || ($_SESSION['type'] != 'stud')) {
 }
 $main_user = $_SESSION['username'];
 // $jobid=$_POST['id'];
-echo $jobid = $_GET['id'];
+ $jobid = $_GET['id'];
 
 $query = "SELECT job.*, comp.*
 FROM jobs AS job

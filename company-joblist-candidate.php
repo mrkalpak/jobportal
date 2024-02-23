@@ -111,7 +111,7 @@ include './company-navbar.php';
 </div>
 <div class="candidate-card me-auto ms-auto mt-3">
     <div class=" d-flex justify-content-end ">
-        <button class="btn btn-sm btn-outline-custom text-white "><i class="bi bi-download"></i>&nbsp; Download Excel</button>
+        <a href="./companyExportExcel.php?action=0"><button class="btn btn-sm btn-outline-custom text-white "><i class="bi bi-download"></i>&nbsp; Download Excel</button></a>
     </div>
 </div>
 
@@ -125,7 +125,6 @@ $query6 = "SELECT mu.*, uc.* FROM $main_user AS mu
     INNER JOIN users_candidate AS uc ON mu.username = uc.username 
     WHERE mu.usertype = 0 AND mu.jobid = $jobid AND mu.action = 0 
     ORDER BY mu.card DESC";
-
 
 if ($result6 = mysqli_query($con, $query6)) {
     if (mysqli_num_rows($result6) > 0) {

@@ -5,6 +5,14 @@ if (empty($_SESSION['username']) || ($_SESSION['type'] != 'comp')) {
     header("Location: index.php");
 }
 $main_user = $_SESSION['username'];
+
+
+$query6 = "SELECT mu.*, uc.* FROM $main_user AS mu 
+        INNER JOIN users_candidate AS uc ON mu.username = uc.username 
+        WHERE mu.usertype = 0  AND mu.action = 1 
+        ORDER BY mu.card DESC";
+
+$result6 = mysqli_query($con, $query6);
 ?>
 
 <?php include './header.php'; ?>
@@ -28,19 +36,14 @@ include './company-navbar.php';
     </div>
 
     <div class="col d-flex justify-content-end">
-        <button id="downloadexcel" class="btn btn-dark" type="button" style="background:#4A0063;">Export to Excel</button>
-
+        <a href="./companyExportExcel.php?action=1"><button id="downloadexcel" class="btn btn-dark" type="button" style="background:#4A0063;">Export to Excel</button></a>
     </div>
 </div>
 <?php
-$query6 = "SELECT mu.*, uc.* FROM $main_user AS mu 
-        INNER JOIN users_candidate AS uc ON mu.username = uc.username 
-        WHERE mu.usertype = 0  AND mu.action = 1 
-        ORDER BY mu.card DESC";
 
-if ($result6 = mysqli_query($con, $query6)) {
     if (mysqli_num_rows($result6) > 0) {
         while ($row = mysqli_fetch_assoc($result6)) {
+            // var_dump($row);
 ?>
 
             <!-- Your candidate information display code here -->
@@ -149,7 +152,6 @@ if ($result6 = mysqli_query($con, $query6)) {
     } else {
         echo "No matching records found.";
     }
-}
 ?>
 </div>
 

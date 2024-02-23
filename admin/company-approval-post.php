@@ -206,12 +206,10 @@ if ($result) {
 
 if (isset($_POST['accept'])) {
     $id = $_POST['id'];
-
-
     $delete = "UPDATE `company` SET `active` = '1'  WHERE username ='$id'";
     $run = mysqli_query($con, $delete);
     if ($run) {
-        $to_email = 'nihal5930@gmail.com';
+            $to_email = 'nihal5930@gmail.com';
             $subject = "Reset Link Please click and Reset Password";
             $body = 'Your Company Approved';
             $headers = "From: nm371136@gmail.com";
@@ -251,13 +249,20 @@ if (isset($_POST['reject'])) {
     $delete = "UPDATE `company` SET `active` = '2'  WHERE username ='$id'";
     $run = mysqli_query($con, $delete);
     if ($run) {
-
+        $to_email = 'nihal5930@gmail.com';
+        $subject = "Reset Link Please click and Reset Password";
+        $body = 'Your Company Rejected';
+        $headers = "From: nm371136@gmail.com";
+        if (mail($to_email, $subject, $body, $headers)) {
         echo "
                <script>
                  alert('Rejected Sucessfully');
                  window.location.href='company-approval.php';
                </script>
              ";
+        } else {
+            echo "Email sending failed...";
+        }
     } else {
 
         echo "

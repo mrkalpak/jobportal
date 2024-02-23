@@ -307,29 +307,6 @@ if (isset($_POST['admin_jobfair'])) {
     
 
     if($fairName!='' && $fairDate!='' && $fairTime!='' && $location!='' && $organizer!='' && $fileName!=''){
-      // $resultName=false;
-      // $resultFairDate=false;
-      // function validate(&$name,$resultName) {
-      //   $pattern = '/^[a-zA-Z ]+$/';
-      //   $checkName=preg_match($pattern, $name);
-      //   var_dump($resultName);
-      //   if($checkName!=0){
-      //     $resultName=true;
-      //   }
-      // };
-      // validate($fairName,$resultName);
-
-      // function validateDate($date){
-      //   $dateTime = DateTime::createFromFormat($format='Y-m-d', $date);
-      //   if($dateTime && $dateTime->format($format) === $date){
-      //     $resultFairDate=true;
-      //   }
-      // }
-      // validateDate($fairDate);
-
-      // var_dump($resultName);
-      // return;
-
       if (isset($_FILES['BannerImg']['name'])) {
 
         $image2 = $_FILES['BannerImg']['name'];
@@ -355,21 +332,7 @@ if (isset($_POST['admin_jobfair'])) {
 
       $query = "INSERT INTO `job_fair`(`fairName`, `fairDate`, `fairTime`, `location`, `fair_Organizer`,`fileName`)
       VALUES ('$fairName', '$fairDate', '$fairTime', '$location', '$organizer','$Final_image_name2')";
-      // var_dump($resultName,$resultFairDate);
-      // return;
-      // if($resultName && $resultFairDate){
-        $result = mysqli_query($con, $query);
-      // }
-      // else{
-      //   if(!$resultName || !$resultFairDate){
-      //     echo "<script>
-      //           alert('Please Fill The Form Fileds Correctly');
-      //           window.location.href='admin_jobfair.php';
-      //         </script>";
-      //         $resultName=false;
-      //         $resultFairDate=false;
-      //   }
-      // }
+      $result = mysqli_query($con, $query);
       if ($result) {
         echo "
               <script>

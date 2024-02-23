@@ -230,13 +230,21 @@ if (isset($_POST['reject'])) {
     $delete = "UPDATE `jobs` SET `active` = '2'  WHERE jobid ='$id'";
     $run = mysqli_query($con, $delete);
     if ($run) {
-
+        $to_email = 'nihal5930@gmail.com';
+        $subject = "Reset Link Please click and Reset Password";
+        $body = 'Job Rejected Sucessfully';
+        $headers = "From: nm371136@gmail.com";
+        if (mail($to_email, $subject, $body, $headers)) {
         echo "
                <script>
                  alert('Job Rejected Sucessfully');
                  window.location.href='job-post-aprovalmain.php';
                </script>
              ";
+        }
+        else {
+            echo "Email sending failed...";
+        }
     } else {
 
         echo "

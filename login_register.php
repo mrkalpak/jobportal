@@ -63,7 +63,6 @@ if (isset($_POST['login'])) {
 <!-- ---------------------------company login--------------------------------------- -->
 
 <?php
-
 if (isset($_POST['company_login'])) {
 
 

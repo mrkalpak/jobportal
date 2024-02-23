@@ -203,8 +203,6 @@ if (isset($_POST['updatejob'])) {
 
 <?php
 if(isset($_POST['candidateData'])){
-  //  var_dump($_POST);   
-  //   return;
     // var_dump($_FILES);
     $username = $_SESSION['username'];
     $candidateName=$_POST['candidateName'];
@@ -221,8 +219,9 @@ if(isset($_POST['candidateData'])){
     $fileName=$_FILES['candidateResume']['name'];
     $linkedInProfile=$_POST['linkedInProfile'];
     $candidateDOB=$_POST['candidateDOB'];
-
+    
     if($candidateName!='' && $candidateDOB!='' && $linkedInProfile!='' && $candiateLocation!='' && $candidatePhone!='' && $candidateEmail!='' && $exp!=''&& $jobType!='' && $qualification!='' && $discription!=''){
+
       
       if (isset($_FILES['candidateResume']['name'])) {
 
@@ -245,8 +244,8 @@ if(isset($_POST['candidateData'])){
 
         }
       }
-      try {
 
+      try {
       $query = "INSERT INTO `job_faircandidate`(`candidateName`,`candidateDOB`,`linkedInProfile`, `candiateLocation`, `candidatePhone`, `candidateEmail`, `candidateCurrentJobLocation`,`candidateDesignation`,`candidateResume`,`exp`,`jobType`,`qualification`,`discription`,`fairId`)
       VALUES ('$candidateName','$candidateDOB','$linkedInProfile', '$candiateLocation', '$candidatePhone', '$candidateEmail', '$candidateCurrentJobLocation','$candidateDesignation','$Final_image_name2','$exp','$jobType','$qualification','$discription','$fairId')";
       // var_dump($query);      
@@ -280,9 +279,9 @@ if(isset($_POST['candidateData'])){
 ?>
 <?php
 if(isset($_POST['cardCandidate'])){
-  
   // var_dump($_FILES);
   $username = $_SESSION['username'];
+
   $candiatename=$_POST['candiatename'];
   $birthdate=$_POST['birthdate'];
   $location=$_POST['location'];
@@ -291,76 +290,142 @@ if(isset($_POST['cardCandidate'])){
   $cujobplace=$_POST['cu-job-place'];
   $designation=$_POST['designation'];
   $qualification=$_POST['qualification'];
-  $linkedIn=$_POST['linkedIn'];
   $exprience=$_POST['exprience'];
   $describe=$_POST['describeYourSelf'];
   $jobId=$_POST['jobId'];
   $fileName=$_FILES['cardCandidateResume']['name'];
+  $linkedIn=NULL;
 
-  // if(strlen($username)>3){
+  if(strlen($candiatename)>3 && preg_match("/^[a-zA-Z ]+$/", $candiatename)){
+    // var_dump($birthdate);
+    $pattern = "/^\d{4}-\d{2}-\d{2}$/";
+    $checkDate=preg_match($pattern, $birthdate);
+    $today=date("Y-m-d");
+    $dob = new DateTime($birthdate);
+    $current = new DateTime($today);
+    $age = $dob->diff($current);
+    $validEmail=filter_var($email, FILTER_VALIDATE_EMAIL)!== false;
+    if($checkDate && $age->y>=18){
+      if(preg_match('/^[a-zA-Z0-9\s]+$/', $location) && preg_match('/^[a-zA-Z0-9\s]+$/', $cujobplace) ){
+      if(preg_replace('/\D/', '', $c_no) && strlen($c_no) == 10){
+        if($validEmail){
+          if(preg_match('/^[a-zA-Z\s]+$/', $designation)){
+            if(preg_replace('/\D/', '', $exprience)){
+            if(preg_match('/^[a-zA-Z0-9\s]+$/', $describe)){
+            if($candiatename!='' && $birthdate !='' && $location!='' && $c_no!='' && $email!='' && $qualification!='' && $exprience!='' && $fileName!='' && $describe!='' && $jobId!=''){
+              if($_POST['linkedIn']!=''){
+                $checkLinkedIn=preg_match('/^http(s)?:\/\/([\w]+\.)?linkedin\.com\/in\/[A-z0-9_-]+\/?+$/', $_POST['linkedIn']);
+                if($checkLinkedIn){
+                  $linkedIn=$_POST['linkedIn'];
+                }else{
+                  echo "<script>
+                    alert('Please Provide Valid LinkedIn Account ');
+                    window.history.back();
+                  </script>";
+                  return;
+                }
+              }
+              if (isset($_FILES['cardCandidateResume']['name'])) {
+                $image2 = $_FILES['cardCandidateResume']['name'];
+                $target_file2 = basename($image2);
+                $imageFileType2 = strtolower(pathinfo($target_file2, PATHINFO_EXTENSION));
+                $check2 = $_FILES['cardCandidateResume']['tmp_name'];
+                $extension2 = substr($image2, strlen($image2) - 4, strlen($image2));
+                $image_ext2 = pathinfo($image2, PATHINFO_FILENAME);
+                if($extension2=='.pdf'){
+                $Final_image_name2 = $image_ext2.".".$imageFileType2;
+                $destination2 = "./assets/cardCandidateResume/$Final_image_name2";
+                move_uploaded_file($check2, $destination2);
+                }else{
+                  echo "<script>
+                  alert('Please Upload pdf file Only');
+                  window.history.back();
+                </script>";
+                return;
     
+                }
+              }
+              try {
     
-  // }else{
-
-  //   echo "
-  //       <script>
-  //         alert('Please Enter Candidate Name Greate Then 3 Words');
-  //         window.history.back();
-  //       </script>";
-
-  // }
-  // echo '<br>';
-  // var_dump($_POST);
-  // return;
-
-  if($candiatename!='' && $birthdate !='' && $location!='' && $c_no!='' && $email!='' && $qualification!='' && $exprience!='' && $fileName!='' && $describe!='' && $jobId!=''){
-    if (isset($_FILES['cardCandidateResume']['name'])) {
-      $image2 = $_FILES['cardCandidateResume']['name'];
-      $target_file2 = basename($image2);
-      $imageFileType2 = strtolower(pathinfo($target_file2, PATHINFO_EXTENSION));
-      $check2 = $_FILES['cardCandidateResume']['tmp_name'];
-      $extension2 = substr($image2, strlen($image2) - 4, strlen($image2));
-      $image_ext2 = pathinfo($image2, PATHINFO_FILENAME);
-      if($extension2=='.pdf'){
-      $Final_image_name2 = $image_ext2.".".$imageFileType2;
-      $destination2 = "./assets/cardCandidateResume/$Final_image_name2";
-      move_uploaded_file($check2, $destination2);
+              $query = "INSERT INTO `cardcandidate`(`jobId`,`candiatename`,`birthdate`,`location`,`c_no`, `email`, `cu-job-place`, `designation`, `qualification`,`linkedIn`,`exprience`,`describeYourself`,`cardCandidateResume`)
+                                            VALUES ('$jobId','$candiatename','$birthdate','$location','$c_no', '$email', '$cujobplace', '$designation', '$qualification','$linkedIn','$exprience','$describe','$fileName')";
+              // var_dump($query);      
+                $result = mysqli_query($con, $query);
+                if ($result) {
+                  echo "
+                    <script>
+                      alert('Uploaded Sucessfully');
+                      window.location.href='http://localhost/jobportal';
+                    </script>";
+                } 
+                } catch(Exception $e) {
+                  // $error=$e->getMessage();
+                  echo "
+                  <script>
+                    alert(`".$e->getMessage()."`);
+                    window.history.back();          
+                  </script>";
+                }
+            }
+            else{
+              echo "<script>
+              alert('Fill the form properly');
+              window.history.back();
+              </script>";
+            }
+          }else{
+            echo "<script>
+            alert('Please Enter Proper Discription');
+            window.history.back();
+          </script>"; 
+          }
+          }else{
+            echo "<script>
+            alert('Please Enter Proper Experience');
+            window.history.back();
+          </script>";
+          }
+        }
+        else{
+          echo "<script>
+          alert('Please Enter Proper Designation');
+          window.history.back();
+          </script>";
+        }
+        }else{
+          echo "<script>
+          alert('Please Enter Valid Email Address');
+          window.history.back();
+          </script>";
+        }
       }else{
         echo "<script>
-        alert('Please Upload pdf file Only');
+        alert('Please Enter Valid Phone Number with 10 Digits');
         window.history.back();
-      </script>";
-      return;
-
-      }
-    }
-    try {
-
-    $query = "INSERT INTO `cardcandidate`(`jobId`,`candiatename`,`birthdate`,`location`,`c_no`, `email`, `cu-job-place`, `designation`, `qualification`,`linkedIn`,`exprience`,`describeYourself`,`cardCandidateResume`)
-                                  VALUES ('$jobId','$candiatename','$birthdate','$location','$c_no', '$email', '$cujobplace', '$designation', '$qualification','$linkedIn','$exprience','$describe','$fileName')";
-    // var_dump($query);      
-      $result = mysqli_query($con, $query);
-      if ($result) {
-        echo "
-          <script>
-            alert('Uploaded Sucessfully');
-            window.location.href='http://localhost/jobportal';
-          </script>";
-      } 
-      } catch(Exception $e) {
-        // $error=$e->getMessage();
-        echo "
-        <script>
-          alert(`".$e->getMessage()."`);
-          window.history.back();          
         </script>";
       }
-
+    }else{
+      echo "<script>
+      alert('Please Enter Proper Address For Current Location & Current Job Place ');
+      window.history.back();
+    </script>";
+    }
+}
+else{
+  echo "
+      <script>
+        alert('Please Enter Valid Date and Age Must be 18');
+        window.history.back();
+      </script>";  
+}
 }else{
-  echo "<script>
-  alert('Fill the form properly');
-  window.history.back();
-  </script>";
+
+  echo "
+      <script>
+        alert('Please Enter Candidate Name Greater Then 3 Words & Please Avoid Special Char');
+        window.history.back();
+      </script>";
+
 }
 
 
