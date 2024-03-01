@@ -172,7 +172,7 @@ if ($result6 = mysqli_query($con, $query6)) {
                         <div class="col-auto"> <i class="bi bi-geo-alt-fill"></i> <?php echo $row['location']; ?> </div>
                         <div class="col-auto">
 
-                            Age :<?php echo $row['age']; ?> .</div>
+                        Birth Date :<?php echo $row['age']; ?> .</div>
                     </div>
                 </div>
 

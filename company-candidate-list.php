@@ -90,7 +90,7 @@ include './company-navbar.php';
 
                         <div class="col-auto">
 
-                            Age :<?php echo $row['age']; ?> .</div>
+                        Birth Date :<?php echo $row['age']; ?> .</div>
                     </div>
                 </div>
 
@@ -140,6 +140,15 @@ include './company-navbar.php';
                     </div>
                     <div class="col-auto">
                         <?php echo $row['description']; ?>
+                    </div>
+                </div>
+                <div class="row mt-2 col-md-11">
+                    <div class="col-md-2">
+                    <i class="bi bi-crosshair"></i>&nbsp; Selected for :
+                    </div>
+                    <div class="col-auto">
+                        <!-- To  DO  selected for  -->
+                        
                     </div>
                 </div>
 
