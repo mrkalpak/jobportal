@@ -7,6 +7,7 @@ if (empty($_SESSION['username']) || ($_SESSION['type'] != 'comp')) {
 $main_user = $_SESSION['username'];
 
 
+
 $query6 = "SELECT mu.*, uc.* FROM $main_user AS mu 
         INNER JOIN users_candidate AS uc ON mu.username = uc.username 
         WHERE mu.usertype = 0  AND mu.action = 1 
@@ -44,8 +45,7 @@ include './company-navbar.php';
     if (mysqli_num_rows($result6) > 0) {
         while ($row = mysqli_fetch_assoc($result6)) {
             // var_dump($row);
-?>
-
+    ?>
             <!-- Your candidate information display code here -->
             <div class="border border-1 candidate-card mt-3 rounded ms-auto me-auto p-3">
                 <div class="row">

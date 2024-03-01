@@ -202,7 +202,7 @@ include './company-navbar.php';
                 WHEN cu.username IS NOT NULL THEN u.resume
                 ELSE NULL END AS resume
             FROM users_candidate u
-            LEFT JOIN $comp_username cu ON u.username = cu.username
+            LEFT JOIN $comp_username cu ON u.username = cu.username WHERE jobid IS NULL
             LIMIT $start_from, $results_per_page";
     }
 

@@ -5,9 +5,6 @@ if (empty($_SESSION['username']) || ($_SESSION['type'] != 'comp')) {
     header("Location: index.php");
 }
 $main_user = $_SESSION['username'];
-
-
-
 if (!isset($_COOKIE['jobid'])) {
     $jobid = $_GET['id'];
     setcookie("jobid", $jobid, time() + 3600, "/");
