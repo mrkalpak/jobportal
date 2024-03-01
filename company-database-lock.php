@@ -249,7 +249,7 @@ include './company-navbar.php';
                         <div class="col-auto"> <i class="bi bi-geo-alt-fill"></i>
                             <?= $items['location'] ?>
                         </div>
-                        <div class="col-auto">Age :
+                        <div class="col-auto">Birth Date :
                             <?= $items['age'] ?>
                         </div>
                     </div>
@@ -440,8 +440,7 @@ include './company-navbar.php';
     <!-- script -->
     <script src="./assets/js/showrows.js"></script>
 
-    <!-- bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+     
 
 
 

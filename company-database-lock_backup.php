@@ -203,7 +203,7 @@ $highEdu = isset($_GET['high_edu']) ? $_GET['high_edu'] : 'Any';
                             <div class="col-auto"> <i class="bi bi-geo-alt-fill"></i>
                                 <?= $items['location'] ?>
                             </div>
-                            <div class="col-auto">Age :
+                            <div class="col-auto">Birth Date :
                                 <?= $items['age'] ?>
                             </div>
                         </div>
