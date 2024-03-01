@@ -19,9 +19,9 @@ if (isset($_POST['company_register'])) {
     $gst = $_POST['gst'];
 
     if (empty($name)) {
-        $error = "Name is Required";
+        $error = "Name is Required ";
     } elseif (empty($mail)) {
-        $error = "Email is Required";
+        $error = "Email is Required ";
     } elseif (empty($password)) {
         $error = "Password is Required";
     } elseif ($password != $cpassword) {
@@ -108,14 +108,14 @@ if (isset($_POST['company_register'])) {
                     if (mysqli_query($con, $query)) {
                         #if data inserted successfully
                         $query5 = "CREATE TABLE $username (
-                  `stud_id` int(11) NOT NULL AUTO_INCREMENT,
-                `username` varchar(250) NOT NULL,
-                `jobid` int(250) DEFAULT NULL,
-                `usertype` int(10) NOT NULL COMMENT 'applid ==0 or referral==1',
-                `card` tinyint(1) NOT NULL,
-                `action` tinyint(1) NOT NULL DEFAULT 0 COMMENT '(0  pending) (1 accept) ',
-                PRIMARY KEY (`stud_id`)
-              ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
+                            `stud_id` int(11) NOT NULL AUTO_INCREMENT,
+                            `username` varchar(250) NOT NULL,
+                            `jobid` int(250) DEFAULT NULL,
+                            `usertype` int(10) NOT NULL COMMENT 'applid ==0 or referral==1',
+                            `card` tinyint(1) NOT NULL,
+                            `action` tinyint(1) NOT NULL DEFAULT 0 COMMENT '(0  pending) (1 accept) ',
+                            PRIMARY KEY (`stud_id`)
+                        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
 
 
                         if ($fire5 = mysqli_query($con, $query5)) {

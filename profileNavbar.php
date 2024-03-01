@@ -1,7 +1,42 @@
  <!-- Navbar -->
+ <?php
+require('connection.php');
+$logo='assets/images/home/user-profile.svg';
+//  var_dump($_SESSION["username"]);
+//  if (empty($_SESSION['username']) || ($_SESSION['type'] != 'comp')) {
+//     header("Location: index.php");
+//  }
+ if($_SESSION["type"]=="comp")
+ {
+    $comp=$_SESSION["username"];
+    $query = "SELECT `companylogo` FROM `company` WHERE  `username`='$comp'";
+    $result = $con->query($query);
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $logo='companydocs/.'.$row["companylogo"];
+        }
+
+    }
+
+ }
+ if($_SESSION["type"]=="stud")
+ {
+    // $comp=$_SESSION["username"];
+    // $query = "SELECT `companylogo` FROM `company` WHERE  `username`='$comp'";
+    // $result = $con->query($query);
+    // if ($result->num_rows > 0) {
+    //     while ($row = $result->fetch_assoc()) {
+    //         $logo='companydocs/.'.$row["companylogo"];
+    //     }
+
+    // }
+    $logo='assets/images/home/studentLogo.png';
+
+ }
+ ?>
  <nav class="navbar navbar-expand-lg bg-body-tertiary">
      <div class="container">
-         <a class="navbar-brand" href="index.html">
+         <a class="navbar-brand" href="index.php">
              <img class="logo" src="assets/images/logo.png">
          </a>
          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,7 +54,6 @@
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="./job-category.php">Search By Category</a></li>
                     <li><a class="dropdown-item" href="./#featuredJob">Featured Job</a></li>
-                   
                 </ul>
             </li>
             <!-- <li class="nav-item dropdown">
@@ -55,7 +89,7 @@
                      <span class="badge badge-bg-custom position-absolute top-0 start-100 translate-middle p-1">3</span>
                  </a>
                  <a href="#">
-                     <img src="assets/images/home/user-profile.svg" alt="Square Image" class="square-image">
+                     <img src="<?=$logo?>" alt="Square Image" class="square-image">
                  </a>
              </div>
          </div>

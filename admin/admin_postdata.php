@@ -454,9 +454,9 @@ if (isset($_POST['updateFair'])) {
     $jobMaxExp=$_POST['jobMaxExp'];
     $jobvacancy=$_POST['jobvacancy'];
     $jobGender=$_POST['jobGender'];
-    $jobDescription=$_POST["jobDescription"];
-    $jobResponsibility=$_POST['jobResponsibility'];
-    $jobRequirement=$_POST['jobRequirement'];
+    $jobDescription=$con -> real_escape_string($_POST["jobDescription"]);
+    $jobResponsibility=$con -> real_escape_string($_POST['jobResponsibility']);
+    $jobRequirement=$con -> real_escape_string($_POST['jobRequirement']);
     $applyTill=$_POST['applyTill'];
     
     if($CompanyName!='' && $jobDesignation!='' && $jobTime!='' && $jobLocation!=''  && $jobMaxSalary!='' && $jobMinSalary!='' && $jobQualification!='' && $jobMinExp!='' && $jobMaxExp!='' && $jobvacancy!='' && $jobGender!='' && $jobResponsibility!='' && $jobRequirement!=''){
@@ -548,9 +548,9 @@ if (isset($_POST['updateFair'])) {
     $jobMaxExp=$_POST['jobMaxExp'];
     $jobvacancy=$_POST['jobvacancy'];
     $jobGender=$_POST['jobGender'];
-    $jobDescription=$_POST["jobDescription"];
-    $jobResponsibility=$_POST['jobResponsibility'];
-    $jobRequirement=$_POST['jobRequirement'];
+    $jobDescription=$con -> real_escape_string($_POST["jobDescription"]);
+    $jobResponsibility=$con -> real_escape_string($_POST['jobResponsibility']);
+    $jobRequirement=$con -> real_escape_string($_POST['jobRequirement']);
     $applyTill=$_POST['applyTill'];
     $updateId=$_POST['updateID'];
 

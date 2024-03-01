@@ -44,8 +44,7 @@ if ($result) {
             <a href="./company-job-post.php" class="btn mt-2 text-white " style="background-color: var(--primary);">Create Job Post</a>
             <div class="mt-2">
                 Coins balance: <img src="./assets/svgs/coin.svg"> <?= $db_points ?> <br>
-                <a href="./company-plans.php    ">
-
+                <a href="./company-plans.php">
                     <button class="btn btn-outline-custom text-white mt-2  w-100">Buy Coin</button>
                 </a>
             </div>
@@ -180,10 +179,9 @@ if ($result) {
                 }
             } else {
                 ?>
-                
-                <tr>
-                            <td colspan="3" class=" bg-light text-center text-danger"> No records found..... Please Create new job post</td>
-                        </tr>
+                    <tr>
+                        <td colspan="3" class=" bg-light text-center text-danger"> No records found..... Please Create new job post</td>
+                    </tr>
                 <?php
             }
 

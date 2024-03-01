@@ -120,15 +120,12 @@ if ($result = mysqli_query($con, $query)) {
                                             </div>
 
                                             <div class="text-center">
-                                                <form onsubmit="return confirm('Are you sure want to Approve Job ?')" method="post">
-                                                    <input type="hidden" name="id" value="<?= $row['jobid'] ?>">
-
-                                                    <input type="submit" name="accept" value="Accept Job Post" class="btn btn" style="margin-bottom: 27px;color: white;background-color: #4A0063;">
-                                                </form>
-                                                <form onsubmit="return confirm('Are you sure want to Reject Job ?')" method="post">
-                                                    <input type="hidden" name="id2" value="<?= $row['jobid'] ?>">
-                                                    <input type="submit" name="reject" value="Reject Job Post" class="btn btn" style="margin-bottom: 27px;color: white;background-color: #F18101;">
-                                                </form>
+                                            <div class="text-center">
+                                                <!-- <form  method="post"> -->
+                                                    <input type="hidden" name="id" id="username" value="<?= $row['username'] ?>">
+                                                    <input type="button" name="accept" value="Accept Job" class="btn btn Acceptbtn" style="margin-bottom: 27px;color: white;background-color: #4A0063;">
+                                                    <input type="button" name="reject" value="Reject Job" class="btn btn Acceptbtn" style="margin-bottom: 27px;color: white;background-color: #F18101;">
+                                            </div>
 
 
 
@@ -171,6 +168,7 @@ if ($result = mysqli_query($con, $query)) {
 
         <!-- Scroll to top -->
 
+        <script src="https://cdn.jsdelivr.net/gh/AmagiTech/JSLoader/amagiloader.js"></script>
 
         <script src="vendor/jquery/jquery.min.js"></script>
         <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -178,83 +176,130 @@ if ($result = mysqli_query($con, $query)) {
         <script src="js/ruang-admin.min.js"></script>
         <script src="vendor/chart.js/Chart.min.js"></script>
         <script src="js/demo/chart-area-demo.js"></script>
+        <script>
+
+         $(".Acceptbtn").click(function(){
+            var action = $(this).attr('value');
+            Swal.fire({
+            title: "Are You Sure?",
+            showCancelButton: true,
+            confirmButtonText: "Yes",
+            cancelButtonText: "No",
+
+            }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                AmagiLoader.show();
+                var userData = {
+                username:$("#username").val(),
+                action:action,
+                jobId:<?php echo $jobid?>, 
+                };
+                $.ajax({
+                type: "POST",
+                url: 'sendMail.php',
+                data: userData,
+                success: function(response) {
+                    console.log(response);
+                    if(response=='Mail Sent'){
+                        AmagiLoader.hide();
+                        alert('Sucessfully Done');
+                        window.location.href='job-post-aprovalmain.php';
+                    }else{
+                        AmagiLoader.hide();
+                        // alert('Failed To send Mail');
+                        // window.location.href='job-post-aprovalmain.php';
+                    }
+                },
+                error: function(response) {
+                    console.log(response);
+                }
+            });
+            } else if (result.isDenied) {
+                
+            }
+            });
+            // return;
+            
+         })   
+        </script>
 </body>
 
 <?php
 
-if (isset($_POST['accept'])) {
-    $id = $_POST['id'];
+// if (isset($_POST['accept'])) {
+//     $id = $_POST['id'];
 
 
-    $delete = "UPDATE `jobs` SET `active` = '1'  WHERE jobid ='$id'";
-    $run = mysqli_query($con, $delete);
-    if ($run) {
+//     $delete = "UPDATE `jobs` SET `active` = '1'  WHERE jobid ='$id'";
+//     $run = mysqli_query($con, $delete);
+//     if ($run) {
 
-        $to_email = 'nihal5930@gmail.com';
-        $subject = "Reset Link Please click and Reset Password";
-        $body = 'Job Approved Sucessfully';
-        $headers = "From: nm371136@gmail.com";
+//         $to_email = 'nihal5930@gmail.com';
+//         $subject = "Reset Link Please click and Reset Password";
+//         $body = 'Job Approved Sucessfully';
+//         $headers = "From: nm371136@gmail.com";
         
-        if (mail($to_email, $subject, $body, $headers)) {
-            echo "
-            <script>
-              alert('Job Approved Sucessfully');
-              window.location.href='job-post-aprovalmain.php';
-            </script>
-          ";
-            // echo "Email successfully sent to $to_email...";
-        } else {
-            echo "Email sending failed...";
-        }
+//         if (mail($to_email, $subject, $body, $headers)) {
+//             echo "
+//             <script>
+//               alert('Job Approved Sucessfully');
+//               window.location.href='job-post-aprovalmain.php';
+//             </script>
+//           ";
+//             // echo "Email successfully sent to $to_email...";
+//         } else {
+//             echo "Email sending failed...";
+//         }
 
 
-    } else {
+//     } else {
 
-        echo "
-               <script>
-                 alert('Internal Error');
-                 window.location.href='job-post-aprovalmain.php';
-               </script>
-             ";
-    }
-}
+//         echo "
+//                <script>
+//                  alert('Internal Error');
+//                  window.location.href='job-post-aprovalmain.php';
+//                </script>
+//              ";
+//     }
+// }
 
 
 ?>
 <?php
 
-if (isset($_POST['reject'])) {
-    $id = $_POST['id2'];
+// if (isset($_POST['reject'])) {
+//     $id = $_POST['id2'];
 
 
-    $delete = "UPDATE `jobs` SET `active` = '2'  WHERE jobid ='$id'";
-    $run = mysqli_query($con, $delete);
-    if ($run) {
-        $to_email = 'nihal5930@gmail.com';
-        $subject = "Reset Link Please click and Reset Password";
-        $body = 'Job Rejected Sucessfully';
-        $headers = "From: nm371136@gmail.com";
-        if (mail($to_email, $subject, $body, $headers)) {
-        echo "
-               <script>
-                 alert('Job Rejected Sucessfully');
-                 window.location.href='job-post-aprovalmain.php';
-               </script>
-             ";
-        }
-        else {
-            echo "Email sending failed...";
-        }
-    } else {
+//     $delete = "UPDATE `jobs` SET `active` = '2'  WHERE jobid ='$id'";
+//     $run = mysqli_query($con, $delete);
+//     if ($run) {
+//         $to_email = 'nihal5930@gmail.com';
+//         $subject = "Reset Link Please click and Reset Password";
+//         $body = 'Job Rejected Sucessfully';
+//         $headers = "From: nm371136@gmail.com";
+//         if (mail($to_email, $subject, $body, $headers)) {
+//         echo "
+//                <script>
+//                  alert('Job Rejected Sucessfully');
+//                  window.location.href='job-post-aprovalmain.php';
+//                </script>
+//              ";
+//         }
+//         else {
+//             echo "Email sending failed...";
+//         }
+//     } else {
 
-        echo "
-               <script>
-                 alert('Internal Error');
-                 window.location.href='job-post-aprovalmain.php';
-               </script>
-             ";
-    }
-}
+//         echo "
+//                <script>
+//                  alert('Internal Error');
+//                  window.location.href='job-post-aprovalmain.php';
+//                </script>
+//              ";
+//     }
+// }
 
 
 ?>

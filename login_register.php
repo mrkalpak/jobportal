@@ -1,9 +1,12 @@
 <?php
 require('connection.php');
 
-session_start();
-if (empty($_SESSION['username'])) {
-  header("Location: index.php");
+
+function checkSession(){
+  session_start();
+  if (empty($_SESSION['username'])) {
+    header("Location: index.php");
+  }
 }
 
 #for login--------------------------------------------------------------------
@@ -24,6 +27,7 @@ if (isset($_POST['login'])) {
     if (mysqli_num_rows($result) == 1) {
       $result_fetch = mysqli_fetch_assoc($result);
       if (password_verify($_POST['password'], $result_fetch['password'])) {
+        checkSession();
         $_SESSION['logged_in'] = true;
         $_SESSION['username'] = $result_fetch['username'];
         $_SESSION['name'] = $result_fetch['name'];
@@ -63,23 +67,24 @@ if (isset($_POST['login'])) {
 <!-- ---------------------------company login--------------------------------------- -->
 
 <?php
+
 if (isset($_POST['company_login'])) {
-
-
-  echo $email = $_POST['email_username'];
+  $email = $_POST['email_username'];
   $username = $_POST['email_username'];
   $password = trim($_POST['password']);
 
+  // var_dump($_POST);
+  // return;
 
 
-
+  if($email !='' && $password!=''){
   $query = "SELECT * FROM `company` WHERE `email`='$email' OR `username`='$username'";
   $result = mysqli_query($con, $query);
-
 
   if ($result) {
     if (mysqli_num_rows($result) == 1) {
       $result_fetch = mysqli_fetch_assoc($result);
+      checkSession();
       if ($result_fetch['active'] == 2) {
 
         echo "
@@ -107,11 +112,11 @@ if (isset($_POST['company_login'])) {
       }
     } else {
       echo "
-                  <script>
-                    alert('Email or Username Not Registered');
-                    window.location.href='company-login.php';
-                  </script>
-                ";
+            <script>
+              alert('Email or Username Not Registered');
+              window.location.href='company-signup.php';
+            </script>
+          ";
     }
   } else {
     echo "
@@ -121,6 +126,14 @@ if (isset($_POST['company_login'])) {
             </script>
           ";
   }
+}else{
+  echo "
+  <script>
+    alert('Please Enter Email and Password');
+    window.history.back();
+  </script>
+  ";
+}
 }
 
 
@@ -144,6 +157,7 @@ if (isset($_POST['company_login'])) {
 if (isset($_POST['register'])) {
 
 
+  checkSession();
 
   $min = 1;
   $max = 100;
@@ -248,6 +262,7 @@ if (isset($_POST['register'])) {
 <!-- ----------------------------Update Profile---------------------- -->
 
 <?php
+checkSession();
 
 if (isset($_POST['update'])) {
   $name = $_POST['name'];
@@ -280,7 +295,7 @@ if (isset($_POST['update'])) {
 
 
 
-  $description = $_POST['description'];
+  $description = $con -> real_escape_string($_POST['description']);
   echo $file = $_FILES['file']['name'];
 
 
@@ -298,11 +313,32 @@ if (isset($_POST['update'])) {
   // Assuming you're using sessions to track the logged-in user
   $username = $_SESSION['username'];
   if ($file == null) {
-    $query = "UPDATE `users_candidate` SET `name` = '$name', `age` = '$age', `location` = '$location', `phone` = '$phone', 
-    `currentjob` = '$currentjob', `designation` = '$designation' ,`experience_level` = '$exprience' ,`qualification` = '$qualification',`category` = '$category' , `description` = '$description', `linkedin` = '$linkedin'  WHERE `users_candidate`.`username` = '$username';";
+    $query = "UPDATE `users_candidate` SET 
+    `name` = '$name', 
+    `age` = '$age', 
+    `location` = '$location', 
+    `phone` = '$phone', 
+    `currentjob` = '$currentjob', 
+    `designation` = '$designation' ,
+    `experience_level` = '$exprience' ,
+    `qualification` = '$qualification',
+    `category` = '$category' , 
+    `description` = '$description', 
+    `linkedin` = '$linkedin'  WHERE `users_candidate`.`username` = '$username';";
   } else {
-    $query = "UPDATE `users_candidate` SET `name` = '$name', `age` = '$age', `location` = '$location', `phone` = '$phone', 
-    `currentjob` = '$currentjob', `designation` = '$designation',`experience_level` = '$exprience' ,`qualification` = '$qualification',`category` = '$category' , `resume` = '$Final_image_name2', `description` = '$description', `linkedin` = '$linkedin'  WHERE `users_candidate`.`username` = '$username';";
+    $query = "UPDATE `users_candidate` SET 
+    `name` = '$name', 
+    `age` = '$age', 
+    `location` = '$location', 
+    `phone` = '$phone', 
+    `currentjob` = '$currentjob', 
+    `designation` = '$designation',
+    `experience_level` = '$exprience' ,
+    `qualification` = '$qualification',
+    `category` = '$category' , 
+    `resume` = '$Final_image_name2', 
+    `description` = '$description', 
+    `linkedin` = '$linkedin'  WHERE `users_candidate`.`username` = '$username';";
   }
 
 
@@ -355,7 +391,6 @@ if (isset($_POST['company_register'])) {
 
   if ($password == $cpassword) {
 
-
     $user_exist_query = "SELECT * FROM `company` WHERE  `email` ='$mail'";
     $result = mysqli_query($con, $user_exist_query);
 
@@ -385,10 +420,6 @@ if (isset($_POST['company_register'])) {
         $Final_image_name1 = $image_ext1 . date("mjYHis") . "." . $imageFileType1;
         $destination1 = "companydocs/.$Final_image_name1";
 
-
-
-
-
         // imageB and 2
         $image2 = $_FILES['imageB']['name'];
         $target_file2 = basename($image2);
@@ -398,10 +429,6 @@ if (isset($_POST['company_register'])) {
         $image_ext2 = pathinfo($image2, PATHINFO_FILENAME);
         $Final_image_name2 = $image_ext2 . date("mjYHis") . "." . $imageFileType2;
         $destination2 = "companydocs/.$Final_image_name2";
-
-
-
-
 
         move_uploaded_file($check1, $destination1);
 
@@ -495,18 +522,11 @@ if (isset($_POST['company_register'])) {
 
 
 <?php
+        // checkSession();
 
 if (isset($_POST['companyupdate'])) {
   // $email = $_POST['email'];
   $name = $_POST['name'];
-
-
-
-
-
-
-
-
   if ($_POST['companytype'] == null) {
 
     $companytype = $_POST['companytype1'];
@@ -540,6 +560,9 @@ if (isset($_POST['companyupdate'])) {
 
   // Assuming you're using sessions to track the logged-in user 
   $username = $_SESSION['username'];
+
+  // var_dump($username);
+  // return;
 
   $query = "UPDATE `company` SET `name`='$name',`companytype`='$companytype',`companysize`='$companysize',`companylogo`='$Final_image_name2',
   `location`='$location',`websitelink`='$websitelink',`facebook`='$facebook',
@@ -603,7 +626,7 @@ if (isset($_POST['companyupdate'])) {
 
 if (isset($_POST['admin_login'])) {
   echo $admin_mail = $_POST['amail'];
-
+  checkSession();
   $query = "SELECT * FROM `admin` WHERE `admin_email`='$admin_mail'";
   $result = mysqli_query($con, $query);
 
@@ -611,6 +634,7 @@ if (isset($_POST['admin_login'])) {
     if (mysqli_num_rows($result) == 1) {
       $result_fetch = mysqli_fetch_assoc($result);
       if ($_POST['password'] == $result_fetch['admin_password']) {
+        checkSession();
         $_SESSION['logged_in'] = true;
         $_SESSION['username'] = $result_fetch['admin_email'];
         $_SESSION['type'] = 'admin';

@@ -81,7 +81,7 @@ if ($result) {
                     </div>
                 </div>
                 <?php
-                $sql = "SELECT * FROM `category`                        ";
+                $sql = "SELECT * FROM `category`";
                 $result4 = $con->query($sql);
                 ?>
                 <div class="row">

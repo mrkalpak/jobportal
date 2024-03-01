@@ -56,9 +56,9 @@
             <div class="col-md-6">
                 <ul class="list-inline text-end social-media-icons">
                     <li class="list-inline-item">Follow Jobs : </li>
-                    <li class="list-inline-item"><a href="https://www.facebook.com/profile.php?id=100089726761732&mibextid=LQQJ4d"><i class="bi bi-facebook"></i></a></li>
+                    <li class="list-inline-item"><a target="_blank" href="https://www.facebook.com/profile.php?id=100089726761732&mibextid=LQQJ4d"><i class="bi bi-facebook"></i></a></li>
                     <li class="list-inline-item"><a href="#"><i class="bi bi-twitter"></i></a></li>
-                    <li class="list-inline-item"><a href="https://instagram.com/jobfairindia?igshid=OGQ5ZDc2ODk2ZA=="><i class="bi bi-instagram"></i></a></li>
+                    <li class="list-inline-item"><a target="_blank" href="https://instagram.com/jobfairindia?igshid=OGQ5ZDc2ODk2ZA=="><i class="bi bi-instagram"></i></a></li>
                     <li class="list-inline-item"><a href="#"><i class="bi bi-linkedin"></i></a></li>
                 </ul>
             </div>
@@ -66,6 +66,7 @@
     </div>
 </footer>
  <!-- bootstrap -->
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>
 

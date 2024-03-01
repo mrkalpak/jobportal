@@ -29,7 +29,7 @@ $query = "SELECT * FROM `jobs` WHERE  `jobid`='$jobid'";
 $result = mysqli_query($con, $query);
 
 if ($result) {
-
+    // var_dump($result["num_rows"]>0);
     $result3 = mysqli_fetch_assoc($result);
     // $db_points = $result_fetch['coins'];
 }
@@ -148,9 +148,10 @@ if ($result6 = mysqli_query($con, $query6)) {
 
                     </div>
                     <?php
+                    // postdata.php?resume=<?php echo $row["username"]
                     if (!$row['resume'] == null) { ?>
                         <div class="col d-flex justify-content-end">
-                            <a href="uploaddocs/.<?php echo $row['resume']; ?>" target="_blank" class="btn btn-sm btn-outline-secondary ">
+                            <a href="uploaddocs/.<?php echo $row['resume']?>" target="_blank" class="btn btn-sm btn-outline-secondary ">
                                 <i class="bi bi-download"></i>&nbsp;
                                 Resume
                             </a>

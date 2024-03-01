@@ -128,7 +128,7 @@ include './company-navbar.php';
 
     <?php
 
-    $results_per_page = 3;
+    $results_per_page = 6;
 
     if (!isset($_GET['page'])) {
         $page = 1;
@@ -333,7 +333,6 @@ include './company-navbar.php';
 
                     <a href="company-database-lock.php?id1=<?= $items['username'] ?>&id2=<?= $_SESSION['username'] ?>&id3=<?= $items['cardtype'] ?>&page=<?= $page ?>&exp-lvl=<?= $expLevel ?>&keyword=<?= $keyword ?>&city=<?= $city ?>&high_edu=<?= $highEdu ?>&updatesearch=">
                         <input type="button" value="View More Info" class="btn btn-outline-custom col-md-2" onclick="return confirm('It Will Cost 5 Coins?')">
-
                     </a>
 
 
@@ -466,8 +465,6 @@ include './company-navbar.php';
         $result5 = mysqli_query($con, $checkQ);
         if ($result5 && mysqli_num_rows($result5) > 0) {
             // Rows were found, so you can proceed with further actions
-            // ...
-
             echo "
                 <script>
                   alert('Already Unlocked Student');
@@ -492,6 +489,29 @@ include './company-navbar.php';
                 // insert to unlocked list---
                 $insert2 = "INSERT INTO `$company_username`(`username`,`usertype`, `card`, `action`)VALUES('$student_username',1,'$card_type',0)";
                 $fire2 = mysqli_query($con, $insert2);
+
+                function generateTransactionIdSecure() {
+                    // Generate 16 bytes of random data
+                    $bytes = random_bytes(16);
+                    // Convert the binary data into hexadecimal representation
+                    $transactionId = bin2hex($bytes);
+                    return $transactionId;
+                  }
+                  $transactionId=generateTransactionIdSecure();
+                  $resumeCost=2;
+                  $currentbalance=$db_coins-$resumeCost;
+                  $transactionTime=date('Y-m-d H:i:s');
+                  $purpose='viewInfo';
+                  $response='Success';
+                  $date=date('Y-m-d');
+                  $coinTransaction = "INSERT INTO `transaction_history`(`company_id`, `user_id`, `transaction_id`, `last_balance`, `current_balance`, `transaction_time`, `response`, `date`, `purpose`)
+                  VALUES ('$company_username','$student_username','$transactionId','$db_coins','$currentbalance','$transactionTime','$response','$date','$purpose')";
+                  //Job Post Transaction History Code End 
+                  try{
+                    $res = mysqli_query($con, $coinTransaction);
+                  }catch(Exception $error){
+                    echo $error->getMessage();
+                  }
                 if ($run && $fire2) {
                     echo "
                         <script>
@@ -513,7 +533,7 @@ include './company-navbar.php';
                 echo "
                 <script>
                   alert('Insufficient Coins $db_coins');
-                  window.location.href='company-database-lock.php?updatesearch=&page=$page_no&exp-lvl=$expLevel&keyword=$keyword&city=$city&high_edu=$highEdu ';
+                  window.location.href='company-plans.php';
                 </script>
               ";
             }

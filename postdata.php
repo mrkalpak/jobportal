@@ -2,24 +2,22 @@
 require('connection.php');
 session_start();
 // echo "im in post data";
+require('config.php');
+require('razorpay-php-2.9.0/Razorpay.php');
+use Razorpay\Api\Api;
+use Razorpay\Api\Errors\SignatureVerificationError;
+
 ?>
-
-
-
-
-
-
 
 <?php
 if (isset($_POST['postjob'])) {
 
+  // var_dump($_POST);
 
 
   // echo $nightshift = $_POST['nightshift'] ?? 'DefaultJobTitle';
   $jobcost = 50;
   $username = $_SESSION['username'];
-
-
 
   $companyname = $_POST['companyname'];
   $deadline = $_POST['deadline'];
@@ -36,9 +34,9 @@ if (isset($_POST['postjob'])) {
   $maxyr = $_POST['maxyr'];
   $vacancy = $_POST['vacancy'];
   $gender = $_POST['gender'];
-  $description = $_POST['description'];
-  $responsibility = $_POST['responsibility'];
-  $requirements = $_POST['requirements'];
+  $description = $con -> real_escape_string($_POST['description']);
+  $responsibility = $con -> real_escape_string($_POST['responsibility']);
+  $requirements = $con -> real_escape_string($_POST['requirements']);
 
 
 
@@ -52,16 +50,8 @@ if (isset($_POST['postjob'])) {
   $image_ext2 = pathinfo($file, PATHINFO_FILENAME);
   $Final_image_name2 = $image_ext2 . date("mjYHis") . "." . $imageFileType2;
   $destination2 = "companydocs/.$Final_image_name2";
-
-
   move_uploaded_file($check2, $destination2);
-
-
-
   // Assuming you're using sessions to track the logged-in user
-
-
-
   $query2 = "SELECT `coins` FROM `company` WHERE `company`.`username` = '$username'";
 
   if ($result2 = mysqli_query($con, $query2)) {
@@ -71,17 +61,37 @@ if (isset($_POST['postjob'])) {
       $query = "INSERT INTO `jobs`(`username`, `compname`, `jobtitle`, `category`, `deadline`, `location2`, `banner`, `typeofjob`, `location`, `paytype`, `minsalary`, `maxsalary`, `education`, `minyr`, `maxyr`, `vacancy`, `gender`, `description`, `responsibility`, `requirements`, `active`)
       VALUES ('$username', '$companyname', '$jobtitle', '$category', '$deadline', '$location','$Final_image_name2', '$jobtype', '$joblocation', '$jobsalaytype', '$minsalary', '$maxsalary', '$education', '$minyr', '$maxyr', '$vacancy', '$gender', '$description', '$responsibility', '$requirements', 0)";
 
+      //Job Post Transaction History Code
 
+      function generateTransactionIdSecure() {
+        // Generate 16 bytes of random data
+        $bytes = random_bytes(16);
+        // Convert the binary data into hexadecimal representation
+        $transactionId = bin2hex($bytes);
+        return $transactionId;
+      }
+      $transactionId=generateTransactionIdSecure();
+      $currentbalance=$db_coins-$jobcost;
+      $transactionTime=date('Y-m-d H:i:s');
+      $purpose='Job Post';
+      $response='Success';
+      $date=date('Y-m-d');
 
-
-      $result = mysqli_query($con, $query);
+      $coinTransaction = "INSERT INTO `transaction_history`(`company_id`, `user_id`, `transaction_id`, `last_balance`, `current_balance`, `transaction_time`, `response`, `date`, `purpose`)
+      VALUES ('$username',NULL,'$transactionId','$db_coins','$currentbalance','$transactionTime','$response','$date','$purpose')";
+      //Job Post Transaction History Code End 
+      try{
+        $res = mysqli_query($con, $coinTransaction);
+      }catch(Exception $error){
+        echo $error->getMessage();
+      }
+      try{
+        $result = mysqli_query($con, $query);
+      }catch(Exception $e){
+        echo $e->getMessage();
+      }
 
       if ($result) {
-
-
-
-
-
         $query3 = "UPDATE `company` SET `coins` = $db_coins-$jobcost  WHERE `company`.`username` = '$username'";
         $result2 = mysqli_query($con, $query3);
         echo "
@@ -90,19 +100,12 @@ if (isset($_POST['postjob'])) {
                    window.location.href='popup2.php';
                  </script>
                ";
-      } else {
-        echo "
-             <script>
-               alert('Somrthing went Wrong');
-               window.location.href='company-joblist.php';
-             </script>
-           ";
       }
     } else {
       echo "
             <script>
               alert('Insufficient Coins ');
-              window.location.href='company-joblist.php';
+              window.location.href='company-plans.php';
             </script>
           ";
     }
@@ -150,9 +153,9 @@ if (isset($_POST['updatejob'])) {
   $maxyr = $_POST['maxyr'];
   $vacancy = $_POST['vacancy'];
   $gender = $_POST['gender'];
-  $description = $_POST['description'];
-  $responsibility = $_POST['responsibility'];
-  $requirements = $_POST['requirements'];
+  $description = $con -> real_escape_string($_POST['description']);
+  $responsibility = $con -> real_escape_string($_POST['responsibility']);
+  $requirements = $con -> real_escape_string($_POST['requirements']);
 
 
   // Assuming you're using sessions to track the logged-in user
@@ -167,8 +170,6 @@ if (isset($_POST['updatejob'])) {
     if ($db_coins >= $jobcost) {
       $query = "UPDATE `jobs` SET `typeofjob` = '$jobtype',`deadline` = '$deadline', `location2` = '$location', `location` = '$joblocation', `paytype` = '$jobsalaytype', `minsalary` = '$minsalary', `maxsalary` = '$maxsalary', `education` = '$education',
        `minyr` = '$minyr', `maxyr` = '$maxyr', `vacancy` = '$vacancy', `gender` = '$gender', `description` = '$description', `responsibility` = '$responsibility', `requirements` = '$requirements' WHERE `jobs`.`jobid` = $jobid;";
-
-
 
       $result = mysqli_query($con, $query);
 
@@ -193,17 +194,64 @@ if (isset($_POST['updatejob'])) {
       echo "
             <script>
               alert('Insufficient Coins ');
-              window.location.href='company-joblist.php';
+              window.location.href='company-plans.php';
             </script>
           ";
     }
   }
 }
+
+
+// if(isset($_GET['resume'])){
+//   $userId=$_GET['resume'];
+//   $username = $_SESSION['username'];
+//   $coinDetails = "SELECT coins FROM `company` WHERE  `username`='$username'";
+//   $checkCoin = mysqli_query($con, $coinDetails);
+//   $currentCoin = mysqli_fetch_assoc($checkCoin);
+//   // var_dump($currentCoin);
+//     if($currentCoin['coins']>1){
+     
+//       $query3 = "UPDATE `company` SET `coins` = $currentbalance  WHERE `company`.`username` = '$username'";
+//       try{
+//         $result2 = mysqli_query($con, $query3);
+//         if($result2){
+//           $getResume = "SELECT `resume` FROM `users_candidate` WHERE `users_candidate`.`username` = '$userId'";
+//           $Resume = mysqli_query($con, $getResume);
+//           $candidateResume = mysqli_fetch_assoc($Resume);
+//           $file_name = '.'.$candidateResume['resume'];
+//           $file = './uploaddocs/' . $file_name;
+//           if (file_exists($file)) {
+//             header('Content-Type: ' . mime_content_type($file_name));
+//             header('Content-Disposition: attachment;filename="' . basename($file_name) . '"');
+//             header('Content-Length: ' . filesize($file));
+//             readfile($file);
+//           } else {
+//                echo"<script>
+//                   alert('file Does Not Exist');
+//                   window.history.back();
+//                 </script>";   
+//           }
+         
+//         }
+//       }
+//       catch(Exception $errorUpdate){
+//         echo $errorUpdate->getMessage();
+//       }  
+
+//     }
+//     else{
+//         echo "
+//           <script>
+//             alert('Insufficient Coins ');
+//             window.location.href='company-plans.php';
+//           </script>
+//       ";
+//     } 
+//   }
 ?>
 
 <?php
 if(isset($_POST['candidateData'])){
-    // var_dump($_FILES);
     $username = $_SESSION['username'];
     $candidateName=$_POST['candidateName'];
     $candiateLocation=$_POST['candiateLocation'];
@@ -214,7 +262,7 @@ if(isset($_POST['candidateData'])){
     $exp=$_POST['exp'];
     $jobType=$_POST['jobType'];
     $qualification=$_POST['qualification'];
-    $discription=$_POST['discription'];
+    $discription=$con -> real_escape_string($_POST['discription']);
     $fairId=$_POST['fairId'];
     $fileName=$_FILES['candidateResume']['name'];
     $linkedInProfile=$_POST['linkedInProfile'];
@@ -277,6 +325,8 @@ if(isset($_POST['candidateData'])){
  
 }
 ?>
+
+
 <?php
 if(isset($_POST['cardCandidate'])){
   // var_dump($_FILES);
@@ -291,7 +341,7 @@ if(isset($_POST['cardCandidate'])){
   $designation=$_POST['designation'];
   $qualification=$_POST['qualification'];
   $exprience=$_POST['exprience'];
-  $describe=$_POST['describeYourSelf'];
+  $describe=$con -> real_escape_string($_POST['describeYourSelf']);
   $jobId=$_POST['jobId'];
   $fileName=$_FILES['cardCandidateResume']['name'];
   $linkedIn=NULL;
@@ -433,4 +483,84 @@ else{
 
 
 ?>
+
+<?php
+if (isset($_POST['main_user'])) {
+  $api=new Api($keyId,$keySecret);
+  $main_user=$_POST['main_user'];
+  $query = "SELECT * FROM `company` WHERE  `username`='$main_user'";
+  $result = mysqli_query($con, $query);
+  if ($result) {
+
+      $result_fetch = mysqli_fetch_assoc($result);
+      // var_dump($result_fetch);
+      $db_points = $result_fetch['coins'];
+  }
+  $points = $_POST['customcoin'];
+  $currentDate = date('Y-m-d');
+  $expirationDate = date('Y-m-d', strtotime('+30 days', strtotime($currentDate)));
+  $fpoints = $db_points + $points;
+
+  $randomNumber = str_pad(mt_rand(1, 999999), 6, '0', STR_PAD_LEFT);
+  $receiptId = "reciptId" . $randomNumber;
+  $orderData = [
+    'receipt'         => $receiptId,
+    'amount'          => $points*100, // 39900 rupees in paise
+    'currency'        => 'INR'
+  ];
+
+  $razorpayOrder = $api->order->create($orderData);
+  $razorpayOrderId=$razorpayOrder['id'];
+  $_SESSION['razorpayOrderId']=$razorpayOrderId;
+  $transactionId=$_SESSION['razorpayOrderId'];
+    // var_dump($transactionId);
+    $add2 = "INSERT INTO `plans`(`username`,`transaction_Id`,`amount`, `active`, `edate`) VALUES ('$main_user','$transactionId','$points',1,' $expirationDate')";
+    $run2 = mysqli_query($con, $add2);
+    $data= ["res"=>$transactionId];
+    echo json_encode($data);
+}
+
+
+if (isset($_POST['companyId'])){
+  $api=new Api($keyId,$keySecret);
+    $cId=$_POST['companyId'];
+    $tId=$_POST["transactionId"];
+    $rPayId=$_POST["razorpay_payment_id"];
+    $customcoin=$_POST["customcoin"];
+    $verifySignature=$_POST["verifySignature"];
+    // var_dump($customcoin);
+    // return;
+    $verify=$tId."|".$rPayId;
+    $generated_signature = hash_hmac('sha256', $verify, $keySecret);
+    if($generated_signature==$verifySignature){
+      $updateQuery = "UPDATE `plans` SET `razorpay_payment_id`='$rPayId',`status`=1,`verifySignature`='$verifySignature' where transaction_Id='$tId' ";
+      $run= mysqli_query($con, $updateQuery);    
+      $main_user=$_POST['companyId'];
+      $query = "SELECT * FROM `company` WHERE  `username`='$main_user'";
+      $result = mysqli_query($con, $query);
+      if ($result) {
+          $result_fetch = mysqli_fetch_assoc($result);
+          // var_dump($result_fetch);
+          $db_points = $result_fetch['coins'];
+      }
+      $fpoints = $db_points + $customcoin;
+      $add = "UPDATE `company` SET `coins`='$fpoints'  where username='$main_user' ";
+      $run1 = mysqli_query($con, $add);
+      if($run1 && $run){
+        $data= ["res"=>'success'];
+        echo json_encode($data);
+        
+      }else{
+        $data= ["res"=>'error'];
+        echo json_encode($data);
+      }
+    }else{
+        $data= ["res"=>'unverified Signature'];
+        echo json_encode($data);
+    }
+}
+?>
+
+
+
 

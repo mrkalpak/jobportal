@@ -27,11 +27,6 @@ $username = $_SESSION['username'];
 
         <?php
         $activePage = 'myprofile';
-
-
-
-
-
         $query = "SELECT  `age`, `location`, `phone`, `qualification`, `experience_level`, `category`, `resume`, `description` FROM users_candidate WHERE username = ?";
         $stmt = $con->prepare($query);
 
@@ -58,10 +53,6 @@ $username = $_SESSION['username'];
                 include './candidate-sidenavbar.php';
             }
         }
-
-
-
-
         ?>
 
         <?php
