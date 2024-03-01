@@ -44,7 +44,15 @@ include './company-navbar.php';
 
     if (mysqli_num_rows($result6) > 0) {
         while ($row = mysqli_fetch_assoc($result6)) {
-            // var_dump($row);
+            // var_dump($row['jobid']);
+            $jobPostion="SELECT jobtitle FROM jobs WHERE jobid=".$row['jobid']."";
+            $postion = mysqli_query($con, $jobPostion);
+            if (mysqli_num_rows($postion) > 0) {
+                while ($rowData = mysqli_fetch_assoc($postion)) {
+                    $selectedFor=$rowData["jobtitle"];
+                }
+            }
+
     ?>
             <!-- Your candidate information display code here -->
             <div class="border border-1 candidate-card mt-3 rounded ms-auto me-auto p-3">
@@ -145,10 +153,10 @@ include './company-navbar.php';
                 <div class="row mt-2 col-md-11">
                     <div class="col-md-2">
                     <i class="bi bi-crosshair"></i>&nbsp; Selected for :
+                        
                     </div>
                     <div class="col-auto">
-                        <!-- To  DO  selected for  -->
-                        
+                        <?=$selectedFor?>
                     </div>
                 </div>
 
