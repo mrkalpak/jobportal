@@ -1,4 +1,6 @@
 <?php
+$env = parse_ini_file('.env');
+$header = $env["HEADER"];
 require('connection.php');
 session_start();
 if (empty($_SESSION['username']) || ($_SESSION['type'] != 'comp')) {
@@ -181,8 +183,8 @@ include './company-navbar.php';
         var candidates = [];
         var candidateElements = document.querySelectorAll(".candidate-card");
 
-        var domain = "http://localhost/jobportal/";
-
+        var domain = `<?=$header;?>`;
+console.log(domain);
         // Loop through candidate elements and extract data
         candidateElements.forEach(function(candidateElement) {
             var candidateData = {};
@@ -259,6 +261,6 @@ include './company-navbar.php';
         XLSX.writeFile(wb, "selected_candidates.xlsx");
     });
 </script>
-<script src="./assets/js/showrows.js"></script>
+<!-- <script src="./assets/js/showrows.js"></script> -->
 
  

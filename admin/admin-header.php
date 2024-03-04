@@ -1,4 +1,7 @@
-
+<?php
+$env = parse_ini_file('../.env');
+$header = $env["HEADER"];
+?>
 <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
  <link href="css/ruang-admin.css" rel="stylesheet">
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -21,7 +24,7 @@
   }
 </style>
 <nav class="navbar navbar-expand   topbar    static-top" style="background-color: white;">
-  <a href="http://localhost/jobportal/index.php"><img src="img/logo/logo.png" style-="width: 123px;"></a>
+  <a href=<?php echo $header;?>><img src="img/logo/logo.png" style-="width: 123px;"></a>
   <button id="sidebarToggleTop" class="btn  rounded-circle mr-3" style="margin-left: -9px;">
     <i class="fa fa-bars"></i>
   </button>

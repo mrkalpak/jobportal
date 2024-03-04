@@ -328,6 +328,8 @@ if(isset($_POST['candidateData'])){
 
 
 <?php
+$env = parse_ini_file('.env');
+$header = $env["HEADER"];
 if(isset($_POST['cardCandidate'])){
   // var_dump($_FILES);
   $username = $_SESSION['username'];
@@ -405,7 +407,7 @@ if(isset($_POST['cardCandidate'])){
                   echo "
                     <script>
                       alert('Uploaded Sucessfully');
-                      window.location.href='http://localhost/jobportal';
+                      window.location.href=`<?=$header;?>`;
                     </script>";
                 } 
                 } catch(Exception $e) {

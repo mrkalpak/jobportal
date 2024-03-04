@@ -1,4 +1,6 @@
 <?php
+$env = parse_ini_file('../.env');
+$header = $env["HEADER"];
     require('connection.php');
     $url= $_SERVER['REQUEST_URI'];  
     $urlArray = explode('=',$url);
@@ -19,7 +21,7 @@
         $jobTd=$createUrl['id'];
         $jobTitle=$createUrl['jobTitle'];
         $string = preg_replace('/\s+/', '', $jobTitle);
-        $url="http://localhost/jobportal/card-candidate-jobdetail.php?job=".$jobTd."";
+        $url= $header."card-candidate-jobdetail.php?job=".$jobTd."";
         //echo $url
     }
     $phoneNumbersString = '';

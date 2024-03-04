@@ -90,9 +90,10 @@ if (isset($_GET['url'])) {
 
 
 <?php
-
+$env = parse_ini_file('.env');
+$header = $env["HEADER"];
+// echo "im in statment";
 if (isset($_POST['update_pass']) && ($_POST['user_type'] == "candidate")) {
-  echo "im in statment";
   $email = $_POST['email'];
   $check = "SELECT `email`,`username` FROM `users_candidate` WHERE email = '$email'";
   $run = mysqli_query($con, $check);
@@ -105,10 +106,12 @@ if (isset($_POST['update_pass']) && ($_POST['user_type'] == "candidate")) {
     $token = mt_rand(100000, 99999999);
     $updateQ = "UPDATE `users_candidate` SET `token` = '$token' WHERE `users_candidate`.`email` = '$email'";
     $result2 = mysqli_query($con, $updateQ);
+
     if ($result2) {
 
 
-      $link = "http://localhost/jobportal/forgotpassword.php?token=$token&email=$email";
+      $link = $header . "forgotpassword.php?token=$token&email=$email";
+      // var_dump($link)  ; 
       $idParameterEncoded = urlencode($link);
 
       $url = "$idParameterEncoded";
@@ -190,7 +193,7 @@ if (isset($_POST['update_pass']) && ($_POST['user_type'] == "company")) {
     if ($result2) {
 
 
-      $link = "http://localhost/jobportal/forgotpassword.php?token=$token&email=$email";
+      $link = $header . "forgotpassword.php?token=$token&email=$email";
       $idParameterEncoded = urlencode($link);
             $url = "$idParameterEncoded";
             $to_email = 'nihal5930@gmail.com';
