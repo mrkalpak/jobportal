@@ -64,16 +64,21 @@ session_start();
                 $q = "SELECT * FROM media ORDER BY media_date DESC";
                 $query = mysqli_query($con, $q);
                 while ($row = mysqli_fetch_array($query)) {
+                    if($row>0){
                     $link = $row['link'];
                     $convertedURL = str_replace("watch?v=", "embed/", $link);
 
                 ?>
                     <div class="col-md-4  mb-4">
-                        <iframe width="450" height="260" src="<?php echo $convertedURL; ?>" title="युवती ,जॉब फेअर इंडीया ,जॉब कार्ड ,तस्मि स्किन अँड़ तस्मि क्लोथिंग ब्रँड  संचालिका ,तस्मिया शेख" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <iframe width="450" height="260" src="<?php echo $convertedURL; ?>" 
+                            title="युवती ,जॉब फेअर इंडीया ,जॉब कार्ड ,तस्मि स्किन अँड़ तस्मि क्लोथिंग ब्रँड  संचालिका ,तस्मिया शेख" 
+                            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+                        </iframe>
 
 
                     </div>
                 <?php }
+                }
                 ?>
 
             </div>

@@ -14,6 +14,7 @@
         $NoData="No Data Found";
     }
 
+
 ?>
 <link rel="stylesheet" href="./css/jobpost.css">
 <style>

@@ -279,9 +279,6 @@ $username = $_SESSION['username'];
                                 <option value="DNB">DNB (Diplomate of National Board)</option>
                                 <option value="PhD">PhD (Doctor of Philosophy)</option>
                                 <option value="Other">Other</option>
-
-
-
                             </select>
                         </div>
 

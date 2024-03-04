@@ -625,7 +625,7 @@ if (isset($_POST['companyupdate'])) {
 #admin Login
 
 if (isset($_POST['admin_login'])) {
-  echo $admin_mail = $_POST['amail'];
+  $admin_mail = $_POST['amail'];
   checkSession();
   $query = "SELECT * FROM `admin` WHERE `admin_email`='$admin_mail'";
   $result = mysqli_query($con, $query);
