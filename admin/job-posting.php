@@ -117,7 +117,7 @@ require('connection.php');
                                     </tr>
                                     <?php
                                     // var_dump($createUrl['id'],$createUrl['jobTitle']);
-                                    if (mysqli_num_rows($result)>0) {
+                                    if ($result!=0) {
                                     while($row = $result->fetch_assoc()) {
                                         $query4 = "SELECT jobId FROM cardcandidate WHERE jobId=".$row['id']."";
                                         $result4 = mysqli_query($con, $query4);
