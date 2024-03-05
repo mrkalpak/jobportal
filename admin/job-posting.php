@@ -16,7 +16,7 @@ require('connection.php');
     // Query to fetch data from the job_fair table
     $query = "SELECT * FROM `admin_jobpost` ORDER BY id DESC";
     $query2 = "SELECT phone FROM `users_candidate` where `cardtype`=1";
-    $query3 = "SELECT * FROM `admin_jobpost` ORDER BY id DESC limit 1";
+    $query3 = "SELECT * FROM `admin_jobpost` ORDER BY `id` DESC limit 1";
     
 
     $result = mysqli_query($con, $query);
