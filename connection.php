@@ -1,7 +1,7 @@
 <?php
 $env = parse_ini_file('.env');
-
-if(strtolower(substr($_SERVER["SERVER_PROTOCOL"],0,5))=='https') {
+// print_r($_SERVER['SERVER_PORT']);
+if($_SERVER['SERVER_PORT']==443) {
     $con = mysqli_connect(`$env[MySQL_SERVER_DB_HOST]`, $env['MySQL_SERVER_DB_USER_NAME'], $env['MySQL_SERVER_DB_PASSWORD'], $env['MySQL_SERVER_DB_NAME']);
 
     if (mysqli_connect_error()) {
