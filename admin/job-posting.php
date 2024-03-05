@@ -17,18 +17,22 @@ require('connection.php');
     $query = "SELECT * FROM `admin_jobpost` ORDER BY id DESC";
     $query2 = "SELECT phone FROM `users_candidate` where `cardtype`=1";
     $query3 = "SELECT * FROM `admin_jobpost` ORDER BY `id` DESC limit 1";
-    
 
     $result = mysqli_query($con, $query);
     $result2 = mysqli_query($con, $query2);
     $result3 = mysqli_query($con, $query3);
-    while($createUrl = $result3->fetch_assoc()) {
-        // var_dump($createUrl);
-        $jobTd=$createUrl['id'];
-        $jobTitle=$createUrl['jobTitle'];
-        $string = preg_replace('/\s+/', '', $jobTitle);
-        $url= $header."card-candidate-jobdetail.php?job=".$jobTd."";
-        //echo $url
+
+    $createUrl = $result3->fetch_assoc();
+        // var_dump($createUrl!=NULL);
+    if($createUrl>0){
+        while($createUrl = $result3->fetch_assoc()) {
+            // var_dump($createUrl);
+            $jobTd=$createUrl['id'];
+            $jobTitle=$createUrl['jobTitle'];
+            $string = preg_replace('/\s+/', '', $jobTitle);
+            $url= $header."card-candidate-jobdetail.php?job=".$jobTd."";
+            //echo $url
+        }
     }
     $phoneNumbersString = '';
 
