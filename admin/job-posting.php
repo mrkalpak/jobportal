@@ -22,6 +22,7 @@ require('connection.php');
     $result2 = mysqli_query($con, $query2);
     $result3 = mysqli_query($con, $query3);
     
+
     while($createUrl = $result3->fetch_assoc()) {
         // var_dump($createUrl);
         $jobTd=$createUrl['id'];
