@@ -21,31 +21,29 @@ require('connection.php');
     $result = mysqli_query($con, $query);
     $result2 = mysqli_query($con, $query2);
     $result3 = mysqli_query($con, $query3);
-    // var_dump(mysqli_num_rows($result3));
-    if(mysqli_num_rows($result)>0)
-    {    
-        while($createUrl = fetch_assoc($result3)) {
+    var_dump($result3);
+    var_dump(mysqli_num_rows($result3));
+    while($createUrl = $result3->fetch_assoc()) {
         // var_dump($createUrl);
         $jobTd=$createUrl['id'];
         $jobTitle=$createUrl['jobTitle'];
         $string = preg_replace('/\s+/', '', $jobTitle);
         $url= $header."card-candidate-jobdetail.php?job=".$jobTd."";
         //echo $url
-    }}
+    }
     $phoneNumbersString = '';
 
     if (mysqli_num_rows($result)>0) {
         $row = mysqli_query($con,$query);
+
+
     } else {
         $NoData="No Data Found";
     }
 
     $row2 = mysqli_query($con,$query2);
-    if(mysqli_num_rows($result)>0)
-    {
-        while($row2 = $result2->fetch_assoc()) {
-            $phoneNumbersString .= $row2['phone'].',';
-        }
+    while($row2 = $result2->fetch_assoc()) {
+        $phoneNumbersString .= $row2['phone'].',';
     }
     if (!empty($phoneNumbersString)) {
         $phoneNumbersString = rtrim($phoneNumbersString, ',');
@@ -121,8 +119,7 @@ require('connection.php');
                                     </tr>
                                     <?php
                                     // var_dump($createUrl['id'],$createUrl['jobTitle']);
-                                    if(mysqli_num_rows($result)>0)
-                                    {  
+
                                     while($row = $result->fetch_assoc()) {
                                         $query4 = "SELECT jobId FROM cardcandidate WHERE jobId=".$row['id']."";
                                         $result4 = mysqli_query($con, $query4);
@@ -166,8 +163,7 @@ require('connection.php');
 
 
                                     </tr>';
-                                    }}
-                                    ?>
+                                    }?>
 
                                     
                                 </table>
