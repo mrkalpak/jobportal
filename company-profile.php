@@ -66,18 +66,18 @@ $row1 = mysqli_num_rows($query1);
 ?>
 
 <!-- profile section -->
-<div class="row  mx-5 my-5 px-4">
+<div class="row container my-5 ">
     <h5 class="mb-5">My Profile</h5>
     <form action="login_register.php" method="POST" enctype="multipart/form-data" class="border border-1 px-5">
         <h6 class="mt-4">Company Information:</h6>
         <div class="row mt-3">
 
-            <div class="mb-3 col">
+            <div class="mb-3 col-md-6">
                 <label for="companyname" class="form-label">Company Name*</label>
                 <input type="text" value="<?= $result_fetch1['name'] ?>" class="form-control" id="companyname" name="name">
 
             </div>
-            <div class="mb-3 col">
+            <div class="mb-3 col-md-6">
                 <label for="companytype" class="form-label">Company Type*</label>
                 <input type="text" value="<?= $result_fetch1['companytype'] ?>" class="form-control" id="companyname" name="companytype1" hidden>
                 <select value="<?= $result_fetch1['companytype'] ?>" class="form-select" id="companytype" name="companytype">

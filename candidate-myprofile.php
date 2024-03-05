@@ -63,51 +63,51 @@ $username = $_SESSION['username'];
         ?>
 
 
-        <div class="col">
+        <div class="col ms-4">
             <h4 class="mt-3 mb-5 fw-normal">
                 My Profile
             </h4>
-            <div class="custom-border">
+            <div class="custom-border ms-auto me-auto">
                 <form action="login_register.php" method="POST" enctype="multipart/form-data" class="px-5">
                     <div class="row mt-3">
-                        <div class="mb-3 col">
+                        <div class="mb-3  col-md-6">
                             <label for="candiatename" class="form-label">Name*</label>
                             <input type="text" value="<?= $result_fetch1['name'] ?>" class="form-control" id="candiatename" name="name">
                         </div>
-                        <div class="mb-3 col">
+                        <div class="mb-3  col-md-6">
                             <label for="candiateage" class="form-label">Birthdate*</label>
                             <input type="date" value="<?= $result_fetch1['age'] ?>" class="form-control" id="candiateage" name="age">
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="mb-3 col">
+                        <div class="mb-3  col-md-6">
                             <label for="location" class="form-label">Current Location*</label>
                             <input type="text" value="<?= $result_fetch1['location'] ?>" class="form-control" id="location" name="location">
                         </div>
-                        <div class="mb-3 col">
+                        <div class="mb-3  col-md-6">
                             <label for="c_no" class="form-label">Phone Number*</label>
                             <input type="number" value="<?= $result_fetch1['phone'] ?>" class="form-control" id="c_no" name="phone">
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="mb-3 col">
+                        <div class="mb-3  col-md-6">
                             <label for="email" class="form-label">Email*</label>
                             <input type="email" class="form-control" value="<?= $result_fetch1['email'] ?>" id="email" name="email" disabled>
                         </div>
-                        <div class="mb-3 col">
+                        <div class="mb-3  col-md-6">
                             <label for="cu-job-place" class="form-label">Current Job Place(Optional)</label>
                             <input type="text" value="<?= $result_fetch1['currentjob'] ?>" class="form-control" id="cu-job-place" name="currentjob">
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="mb-3 col">
+                        <div class="mb-3  col-md-6">
                             <label for="designation" class="form-label">Designation(Optional)</label>
                             <input type="text" value="<?= $result_fetch1['designation'] ?>" class="form-control" id="designation" name="designation">
                         </div>
-                        <div class="mb-3 col">
+                        <div class="mb-3  col-md-6">
                             <label for="exprience" class="form-label">Exprience*</label>
                             <input type="Number" min="0" max="100" value="<?= $result_fetch1['experience_level'] ?>" placeholder="In years" class="form-control" id="exprience" name="exprience">
                         </div>
@@ -118,7 +118,7 @@ $username = $_SESSION['username'];
                     $result4 = $con->query($sql);
                     ?>
                     <div class="row">
-                        <div class="mb-3 col">
+                        <div class="mb-3  col-md-6">
                             <label for="linkedin" class="form-label">Serching Job As a</label>
                             <input type="text" value="<?= $result_fetch1['category'] ?>" class="form-control" id="designation" name="category1" hidden>
                             <select value="<?= $result_fetch1['category'] ?>" class="form-select" name="category" aria-label="Default select example">
@@ -144,7 +144,7 @@ $username = $_SESSION['username'];
                             </select>
 
                         </div>
-                        <div class="mb-3 col">
+                        <div class="mb-3  col-md-6">
                             <label for="linkedin" class="form-label">Qualification*</label>
                             <input type="text" value="<?= $result_fetch1['qualification'] ?>" class="form-control" id="designation" name="qualification1" hidden>
                             <select value="<?= $result_fetch1['qualification'] ?>" class="form-select" aria-label="Default select example" name="qualification">
@@ -285,7 +285,7 @@ $username = $_SESSION['username'];
                     </div>
 
                     <div class="row ">
-                        <div class="mb-3 col ">
+                        <div class="mb-3  col-md-6 ">
                             <label for="formFile" class="form-label">Upload Resume</label>
                             <input class="form-control" type="file" id="formFile" accept="application/pdf" name="file">
                             <?php
@@ -295,7 +295,7 @@ $username = $_SESSION['username'];
                             ?>
                         </div>
 
-                        <div class="mb-3 col">
+                        <div class="mb-3  col-md-6">
                             <label for="linkedin" class="form-label">LinkedIn</label>
                             <input type="text" value="<?= $result_fetch1['linkedin'] ?>" class="form-control" name="linkedin" id="linkedin">
 
@@ -328,8 +328,6 @@ $username = $_SESSION['username'];
 </section>
 <!-- footer -->
 <?php include './footer.php'; ?>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-
 
 <script src="./assets/js/candidate-sidenavbar.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>

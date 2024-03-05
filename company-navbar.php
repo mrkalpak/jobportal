@@ -1,7 +1,16 @@
-<nav class="navbar  mx-5 my-4 navbar-expand-lg bg-light">
-    <div class="container-fluid">
+<?php
+// session_start();
+$username=$_SESSION['username'];
+$sql1 = "SELECT * FROM company  WHERE username='$username'";
+$query1 = mysqli_query($con, $sql1);
+$result_fetch1 = mysqli_fetch_assoc($query1);
+$row1 = mysqli_num_rows($query1);
+?>
+
+<nav class="navbar   navbar-expand-lg bg-light">
+    <div id="navbar-container" class="container-fluid">
         <div class=" justify-content-end " id="comapany_name" style="display: none;">
-            Company Name
+            <?php echo $result_fetch1["name"] ?>
         </div>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -116,5 +125,6 @@
     var isMobileView = window.matchMedia("(max-width: 480px)").matches;
     if (isMobileView) {
         document.getElementById("comapany_name").style.display = "flex"
+        document.getElementById("navbar-container").className = "container"
     }
 </script>

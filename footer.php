@@ -1,5 +1,5 @@
 <footer class="footer">
-    <div class="container">
+    <div class="mx-4">
         <div class="row ">
             <!-- First Section -->
             <div class="col-md-4">

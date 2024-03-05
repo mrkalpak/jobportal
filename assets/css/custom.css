@@ -282,8 +282,16 @@ body {
         transform: scale(1);
     }
 }
-
+.container{
+  margin-left: auto !important;
+  margin-right: auto !important;
+  max-width: 90% !important;
+}
 @media (max-width: 767px) {
+  .container{
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
   .hero-title {
     margin-top: 10% !important;
     font-size: 24px;

@@ -187,7 +187,7 @@ include './company-navbar.php';
 <div class="my-3 text-center fw-semibold fs-5">
     Our Pricing Plans
 </div>
-<div class="row px-0 ms-auto me-auto bg-white text-center " style="width: 380px;">
+<div class="row px-0 ms-auto me-auto bg-white text-center " style="width: 300px;">
     <div class="col  p-4 border">
         Classic
     </div>
@@ -195,7 +195,7 @@ include './company-navbar.php';
         ₹ 300
     </div>
 </div>
-<div class="row px-0 ms-auto me-auto bg-white text-center " style="width: 380px;">
+<div class="row px-0 ms-auto me-auto bg-white text-center " style="width: 300px;">
     <div class="col p-4 border">
         Premium
     </div>
@@ -204,12 +204,12 @@ include './company-navbar.php';
     </div>
 </div>
 <div class="row mt-5 text-center">
-    <div class="col">
+    <div class="col-md-4">
         <img src="./assets/images/jobcoin.png" alt=""><span class="  " style="vertical-align: middle;">
             1 Coin = ₹ 1
         </span>
     </div>
-    <div class="col">
+    <div class="col-md-4">
         <span class="  " style="vertical-align: middle;">
             1 Job Post =
         </span>
@@ -218,7 +218,7 @@ include './company-navbar.php';
             50 Coins ( ₹ 50)
         </span>
     </div>
-    <div class="col">
+    <div class="col-md-4">
         <span class="  " style="vertical-align: middle;">
             1 Data =
         </span>
