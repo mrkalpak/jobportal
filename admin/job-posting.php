@@ -207,6 +207,11 @@ require('connection.php');
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         
         <script>
+               window.onload=function(){
+                var today = new Date().toISOString().split('T')[0];
+                document.getElementsByName("setTodaysDate")[0].setAttribute('min', today);
+                    }
+
             function sendSms(){ 
                 // alert('Are you sure you want to send');
                 Swal.fire({
