@@ -52,6 +52,7 @@
         ?>
         <?php
             while($row = $result->fetch_assoc()) {
+                // var_dump($row['fair_Organizer']);
                 echo '
                 <div class="col-md-4 my-2">
                     <div class="card">
@@ -60,7 +61,7 @@
                             <h5 class="card-title">'.$row['fairName'].'</h5>
                             <p class="card-text"><i class="bi bi-calendar-event"></i> '.$row['location'].'</p>
                             <p class="card-text"><i class="bi bi-geo-alt-fill"></i> '.$row['fairDate'].'</p>
-                            <a href="./job-fair-form.php?fair_Id='.$row['id'].'" class="btn btn-primary-custom"> Apply</a>
+                            <a href=./job-fair-form.php?fair_Id='.$row['id'].' class="btn btn-primary-custom"> Apply</a>
                         </div>
                     </div>
                 </div>';
