@@ -18,9 +18,9 @@ require('connection.php');
     $query2 = "SELECT `phone` FROM `users_candidate` where `cardtype`=1";
     $query3 = "SELECT * FROM `admin_jobpost` ORDER BY `id` DESC limit 1";
 
-    $result = $mysqli->query($con, $query);
-    $result2 = $mysqli->query($con, $query2);
-    $result3 = $mysqli->query($con, $query3);
+    $result = mysqli_query($con, $query);
+    $result2 = mysqli_query($con, $query2);
+    $result3 = mysqli_query($con, $query3);
     
     while($createUrl = $result3->fetch_assoc()) {
         // var_dump($createUrl);
