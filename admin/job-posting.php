@@ -34,17 +34,18 @@ require('connection.php');
             $url= $header."card-candidate-jobdetail.php?job=".$jobTd."";
             //echo $url
         }
+        $row2 = mysqli_query($con,$query2);
+        while($row2 = $result2->fetch_assoc()) {
+            $phoneNumbersString .= $row2['phone'].',';
+        }
+        if (!empty($phoneNumbersString)) {
+            $phoneNumbersString = rtrim($phoneNumbersString, ',');
+        }
     } else {
         $NoData="No Data Found";
     }
     
-    $row2 = mysqli_query($con,$query2);
-    while($row2 = $result2->fetch_assoc()) {
-        $phoneNumbersString .= $row2['phone'].',';
-    }
-    if (!empty($phoneNumbersString)) {
-        $phoneNumbersString = rtrim($phoneNumbersString, ',');
-    }
+
 
 
 ?>
@@ -116,7 +117,7 @@ require('connection.php');
                                     </tr>
                                     <?php
                                     // var_dump($createUrl['id'],$createUrl['jobTitle']);
-
+                                    if (mysqli_num_rows($result)>0) {
                                     while($row = $result->fetch_assoc()) {
                                         $query4 = "SELECT jobId FROM cardcandidate WHERE jobId=".$row['id']."";
                                         $result4 = mysqli_query($con, $query4);
@@ -137,7 +138,8 @@ require('connection.php');
                                                 $fairStatus="Expired";
                                                 $badege="danger";
 
-                                            }                                            
+                                            } 
+                                        }                                           
                                     echo '<tr>
                                         <td>
                                             '.$row['jobTitle'].' <span class="badge ms-2 badge-'.$badege.' rounded-pill  ">'.$fairStatus.'</span>
