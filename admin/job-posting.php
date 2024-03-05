@@ -24,7 +24,7 @@ require('connection.php');
 
     $phoneNumbersString = '';
 
-    if (mysqli_num_rows($result)>0) {
+    if ($result!=0) {
         $row = mysqli_query($con,$query);
         while($createUrl = $result3->fetch_assoc()) {
             // var_dump($createUrl);
