@@ -21,10 +21,7 @@ require('connection.php');
     $result = mysqli_query($con, $query);
     $result2 = mysqli_query($con, $query2);
     $result3 = mysqli_query($con, $query3);
-
-    // var_dump($result3!=0);
-    // var_dump(mysqli_num_rows($result3));
-    if(mysqli_num_rows($result3) != 0){
+    
     while($createUrl = $result3->fetch_assoc()) {
         // var_dump($createUrl);
         $jobTd=$createUrl['id'];
@@ -32,7 +29,6 @@ require('connection.php');
         $string = preg_replace('/\s+/', '', $jobTitle);
         $url= $header."card-candidate-jobdetail.php?job=".$jobTd."";
         //echo $url
-    }
     }
     $phoneNumbersString = '';
 
