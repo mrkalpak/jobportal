@@ -21,31 +21,32 @@ require('connection.php');
     $result = mysqli_query($con, $query);
     $result2 = mysqli_query($con, $query2);
     $result3 = mysqli_query($con, $query3);
-
+    
+    while($createUrl = $result3->fetch_assoc()) {
+        // var_dump($createUrl);
+        $jobTd=$createUrl['id'];
+        $jobTitle=$createUrl['jobTitle'];
+        $string = preg_replace('/\s+/', '', $jobTitle);
+        $url= $header."card-candidate-jobdetail.php?job=".$jobTd."";
+        //echo $url
+    }
     $phoneNumbersString = '';
 
-    if ($result!=0) {
+    if (mysqli_num_rows($result)>0) {
         $row = mysqli_query($con,$query);
-        while($createUrl = $result3->fetch_assoc()) {
-            // var_dump($createUrl);
-            $jobTd=$createUrl['id'];
-            $jobTitle=$createUrl['jobTitle'];
-            $string = preg_replace('/\s+/', '', $jobTitle);
-            $url= $header."card-candidate-jobdetail.php?job=".$jobTd."";
-            //echo $url
-        }
-        $row2 = mysqli_query($con,$query2);
-        while($row2 = $result2->fetch_assoc()) {
-            $phoneNumbersString .= $row2['phone'].',';
-        }
-        if (!empty($phoneNumbersString)) {
-            $phoneNumbersString = rtrim($phoneNumbersString, ',');
-        }
+
+
     } else {
         $NoData="No Data Found";
     }
-    
 
+    $row2 = mysqli_query($con,$query2);
+    while($row2 = $result2->fetch_assoc()) {
+        $phoneNumbersString .= $row2['phone'].',';
+    }
+    if (!empty($phoneNumbersString)) {
+        $phoneNumbersString = rtrim($phoneNumbersString, ',');
+    }
 
 
 ?>
@@ -117,7 +118,7 @@ require('connection.php');
                                     </tr>
                                     <?php
                                     // var_dump($createUrl['id'],$createUrl['jobTitle']);
-                                    if ($result!=0) {
+
                                     while($row = $result->fetch_assoc()) {
                                         $query4 = "SELECT jobId FROM cardcandidate WHERE jobId=".$row['id']."";
                                         $result4 = mysqli_query($con, $query4);
@@ -138,8 +139,7 @@ require('connection.php');
                                                 $fairStatus="Expired";
                                                 $badege="danger";
 
-                                            } 
-                                        }                                           
+                                            }                                            
                                     echo '<tr>
                                         <td>
                                             '.$row['jobTitle'].' <span class="badge ms-2 badge-'.$badege.' rounded-pill  ">'.$fairStatus.'</span>
@@ -167,14 +167,14 @@ require('connection.php');
                                     
                                 </table>
                                 <?php
-                                if ($result!=0) {
+                                if (mysqli_num_rows($result)>0) {
                                     echo'<a>
                                         <button onclick="sendSms()"  class="btn btn-outline-custom  mt-2 me-2 " >Send SMS </button>
                                     </a>';
                                         }
                                 ?>
                                 <?php
-                                        if ($result==0) {
+                                        if (mysqli_num_rows($result)==0) {
                                             echo '<h4 class="text-danger text-center">'.$NoData.'</h4>';
                                         }
                                         // print_r($phone);
