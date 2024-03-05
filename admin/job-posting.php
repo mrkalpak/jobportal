@@ -2,13 +2,12 @@
 $env = parse_ini_file('../.env');
 if($_SERVER['SERVER_PORT']==443) {
     $header = $env["HEADER_SERVER"];
-    
 }
 else {
     $header = $env["HEADER"];
 }
 
-    require('connection.php');
+require('connection.php');
     $url= $_SERVER['REQUEST_URI'];  
     $urlArray = explode('=',$url);
     $last = $urlArray[sizeof($urlArray)-1];
