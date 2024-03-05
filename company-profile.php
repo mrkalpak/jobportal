@@ -289,7 +289,6 @@ if (isset($_POST['update_pass'])) {
         $updateP = "UPDATE `company` SET `password` = '$password2' WHERE `company`.`username` = '$username';";
         $run = mysqli_query($con, $updateP);
         if ($run) {
-
             echo "
                <script>
                  alert('Password updated Sucessfully');

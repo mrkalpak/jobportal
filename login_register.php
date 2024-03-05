@@ -557,12 +557,7 @@ if (isset($_POST['companyupdate'])) {
 
 
   move_uploaded_file($check2, $destination2);
-
-  // Assuming you're using sessions to track the logged-in user 
   $username = $_SESSION['username'];
-
-  // var_dump($username);
-  // return;
 
   $query = "UPDATE `company` SET `name`='$name',`companytype`='$companytype',`companysize`='$companysize',`companylogo`='$Final_image_name2',
   `location`='$location',`websitelink`='$websitelink',`facebook`='$facebook',
@@ -578,12 +573,10 @@ if (isset($_POST['companyupdate'])) {
 
   if ($result) {
     if ($fetchchk['active'] != 1) {
-      echo "
-      <script>
+      echo "<script>
         alert('Data updated Sucessfully');
         window.location.href='popup.php';
-      </script>
-    ";
+      </script>";
     } else {
       echo "
       <script>

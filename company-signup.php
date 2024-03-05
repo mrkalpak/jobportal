@@ -62,9 +62,6 @@ if (isset($_POST['company_register'])) {
                   ";
                     }
                 } else {
-
-
-
                     $image1 = $_FILES['imageA']['name'];
                     if (!empty($image1)) {
                         $target_file1 = basename($image1);
@@ -78,11 +75,6 @@ if (isset($_POST['company_register'])) {
                     } else {
                         $Final_image_name1 = "Not Uploaded";
                     }
-
-
-
-
-
                     // imageB and 2
                     $image2 = $_FILES['imageB']['name'];
                     if (!empty($image2)) {
@@ -97,12 +89,6 @@ if (isset($_POST['company_register'])) {
                     } else {
                         $Final_image_name2 = "Not Uploaded";
                     }
-
-
-
-
-
-
                     $password2 = password_hash($password, PASSWORD_BCRYPT);
                     $query = "INSERT INTO `company`(`username`,`name`,`email`,`password`, `cin`, `gst`, `pancard`, `gstcertificate`,`coins`) VALUES('$username','$name','$mail','$password2','$cin','$gst','$Final_image_name1','$Final_image_name2','$coins')";
                     if (mysqli_query($con, $query)) {
@@ -128,31 +114,27 @@ if (isset($_POST['company_register'])) {
 
 
                             #if data inserted successfully
-                            echo "
-                      <script>
-                        alert('Comapany Registration Successful');
-                        
-                        window.location.href='company-profile.php?id=$username';
-                      </script>
-                    ";
+                            echo "<script>
+                                    alert('Comapany Registration Successful');
+                                    window.location.href='company-profile.php?id=$username';
+                                </script>";
                         } else {
                             $query6 = "DELETE FROM `company` WHERE `company`.`username` = '$username'";
                             $fire6 = mysqli_query($con, $query6);
                             echo "
-                <script>
-                  alert('DB Creation Error');
-                  window.location.href='company-signup.php';
-                </script>
-              ";
+                                <script>
+                                    alert('DB Creation Error');
+                                    window.location.href='company-signup.php';
+                                </script>
+                            ";
                         }
                     } else {
                         #if data cannot be inserted
                         echo "
-                    <script>
-                      alert('Cannot Run Query 1');
-                      window.location.href='company-signup.php';
-                    </script>
-                  ";
+                            <script>
+                                alert('Cannot Run Query 1');
+                                window.location.href='company-signup.php';
+                            </script>";
                     }
                 }
             } else {

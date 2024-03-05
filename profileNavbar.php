@@ -80,14 +80,14 @@ $logo='assets/images/home/user-profile.svg';
             </li>
         </ul>
              <div class="d-flex align-items-center">
-                 <a href="#" class="btn btn-secondary position-relative me-3 bg-gray-500 rounded-0">
+                 <!-- <a href="#" class="btn btn-secondary position-relative me-3 bg-gray-500 rounded-0">
                      <i class="bi bi-envelope"></i>
                      <span class="badge badge-bg-custom position-absolute top-0 start-100 translate-middle p-1">3</span>
                  </a>
                  <a href="#" class="btn btn-secondary position-relative me-3 bg-gray-500 rounded-0">
                      <i class="bi bi-bell"></i>
                      <span class="badge badge-bg-custom position-absolute top-0 start-100 translate-middle p-1">3</span>
-                 </a>
+                 </a> -->
                  <a href="#">
                      <img src="<?=$logo?>" alt="Square Image" class="square-image">
                  </a>
