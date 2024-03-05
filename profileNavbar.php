@@ -89,7 +89,7 @@ $logo='assets/images/home/user-profile.svg';
                      <span class="badge badge-bg-custom position-absolute top-0 start-100 translate-middle p-1">3</span>
                  </a> -->
                  <a href="#">
-                     <img src="<?=$logo?>" alt="Square Image" class="square-image">
+                     <img src="<?php if($logo=="companydocs/."){echo "./assets/images/logo1.png";}else{echo $logo;}?>" alt="Company Logo" class="square-image">
                  </a>
              </div>
          </div>

@@ -535,7 +535,8 @@ if (isset($_POST['companyupdate'])) {
     $companytype = $_POST['companytype'];
   }
 
-
+  // var_dump($_FILES['file']['name']);
+  // return;
   $companysize = $_POST['companysize'];
   // $companylogo = $_POST['companylogo'];
   $location = $_POST['location'];
@@ -546,22 +547,30 @@ if (isset($_POST['companyupdate'])) {
   $alternatemobile = $_POST['alternatemobile'];
   $file = $_FILES['file']['name'];
 
+  if($file!=""){
+    $target_file2 = basename($file);
+    $imageFileType2 = strtolower(pathinfo($target_file2, PATHINFO_EXTENSION));
+    $check2 = $_FILES['file']['tmp_name'];
+    $extension2 = substr($file, strlen($file) - 4, strlen($file));
+    $image_ext2 = pathinfo($file, PATHINFO_FILENAME);
+    $Final_image_name2 = $image_ext2 . date("mjYHis") . "." . $imageFileType2;
+    $destination2 = "companydocs/.$Final_image_name2";
+    move_uploaded_file($check2, $destination2);
+  }
 
-  $target_file2 = basename($file);
-  $imageFileType2 = strtolower(pathinfo($target_file2, PATHINFO_EXTENSION));
-  $check2 = $_FILES['file']['tmp_name'];
-  $extension2 = substr($file, strlen($file) - 4, strlen($file));
-  $image_ext2 = pathinfo($file, PATHINFO_FILENAME);
-  $Final_image_name2 = $image_ext2 . date("mjYHis") . "." . $imageFileType2;
-  $destination2 = "companydocs/.$Final_image_name2";
-
-
-  move_uploaded_file($check2, $destination2);
   $username = $_SESSION['username'];
 
-  $query = "UPDATE `company` SET `name`='$name',`companytype`='$companytype',`companysize`='$companysize',`companylogo`='$Final_image_name2',
-  `location`='$location',`websitelink`='$websitelink',`facebook`='$facebook',
-  `linkedin`='$linkedin',`mobile`='$mobile',`alternatemobile`='$alternatemobile' WHERE `company`.`username` = '$username';";
+  if($file!=""){
+    $query = "UPDATE `company` SET `name`='$name',`companytype`='$companytype',`companysize`='$companysize',`companylogo`='$Final_image_name2',
+    `location`='$location',`websitelink`='$websitelink',`facebook`='$facebook',
+    `linkedin`='$linkedin',`mobile`='$mobile',`alternatemobile`='$alternatemobile' WHERE `company`.`username` = '$username';";
+  }else{
+    $query = "UPDATE `company` SET `name`='$name',`companytype`='$companytype',`companysize`='$companysize',
+    `location`='$location',`websitelink`='$websitelink',`facebook`='$facebook',
+    `linkedin`='$linkedin',`mobile`='$mobile',`alternatemobile`='$alternatemobile' WHERE `company`.`username` = '$username';";
+  }
+
+
 
   $result = mysqli_query($con, $query);
 

@@ -1,6 +1,8 @@
 <?php
 require('connection.php');
 session_start();
+// var_dump($_SESSION['type'] == 'comp');
+// return;
 if (empty($_SESSION['username']) || ($_SESSION['type'] != 'comp')) {
     header("Location: index.php");
 }

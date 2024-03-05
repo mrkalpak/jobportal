@@ -345,7 +345,7 @@ require('connection.php');
             <?php
                     }
                 } else {
-                    echo "No matching records found.";
+                    echo "Soon You will get more job information.";
                 }
             }
             ?>
