@@ -21,10 +21,10 @@ require('connection.php');
     $result = mysqli_query($con, $query);
     $result2 = mysqli_query($con, $query2);
     $result3 = mysqli_query($con, $query3);
-    var_dump(mysqli_num_rows($result3));
-    if(mysqli_num_rows($result3)>0)
+    // var_dump(mysqli_num_rows($result3));
+    if(mysqli_num_rows($result)>0)
     {    
-        while($createUrl = mysqli_fetch_assoc($result3)) {
+        while($createUrl = fetch_assoc($result3)) {
         // var_dump($createUrl);
         $jobTd=$createUrl['id'];
         $jobTitle=$createUrl['jobTitle'];
@@ -41,7 +41,7 @@ require('connection.php');
     }
 
     $row2 = mysqli_query($con,$query2);
-    if(mysqli_num_rows($row2)>0)
+    if(mysqli_num_rows($result)>0)
     {
         while($row2 = $result2->fetch_assoc()) {
             $phoneNumbersString .= $row2['phone'].',';
