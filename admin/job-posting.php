@@ -21,29 +21,32 @@ require('connection.php');
     $result = mysqli_query($con, $query);
     $result2 = mysqli_query($con, $query2);
     $result3 = mysqli_query($con, $query3);
-    if($mysqli->query($result3)){
-        while($createUrl = $result3->fetch_assoc()) {
-            // var_dump($createUrl);
-            $jobTd=$createUrl['id'];
-            $jobTitle=$createUrl['jobTitle'];
-            $string = preg_replace('/\s+/', '', $jobTitle);
-            $url= $header."card-candidate-jobdetail.php?job=".$jobTd."";
-            //echo $url
-        }
+    var_dump(mysqli_num_rows($result)>0);
+    if(mysqli_num_rows($result3)>0){
+    while($createUrl = $result3->fetch_assoc()) {
+        // var_dump($createUrl);
+        $jobTd=$createUrl['id'];
+        $jobTitle=$createUrl['jobTitle'];
+        $string = preg_replace('/\s+/', '', $jobTitle);
+        $url= $header."card-candidate-jobdetail.php?job=".$jobTd."";
+        //echo $url
+    }
     }
     $phoneNumbersString = '';
 
     if (mysqli_num_rows($result)>0) {
         $row = mysqli_query($con,$query);
+
+
     } else {
         $NoData="No Data Found";
     }
 
     $row2 = mysqli_query($con,$query2);
-    if($mysqli->query($result2)){
-    while($row2 = $result2->fetch_assoc()) {
-        $phoneNumbersString .= $row2['phone'].',';
-    }
+    if(mysqli_num_rows($result2)>0){
+        while($row2 = $result2->fetch_assoc()) {
+            $phoneNumbersString .= $row2['phone'].',';
+        }
     }
     if (!empty($phoneNumbersString)) {
         $phoneNumbersString = rtrim($phoneNumbersString, ',');
