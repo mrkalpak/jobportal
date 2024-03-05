@@ -91,12 +91,14 @@ if (isset($_GET['url'])) {
 
 <?php
 $env = parse_ini_file('.env');
-if(strtolower(substr($_SERVER["SERVER_PROTOCOL"],0,5))=='https') {
+if($_SERVER['SERVER_PORT']==443) {
   $header = $env["HEADER_SERVER"];
+  
 }
 else {
-  $header = $env["HEADER"];  
+  $header = $env["HEADER"];
 }
+
 // echo "im in statment";
 if (isset($_POST['update_pass']) && ($_POST['user_type'] == "candidate")) {
   $email = $_POST['email'];

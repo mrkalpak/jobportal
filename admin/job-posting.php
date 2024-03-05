@@ -1,11 +1,13 @@
 <?php
 $env = parse_ini_file('../.env');
-if(strtolower(substr($_SERVER["SERVER_PROTOCOL"],0,5))=='https') {
+if($_SERVER['SERVER_PORT']==443) {
     $header = $env["HEADER_SERVER"];
-  }
-  else {
-    $header = $env["HEADER"];  
-  }
+    
+}
+else {
+    $header = $env["HEADER"];
+}
+
     require('connection.php');
     $url= $_SERVER['REQUEST_URI'];  
     $urlArray = explode('=',$url);

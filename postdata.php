@@ -329,12 +329,14 @@ if(isset($_POST['candidateData'])){
 
 <?php
 $env = parse_ini_file('.env');
-if(strtolower(substr($_SERVER["SERVER_PROTOCOL"],0,5))=='https') {
+if($_SERVER['SERVER_PORT']==443) {
   $header = $env["HEADER_SERVER"];
+  
 }
 else {
-  $header = $env["HEADER"];  
+  $header = $env["HEADER"];
 }
+
 if(isset($_POST['cardCandidate'])){
   // var_dump($_FILES);
   $username = $_SESSION['username'];
