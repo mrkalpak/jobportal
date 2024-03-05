@@ -1,5 +1,5 @@
 <?php
-$env = parse_ini_file('../.env');
+$env = parse_ini_file('.env');
 
 if(strtolower(substr($_SERVER["SERVER_PROTOCOL"],0,5))=='https') {
     $con = mysqli_connect(`$env[MySQL_SERVER_DB_HOST]`, $env['MySQL_SERVER_DB_USER_NAME'], $env['MySQL_SERVER_DB_PASSWORD'], $env['MySQL_SERVER_DB_NAME']);
