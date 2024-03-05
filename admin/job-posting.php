@@ -21,7 +21,8 @@ require('connection.php');
     $result = mysqli_query($con, $query);
     $result2 = mysqli_query($con, $query2);
     $result3 = mysqli_query($con, $query3);
-    var_dump(mysqli_num_rows($result)>0);
+    // var_dump(mysqli_num_rows($result3)>0);
+    
     if(mysqli_num_rows($result3)>0){
     while($createUrl = $result3->fetch_assoc()) {
         // var_dump($createUrl);
