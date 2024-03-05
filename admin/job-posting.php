@@ -23,7 +23,7 @@ require('connection.php');
     $result3 = mysqli_query($con, $query3);
     // var_dump(mysqli_num_rows($result3)>0);
     
-    if(mysqli_num_rows($result3)>0){
+    if(mysqli_num_rows($result3)==0){
         while($createUrl = $result3->fetch_assoc()) {
             // var_dump($createUrl);
             $jobTd=$createUrl['id'];
@@ -44,7 +44,7 @@ require('connection.php');
     }
 
     $row2 = mysqli_query($con,$query2);
-    if(mysqli_num_rows($result2)>0){
+    if(mysqli_num_rows($result2)==0){
         while($row2 = $result2->fetch_assoc()) {
             $phoneNumbersString .= $row2['phone'].',';
         }
@@ -123,7 +123,7 @@ require('connection.php');
                                     </tr>
                                     <?php
                                     // var_dump($createUrl['id'],$createUrl['jobTitle']);
-                                    if(mysqli_num_rows($result)>0){
+                                    if(mysqli_num_rows($result)==0){
                                     while($row = $result->fetch_assoc()) {
                                         $query4 = "SELECT jobId FROM cardcandidate WHERE jobId=".$row['id']."";
                                         $result4 = mysqli_query($con, $query4);
