@@ -24,14 +24,14 @@ require('connection.php');
     // var_dump(mysqli_num_rows($result3)>0);
     
     if(mysqli_num_rows($result3)>0){
-    while($createUrl = $result3->fetch_assoc()) {
-        // var_dump($createUrl);
-        $jobTd=$createUrl['id'];
-        $jobTitle=$createUrl['jobTitle'];
-        $string = preg_replace('/\s+/', '', $jobTitle);
-        $url= $header."card-candidate-jobdetail.php?job=".$jobTd."";
-        //echo $url
-    }
+        while($createUrl = $result3->fetch_assoc()) {
+            // var_dump($createUrl);
+            $jobTd=$createUrl['id'];
+            $jobTitle=$createUrl['jobTitle'];
+            $string = preg_replace('/\s+/', '', $jobTitle);
+            $url= $header."card-candidate-jobdetail.php?job=".$jobTd."";
+            //echo $url
+        }
     }
     $phoneNumbersString = '';
 
@@ -123,7 +123,7 @@ require('connection.php');
                                     </tr>
                                     <?php
                                     // var_dump($createUrl['id'],$createUrl['jobTitle']);
-
+                                    if(mysqli_num_rows($result)>0){
                                     while($row = $result->fetch_assoc()) {
                                         $query4 = "SELECT jobId FROM cardcandidate WHERE jobId=".$row['id']."";
                                         $result4 = mysqli_query($con, $query4);
@@ -167,7 +167,8 @@ require('connection.php');
 
 
                                     </tr>';
-                                    }?>
+                                    }}
+                                    ?>
 
                                     
                                 </table>
