@@ -1,6 +1,12 @@
 <?php
 $env = parse_ini_file('../.env');
-$header = $env["HEADER"];
+
+if(strtolower(substr($_SERVER["SERVER_PROTOCOL"],0,5))=='https') {
+  $header = $env["HEADER_SERVER"];
+}
+else {
+  $header = $env["HEADER"];  
+}
 ?>
 <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
  <link href="css/ruang-admin.css" rel="stylesheet">

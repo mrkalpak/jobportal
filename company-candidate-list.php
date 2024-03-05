@@ -1,6 +1,11 @@
 <?php
 $env = parse_ini_file('.env');
-$header = $env["HEADER"];
+if(strtolower(substr($_SERVER["SERVER_PROTOCOL"],0,5))=='https') {
+    $header = $env["HEADER_SERVER"];
+  }
+  else {
+    $header = $env["HEADER"];  
+  }
 require('connection.php');
 session_start();
 if (empty($_SESSION['username']) || ($_SESSION['type'] != 'comp')) {
