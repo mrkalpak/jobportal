@@ -10,11 +10,6 @@ function checkSession(){
 }
 
 #for login--------------------------------------------------------------------
-
-
-
-
-
 if (isset($_POST['login'])) {
   $query = "SELECT * FROM `users_candidate` WHERE `email`='$_POST[email_username]' OR `username`='$_POST[email_username]'";
   $result = mysqli_query($con, $query);
@@ -276,27 +271,27 @@ if (isset($_POST['update'])) {
   $linkedin = $_POST['linkedin'];
 
   if ($_POST['qualification'] == null) {
-    echo "from if : -";
-    echo $qualification = $_POST['qualification1'];
+    // echo "from if : -";
+     $qualification = $_POST['qualification1'];
   } else {
-    echo "<br>from else";
-    echo $qualification = $_POST['qualification'];
+    // echo "<br>from else";
+     $qualification = $_POST['qualification'];
   }
 
 
   if ($_POST['category'] == null) {
-    echo "<br>from if";
-    echo $category = $_POST['category1'];
+     "<br>from if";
+     $category = $_POST['category1'];
   } else {
-    echo "<br>from else";
-    echo $category = $_POST['category'];
+     "<br>from else";
+    $category = $_POST['category'];
   }
 
 
 
 
   $description = $con -> real_escape_string($_POST['description']);
-  echo $file = $_FILES['file']['name'];
+   $file = $_FILES['file']['name'];
 
 
   $target_file2 = basename($file);
@@ -340,24 +335,22 @@ if (isset($_POST['update'])) {
     `description` = '$description', 
     `linkedin` = '$linkedin'  WHERE `users_candidate`.`username` = '$username';";
   }
-
-
-  $result = mysqli_query($con, $query);
-
-  if ($result) {
-    echo "
-          <script>
-            alert('Data updated Sucessfully');
-            window.location.href='candidate-myprofile.php';
-          </script>
-        ";
-  } else {
-    echo "
-      <script>
-        alert('Somrthing went Wrong');
-        window.location.href='candidate-myprofile.php';
-      </script>
-    ";
+  try {
+    $result = mysqli_query($con, $query);
+    if ($result) {
+      echo "
+            <script>
+              alert('Data updated Sucessfully');
+              window.location.href='candidate-myprofile.php';
+            </script>
+          ";
+    }
+  } catch (Exception $e) {
+    echo "<script>
+        alert(`".$e->getMessage()."`);
+        window.history.back();          
+      </script>";
+    
   }
 }
 ?>

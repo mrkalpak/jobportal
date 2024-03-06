@@ -1,6 +1,26 @@
 <?php
 session_start();
 require('connection.php');
+$env = parse_ini_file('.env');
+if($_SERVER['SERVER_PORT']==443) {
+    $header = $env["HEADER_SERVER"];
+}
+else {
+    $header = $env["HEADER"];
+}
+// var_dump($_GET["jobCode"]);
+if(isset($_GET["C"])){
+    $urlId=$_GET['C'];
+    $jobUrl = "SELECT `id` FROM `admin_jobpost` WHERE `urlId`='".$urlId."'";
+    $result = mysqli_query($con, $jobUrl);
+    if(mysqli_num_rows($result) > 0){
+        // var_dump($result);
+        $row = mysqli_fetch_assoc($result);
+        // var_dump($row["id"]);
+        header("Location:".$header."card-candidate-applyform.php?job=".$row["id"]."");   
+    }
+}
+
 ?>
 
 

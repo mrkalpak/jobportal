@@ -1,5 +1,12 @@
 <?php
 session_start();
+$env = parse_ini_file('../.env');
+if($_SERVER['SERVER_PORT']==443) {
+    $header = $env["HEADER_SERVER"];
+}
+else {
+    $header = $env["HEADER"];
+}
 if (empty($_SESSION['username']) || ($_SESSION['type'] != 'admin')) {
   header("Location: ../index.php");
 }
@@ -458,6 +465,8 @@ if (isset($_POST['updateFair'])) {
     $jobResponsibility=$con -> real_escape_string($_POST['jobResponsibility']);
     $jobRequirement=$con -> real_escape_string($_POST['jobRequirement']);
     $applyTill=$_POST['applyTill'];
+    $shortCode = substr(md5(time()), 0, 6);
+    $url=$header.'?C='.$shortCode;
     
     if($CompanyName!='' && $jobDesignation!='' && $jobTime!='' && $jobLocation!=''  && $jobMaxSalary!='' && $jobMinSalary!='' && $jobQualification!='' && $jobMinExp!='' && $jobMaxExp!='' && $jobvacancy!='' && $jobGender!='' && $jobResponsibility!='' && $jobRequirement!=''){
       
@@ -479,7 +488,9 @@ if (isset($_POST['updateFair'])) {
           `description`,
           `responsibility`,
           `requirement`,
-          `applyTill`
+          `applyTill`,
+          `urlId`,
+          `url`
           )
         VALUES (
           '$CompanyName',
@@ -498,7 +509,9 @@ if (isset($_POST['updateFair'])) {
           '$jobDescription',
           '$jobResponsibility',
           '$jobRequirement',
-          '$applyTill'
+          '$applyTill',
+          '$shortCode',
+          '$url'
           )";
         try {
           $result = mysqli_query($con, $query);

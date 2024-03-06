@@ -28,13 +28,15 @@ require('connection.php');
         $jobTitle=$createUrl['jobTitle'];
         $string = preg_replace('/\s+/', '', $jobTitle);
         $url= $header."card-candidate-jobdetail.php?job=".$jobTd."";
-        //echo $url
+
+        $msgUrl=$createUrl['url'];
+        
+        
     }
     $phoneNumbersString = '';
 
     if (mysqli_num_rows($result)>0) {
         $row = mysqli_query($con,$query);
-
 
     } else {
         $NoData="No Data Found";
@@ -43,10 +45,12 @@ require('connection.php');
     $row2 = mysqli_query($con,$query2);
     while($row2 = $result2->fetch_assoc()) {
         $phoneNumbersString .= $row2['phone'].',';
+
     }
     if (!empty($phoneNumbersString)) {
         $phoneNumbersString = rtrim($phoneNumbersString, ',');
     }
+    // echo $row2['phone'];
 
 
 ?>
@@ -167,7 +171,7 @@ require('connection.php');
                                     
                                 </table>
                                 <?php
-                                if (mysqli_num_rows($result)>0) {
+                                if ($phoneNumbersString!='') {
                                     echo'<a>
                                         <button onclick="sendSms()"  class="btn btn-outline-custom  mt-2 me-2 " >Send SMS </button>
                                     </a>';
@@ -223,8 +227,7 @@ require('connection.php');
                     /* Read more about isConfirmed, isDenied below */
                     if (result.isConfirmed) {
                         $.ajax({
-                            
-                            url:"http://panel2.messagewale.com/http-api.php?username=JobFair&password=Jobfair@23&senderid=JOBCRD&route=1&number=<?php echo $phoneNumbersString?>&message=Dear Candidate For todays opening click on link https://shorturl.at/amQT0 Ref-NCP NASHIK Reg- - - Job Card and Job Fair India&templateid=1407168327034496963",
+                            url:"http://panel2.messagewale.com/http-api.php?username=JobFair&password=Jobfair@23&senderid=JOBCRD&route=1&number=<?php echo $phoneNumbersString?>&message=Dear Candidate For todays opening click on link <?=$msgUrl?> Ref-NCP NASHIK Reg- - - Job Card and Job Fair India&templateid=1407168327034496963",
                             type:'GET',
                             dataType: "jsonp",
                             // cors: true ,
