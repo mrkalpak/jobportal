@@ -1,4 +1,14 @@
 <?php
+session_start();
+if (empty($_SESSION['username']) || ($_SESSION['type'] != 'admin')) {
+    header("Location: ../index.php");
+}
+require('connection.php');
+$_SESSION['username'];
+
+
+?>
+<?php
 $env = parse_ini_file('../.env');
 if($_SERVER['SERVER_PORT']==443) {
     $header = $env["HEADER_SERVER"];
@@ -54,30 +64,24 @@ require('connection.php');
 
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
+<!-- Include Bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link href="img/logo/logo.png" rel="icon">
-    <title>Admin Dashboard</title>
-    <link href="css/ruang-admin.css" rel="stylesheet">
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="css/ruang-admin.min.css" rel="stylesheet">
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="./css/jobpost.css">
-
+<!-- Include DataTables CSS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="./css/jobpost.css">
 <style>
+    /* Increase the size of the DataTables entry size dropdown */
+    .dataTables_length select {
+        padding: 6px 16px;
+        /* You can adjust the padding to your desired size */
+        font-size: 14px;
+        /* You can adjust the font size to your desired size */
+    }
     a{
         text-decoration: none !important;
     }
 </style>
-
 </head>
 
 <body id="page-top">
@@ -114,12 +118,14 @@ require('connection.php');
 
 
                             <div class="row mx-auto my-4 table-responsive">
-                                <table class="" id="myTable">
-                                    <tr style="background-color: #4a0063; ">
-                                        <th>Job Title</th>
-                                        <th>Applications</th>
-                                        <th id="action_col">Action</th>
+                                <table class="table align-items-center table-flush table-hover" id="table-id">
+                                <thead class="thead-dark text-light ">
+                                                        <tr>
+                                        <th style="background-color: #4A0063;">Job Title</th>
+                                        <th style="background-color: #4A0063;">Applications</th>
+                                        <th style="background-color: #4A0063;" id="action_col">Action</th>
                                     </tr>
+                                    </thead>
                                     <?php
                                     // var_dump($createUrl['id'],$createUrl['jobTitle']);
 
@@ -167,6 +173,7 @@ require('connection.php');
 
                                     </tr>';
                                     }?>
+</tbody>
 
                                     
                                 </table>
@@ -199,6 +206,19 @@ require('connection.php');
                     </div>
         </div>
 
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Include DataTables JavaScript -->
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#table-id').DataTable({
+            searching: true
+        });
+    });
+</script>
+
         <!-- Scroll to top -->
 
 
@@ -207,8 +227,7 @@ require('connection.php');
         <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
         <script src="js/ruang-admin.min.js"></script>
         <script src="vendor/chart.js/Chart.min.js"></script>
-        <script src="js/demo/chart-area-demo.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="js/demo/chart-area-demo.js"></script><script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         
         <script>
                window.onload=function(){
