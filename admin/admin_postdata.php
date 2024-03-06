@@ -459,6 +459,7 @@ if (isset($_POST['updateFair'])) {
     $jobDescription=$con -> real_escape_string($_POST["jobDescription"]);
     $jobResponsibility=$con -> real_escape_string($_POST['jobResponsibility']);
     $jobRequirement=$con -> real_escape_string($_POST['jobRequirement']);
+    $createdDate=date("Y-m-d H:i:s");
     $applyTill=$_POST['applyTill'];
     $shortCode = substr(md5(time()), 0, 6);
     $url=$header.'?C='.$shortCode;
@@ -483,6 +484,7 @@ if (isset($_POST['updateFair'])) {
           `description`,
           `responsibility`,
           `requirement`,
+          `createdDate`,
           `applyTill`,
           `urlId`,
           `url`
@@ -504,6 +506,7 @@ if (isset($_POST['updateFair'])) {
           '$jobDescription',
           '$jobResponsibility',
           '$jobRequirement',
+          '$createdDate',
           '$applyTill',
           '$shortCode',
           '$url'

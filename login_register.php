@@ -14,9 +14,9 @@ if (isset($_POST['login'])) {
   $query = "SELECT * FROM `users_candidate` WHERE `email`='$_POST[email_username]' OR `username`='$_POST[email_username]'";
   $result = mysqli_query($con, $query);
 
-  echo "username";
+  // echo "username";
 
-  echo  $_POST['email_username'];
+  $_POST['email_username'];
 
   if ($result) {
     if (mysqli_num_rows($result) == 1) {
