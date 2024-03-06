@@ -16,9 +16,9 @@ WHERE job.jobid = '$jobid'";
 if ($result = mysqli_query($con, $query)) {
 
     $row = mysqli_fetch_assoc($result);
-    // echo $main_user;
-    // echo "<br>", $jobid;
-    // echo "<br>", $row['username'];
+    $main_user;
+    $jobid;
+    $row['username'];
 }
 ?>
 

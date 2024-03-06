@@ -27,14 +27,10 @@ if (isset($_POST['create_client'])) {
 
 
   $username = $_SESSION['username'];
-
-
-
-  echo "<br>", $name = $_POST['name'];
-
-  echo "<br>", $mobile = $_POST['mobile'];
-  echo "<br>", $email = $_POST['email'];
-  echo "<br>", $address = $_POST['address'];
+  $name = $_POST['name'];
+  $mobile = $_POST['mobile'];
+  $email = $_POST['email'];
+  $address = $_POST['address'];
 
 
 
@@ -84,12 +80,11 @@ if (isset($_POST['update_client'])) {
 
 
 
-  echo "<br>", $id = $_POST['client_id'];
-  echo "<br>", $name = $_POST['name'];
-
-  echo "<br>", $mobile = $_POST['mobile'];
-  echo "<br>", $email = $_POST['email'];
-  echo "<br>", $address = $_POST['address'];
+  $id = $_POST['client_id'];
+  $name = $_POST['name'];
+  $mobile = $_POST['mobile'];
+  $email = $_POST['email'];
+  $address = $_POST['address'];
 
 
 
@@ -139,10 +134,10 @@ if (isset($_POST['create_blog'])) {
 
 
 
-  echo "<br>", $name = $_POST['name'];
-  echo "<br>", $title = $_POST['title'];
-  echo "<br>", $description = $_POST['description'];
-  echo "<br>", $tag = $_POST['tag'];
+  $name = $_POST['name'];
+  $title = $_POST['title'];
+  $description = $_POST['description'];
+  $tag = $_POST['tag'];
 
 
 
@@ -217,9 +212,9 @@ if (isset($_POST['create_blog'])) {
 if (isset($_POST['generate_cards'])) {
 
   $username = $_SESSION['username'];
-  echo "<br>", $name = $_POST['client_name'];
-  echo "<br>", $count = $_POST['no_cards'];
-  echo "<br>", $prefix = $_POST['prefix'];
+   $name = $_POST['client_name'];
+   $count = $_POST['no_cards'];
+  $prefix = $_POST['prefix'];
   if ($_POST['e_date'] == 3) {
     $today = date('Y-m-d');
     $expiremonth = 3;
