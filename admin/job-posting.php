@@ -1,4 +1,14 @@
 <?php
+session_start();
+if (empty($_SESSION['username']) || ($_SESSION['type'] != 'admin')) {
+    header("Location: ../index.php");
+}
+require('connection.php');
+$_SESSION['username'];
+
+
+?>
+<?php
 $env = parse_ini_file('../.env');
 if($_SERVER['SERVER_PORT']==443) {
     $header = $env["HEADER_SERVER"];
