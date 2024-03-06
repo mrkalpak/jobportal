@@ -306,23 +306,22 @@ if (isset($_POST['apply_job'])) {
         $insert1 = "INSERT INTO `appliedjobs`(`jobid`, `username`, `companyusername`, `action`) VALUES ('$jobid','$candidate','$company',0)";
         $insert2 = "INSERT INTO $company (username, jobid, usertype, card, action) VALUES ('$candidate', '$jobid', 0, '$cardtype', 0)";
 
-
-        if (mysqli_query($con, $insert2) && mysqli_query($con, $insert1)) {
-
-            echo "
-               <script>
-                 alert('Sucessfully Applied to job ');
-                 window.location.href='job-details.php?id=$jobid';
-               </script>
-             ";
-        } else {
-
-            echo "
-               <script>
-                 alert('internal error');
-                 window.location.href='job-details.php?id=$jobid';
-               </script>
-             ";
+        try{
+            mysqli_query($con, $insert2) ;
+             mysqli_query($con, $insert1);
+             if (mysqli_query($con, $insert2) && mysqli_query($con, $insert1)) {
+                echo "
+                   <script>
+                     alert('Sucessfully Applied to job ');
+                     window.location.href='job-details.php?id=$jobid';
+                   </script>
+                 ";
+            }
+        }catch(Exception $e){
+            echo "<script>
+            alert(`".$e->getMessage()."`);
+            window.history.back();
+          </script>";
         }
     }
 }
