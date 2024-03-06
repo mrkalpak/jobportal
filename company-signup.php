@@ -57,7 +57,7 @@ if (isset($_POST['company_register'])) {
                         echo "
                     <script>
                       alert('$result_fetch[email] - E-mail already registered');
-                      window.location.href='company-signup.php';
+                      window.history.back();
                     </script>
                   ";
                     }
@@ -91,6 +91,14 @@ if (isset($_POST['company_register'])) {
                     }
                     $password2 = password_hash($password, PASSWORD_BCRYPT);
                     $query = "INSERT INTO `company`(`username`,`name`,`email`,`password`, `cin`, `gst`, `pancard`, `gstcertificate`,`coins`) VALUES('$username','$name','$mail','$password2','$cin','$gst','$Final_image_name1','$Final_image_name2','$coins')";
+                    try {
+                        //code...
+                    } catch (Exception $e) {
+                        echo "<script>
+                        alert(`".$e->getMessage()."`);
+                        window.history.back();
+                        </script>";
+                    }
                     if (mysqli_query($con, $query)) {
                         #if data inserted successfully
                         $query5 = "CREATE TABLE $username (
