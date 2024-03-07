@@ -204,7 +204,7 @@ $row1 = mysqli_num_rows($query1);
             <button type="submit" name="update_pass" class=" col-auto ms-3 my-3 btn custom-outline-color">Update Change</button>
         </div>
     </form>
-    <form action="" class="border border-1 px-5 mt-3">
+    <!-- <form action="" class="border border-1 px-5 mt-3">
 
         <h6 class="mt-4">Privacy & Security</h6>
         <div class=" my-2 justify-content-between">
@@ -233,7 +233,7 @@ $row1 = mysqli_num_rows($query1);
             </div>
         </div>
         <button class=" col-auto mb-3 btn  text-white mt-5" style="background-color: var(--primary);">Update Change</button>
-    </form>
+    </form> -->
 </div>
 </div>
 

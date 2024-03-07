@@ -51,7 +51,7 @@
 
                 // Check if the username starts with 'comp'
                 if (strpos($username, 'comp') === 0) { ?>
-                    <a href="./company-profile.php" class="btn btn-primary-outline me-3">
+                    <a href="./company-joblist.php" class="btn btn-primary-outline me-3">
                         <i class="bi bi-person"></i>
                         Dashboard!
                     </a>
@@ -59,7 +59,7 @@
 
 
                 } elseif (strpos($username, 'user') === 0) { ?>
-                    <a href="./candidate-myprofile.php" class="btn btn-primary-outline me-3">
+                    <a href="./candidate-dashboard.php" class="btn btn-primary-outline me-3">
                         <i class="bi bi-person"></i>
                         Dashboard
                     </a>
