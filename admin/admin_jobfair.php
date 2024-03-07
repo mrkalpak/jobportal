@@ -27,6 +27,11 @@
 
 ?>
 <link rel="stylesheet" href="./css/jobpost.css">
+<!-- Include Bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<!-- Include DataTables CSS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
 <style>
     .form-control {
         height: auto;
@@ -55,12 +60,14 @@
             </div>
         </div>
         <div class="row mx-auto my-4 table-responsive">
-            <table class="" id="myTable">
-                <tr style="background-color: #4a0063; ">
-                    <th>Fair Name</th>
-                    <th>Applications</th>
-                    <th id="action_col">Action</th>
+            <table class="table align-items-center table-flush table-hover" id="myTable">
+            <thead >    
+            <tr  style="background-color: #4a0063; ">
+                    <th class="text-white" style="background-color: #4A0063;">Fair Name</th>
+                    <th class="text-white" style="background-color: #4A0063;">Applications</th>
+                    <th class="text-white" style="background-color: #4A0063;" id="action_col">Action</th>
                 </tr>
+            </thead>
                 <?php
                 while($row = $result->fetch_assoc()) {
                     
@@ -119,8 +126,29 @@
 <!-- Footer -->
 </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+<!-- Include DataTables JavaScript -->
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#myTable').DataTable({
+            searching: true,
+            aaSorting: [[2, 'desc']],
+            pageLength: 5,
+            
+        });
+        });
+</script>
 
+<script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+        <script src="js/ruang-admin.min.js"></script>
+        <script src="vendor/chart.js/Chart.min.js"></script>
+        <script src="js/demo/chart-area-demo.js"></script><script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        
 <!-- create job fair mmodal -->
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
