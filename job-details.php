@@ -256,8 +256,8 @@ if (isset($_POST['save_job'])) {
 
             echo "
                <script>
-                 alert('Sucessfully Bookmark the job 1');
-                 window.location.href='job-details.php?id=$jobid';
+                 alert('Sucessfully Bookmark the job');
+                 window.location.href='candidate-bookmarkjobs.php';
                </script>
              ";
         } else {
@@ -311,12 +311,12 @@ if (isset($_POST['apply_job'])) {
             $dataResult2=mysqli_query($con, $insert1);
             echo"<script>
                     alert('Sucessfully Applied to job ');
-                    window.location.href='job-details.php?id=$jobid';
+                    window.location.href='candidate-dashboard.php';
                 </script>";
         }catch(Exception $e){
             echo"<script>
                     alert(`".$e->getMessage()."`);
-                    window.history.back();
+                    window.location.href='job-details.php?id=$jobid';
                 </script>";
         }
     }

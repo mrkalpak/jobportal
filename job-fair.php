@@ -44,13 +44,13 @@
             <h3 class="main-title">Get ready for the <span class="main-title-span">upcoming Job Fair </span></h3>
         </div>
         <div class="row my-2 mx-5">
-        <?php
-            if (mysqli_num_rows($result)<0) {
+            <?php
+                if (mysqli_num_rows($result)<0) {
 
-                echo '<h4 class="text-danger text-center">'.$NoData.'</h4>';
-            }
-        ?>
-        <?php
+                    echo '<h4 class="text-danger text-center">'.$NoData.'</h4>';
+                }
+            ?>
+            <?php
             while($row = $result->fetch_assoc()) {
                 // var_dump($row['fair_Organizer']);
                 echo '

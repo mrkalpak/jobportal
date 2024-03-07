@@ -58,7 +58,7 @@ $category = $_GET['category_id'];
                                   FROM jobs AS job 
                                   INNER JOIN company AS comp ON job.username = comp.username  
                                   WHERE job.category LIKE '%$category%' 
-                                  ORDER BY job.sdate 
+                                  ORDER BY job.sdate DESC
                                   ";
 
                     // Execute $query and process the results

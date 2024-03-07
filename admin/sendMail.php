@@ -22,6 +22,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $subject="Approval Mail";
         $body="Your Company Approved By Admin";
         $table='company';
+
     }elseif($action=='Reject'){
         $takeAction=2;
         $subject="Rejection Mail";
@@ -32,6 +33,40 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $subject="Job Approval Mail";
         $body="Your Company's Posted Job Approved By Admin";
         $table='jobs';
+        $jobcost = 50;
+
+        $query2 = "SELECT `coins` FROM `company` WHERE `company`.`username` = '$username'";
+        if ($result2 = mysqli_query($con, $query2)) {
+        $result_fetch2 = mysqli_fetch_assoc($result2);
+        $db_coins = $result_fetch2['coins'];
+
+        //Job Post Transaction History Code
+
+      function generateTransactionIdSecure() {
+        // Generate 16 bytes of random data
+        $bytes = random_bytes(16);
+        // Convert the binary data into hexadecimal representation
+        $transactionId = bin2hex($bytes);
+        return $transactionId;
+      }
+      $transactionId=generateTransactionIdSecure();
+      $currentbalance=$db_coins-$jobcost;
+      $transactionTime=date('Y-m-d H:i:s');
+      $purpose='Job Post';
+      $response='Success';
+      $date=date('Y-m-d');
+
+      $coinTransaction = "INSERT INTO `transaction_history`(`company_id`, `user_id`, `transaction_id`, `last_balance`, `current_balance`, `transaction_time`, `response`, `date`, `purpose`)
+      VALUES ('$username',NULL,'$transactionId','$db_coins','$currentbalance','$transactionTime','$response','$date','$purpose')";
+      //Job Post Transaction History Code End 
+      try{
+        $res = mysqli_query($con, $coinTransaction);
+      }catch(Exception $error){
+        echo $error->getMessage();
+      }
+      $query3 = "UPDATE `company` SET `coins` = $db_coins-$jobcost  WHERE `company`.`username` = '$username'";
+      $result2 = mysqli_query($con, $query3);
+    }
     }else{
         $takeAction=2;
         $subject="Job Rejection Mail";

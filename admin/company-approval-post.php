@@ -68,15 +68,15 @@ if ($result) {
                                             <h5 class="m-0 font-weight-bold " style="color: #F6B264;">Company List</h5>
                                         </div>
 
-                                        <div class="modal-content">
+                                        <div class="modal-content p-5">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalLabel">Company
                                                     Information:</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
-                                                </button>
+                                                </button> -->
                                             </div>
-                                            <div class="modal-body">
+                                            <div class="modal-body p-5">
                                                 <form>
                                                     <div class="row">
                                                         <div class="col-md-6" style="margin-bottom: 12px;">

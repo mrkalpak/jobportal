@@ -7,9 +7,19 @@
 <?php
     require('connection.php');
     $query = "SELECT * FROM job_fair";
+    $queryClient= "SELECT * FROM jobcard_client";
     $result = mysqli_query($con, $query);
+    $resultClient = mysqli_query($con, $queryClient);
+
     if (mysqli_num_rows($result)>0) {
         $row = mysqli_query($con,$query);
+    } else {
+        $NoData="No Data Found";
+    }
+
+    if (mysqli_num_rows($resultClient)>0) {
+        $clientData = mysqli_query($con,$queryClient);
+
     } else {
         $NoData="No Data Found";
     }
@@ -129,8 +139,19 @@
                         <input required type="text" class="form-control" name="fairName" id="Name" placeholder="Enter Name">
                     </div>
                     <div class="form-group">
-                        <label for="Name">Fair Organizer</label>
-                        <input required type="text" class="form-control" name="organizer" id="organizer" placeholder="Organizer Name">
+                    <label for="Name">Fair Organizer</label>
+                    <select value="" required type="text" class="form-control" name="organizer" id="organizer" placeholder="Organizer Name">
+                    <option selected value="">Select Client</option>
+                    <?php
+                    while($data = $resultClient->fetch_assoc()) {
+                        // var_dump($data["jobcard_client_name"]);
+                        echo '<option value="'.$data["jobcard_client_name"].'">'.$data["jobcard_client_name"].'</option>';
+                    }
+                    ?>
+                    
+                    </select>
+                        
+                        <!-- <input required type="text" class="form-control" name="organizer" id="organizer" placeholder="Organizer Name"> -->
                     </div>
                     <div class="form-group">
                         <label for="date">Date</label>

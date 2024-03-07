@@ -564,8 +564,25 @@ if (isset($_POST['companyupdate'])) {
   }
 
 
-
-  $result = mysqli_query($con, $query);
+  try {
+    $result = mysqli_query($con, $query);
+    if ($result) {
+      echo "
+            <script>
+              alert('Data updated Sucessfully');
+              window.location.href='candidate-myprofile.php';
+            </script>
+          ";
+    }
+  } catch (Exception $e) {
+    echo "<script>
+        alert(`".$e->getMessage()."`);
+        window.history.back();          
+      </script>";
+    
+  }
+  // $result = mysqli_query($con, $query);
+  
 
   $chkpopup = "SELECT * FROM `company`  WHERE `company`.`username` = '$username'";
 
@@ -587,13 +604,6 @@ if (isset($_POST['companyupdate'])) {
       </script>
     ";
     }
-  } else {
-    echo "
-      <script>
-        alert('Somrthing went Wrong');
-        window.location.href='company-profile.php';
-      </script>
-    ";
   }
 }
 ?>

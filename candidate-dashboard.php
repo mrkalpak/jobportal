@@ -158,7 +158,7 @@ if ($result4 = mysqli_query($con, $query4)) {
                             FROM appliedjobs AS appl 
                             INNER JOIN jobs AS job ON appl.jobid = job.jobid  
                             WHERE appl.username = '$main_user' 
-                            ORDER BY appl.applydate 
+                            ORDER BY appl.applydate DESC
                             LIMIT 6";
 
 

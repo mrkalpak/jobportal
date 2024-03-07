@@ -12,6 +12,7 @@ $query = "SELECT * FROM job_fair Where id=" . $last . "";
 $result = mysqli_query($con, $query);
 if ($result->num_rows > 0) {
     $row = mysqli_fetch_assoc($result);
+    
 } else {
     $NoData="No Data present";
 }
@@ -176,6 +177,7 @@ $jobCategory=['Developer','Engineer','Designer','Architecture'];
 </style>
 <!-- navbar  -->
 <?php include './navbar.php'; ?>
+
 <section class="paddingTB60 ">
     <div class="card shadow job-fair-card-details px-4 py-3">
 
@@ -199,6 +201,16 @@ $jobCategory=['Developer','Engineer','Designer','Architecture'];
             </div>
         </div>
         <div class=" p-5 ">
+        <?php
+            $row['fairDate'];
+            $today=date('Y-m-d');
+            // var_dump($today>$row['fairDate']);
+            if($today>$row['fairDate']){
+                echo "<div class='row d-flex justify-content-center text-danger h4'>
+                        Opp's Fair expired
+                     </div>";
+            }else{
+            ?>
             <form action="postdata.php" method="POST" enctype="multipart/form-data" class=" px-5" id="myForms">
                 <div class="row mt-3">
 
@@ -255,15 +267,30 @@ $jobCategory=['Developer','Engineer','Designer','Architecture'];
 
                 </div>
                 <div class="row">
+                    <?php
+                    $sql = "SELECT * FROM `category`";
+                    $result4 = $con->query($sql);
+                    ?>
                     <div class="mb-3 col">
                         <label for="linkedin" class="form-label">Serching Job As a</label>
                         <select name="jobType" required class="form-select" aria-label="Default select example">
                         <option>Search Job as</option>
                         <?php
-                            for($i=0;$i<count($jobCategory);$i++){
-                                echo '<option  value="'.$jobCategory[$i].'">'.$jobCategory[$i].'</option>';
+                            if ($result4->num_rows > 0) {
+
+                                while ($row = $result4->fetch_assoc()) {
+                                    $category_id = $row["category_id"];
+                                    $category_name = $row["category"];
+                            ?>
+                                    <option value="<?= $row["category"] ?>"><?= $row["category"] ?></option>
+
+                            <?php
+
+                                }
+                            } else {
+                                echo "No categories found.";
                             }
-                        ?>  
+                            ?>
                         </select>
 
                     </div>
@@ -283,7 +310,7 @@ $jobCategory=['Developer','Engineer','Designer','Architecture'];
                 <div class="row">
                     <div class="mb-3 col">
                         <label for="linkdin" class="form-label">Linkedin</label>
-                        <input required type="url" name="linkedInProfile" class="form-control" id="linkdin">
+                        <input  type="url" name="linkedInProfile" class="form-control" id="linkdin">
 
                     </div>
                     <div class="mb-3 col ">
@@ -300,11 +327,15 @@ $jobCategory=['Developer','Engineer','Designer','Architecture'];
                 <button type="submit" name="candidateData" class="btn py-2 px-3 mb-3 text-white btn-lg" style="background-color: var(--primary);" value="">Submit</button>
 
             </form>
+            <?php
+                }
+            ?>
         </div>
 
     </div>
 
 </section>
+
 <div class="modal" tabindex="-1" id="submitmodal">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">

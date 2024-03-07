@@ -61,39 +61,39 @@ if (isset($_POST['postjob'])) {
       $query = "INSERT INTO `jobs`(`username`, `compname`, `jobtitle`, `category`, `deadline`, `location2`, `banner`, `typeofjob`, `location`, `paytype`, `minsalary`, `maxsalary`, `education`, `minyr`, `maxyr`, `vacancy`, `gender`, `description`, `responsibility`, `requirements`, `active`)
       VALUES ('$username', '$companyname', '$jobtitle', '$category', '$deadline', '$location','$Final_image_name2', '$jobtype', '$joblocation', '$jobsalaytype', '$minsalary', '$maxsalary', '$education', '$minyr', '$maxyr', '$vacancy', '$gender', '$description', '$responsibility', '$requirements', 0)";
 
-      //Job Post Transaction History Code
+      // //Job Post Transaction History Code
 
-      function generateTransactionIdSecure() {
-        // Generate 16 bytes of random data
-        $bytes = random_bytes(16);
-        // Convert the binary data into hexadecimal representation
-        $transactionId = bin2hex($bytes);
-        return $transactionId;
-      }
-      $transactionId=generateTransactionIdSecure();
-      $currentbalance=$db_coins-$jobcost;
-      $transactionTime=date('Y-m-d H:i:s');
-      $purpose='Job Post';
-      $response='Success';
-      $date=date('Y-m-d');
+      // function generateTransactionIdSecure() {
+      //   // Generate 16 bytes of random data
+      //   $bytes = random_bytes(16);
+      //   // Convert the binary data into hexadecimal representation
+      //   $transactionId = bin2hex($bytes);
+      //   return $transactionId;
+      // }
+      // $transactionId=generateTransactionIdSecure();
+      // $currentbalance=$db_coins-$jobcost;
+      // $transactionTime=date('Y-m-d H:i:s');
+      // $purpose='Job Post';
+      // $response='Success';
+      // $date=date('Y-m-d');
 
-      $coinTransaction = "INSERT INTO `transaction_history`(`company_id`, `user_id`, `transaction_id`, `last_balance`, `current_balance`, `transaction_time`, `response`, `date`, `purpose`)
-      VALUES ('$username',NULL,'$transactionId','$db_coins','$currentbalance','$transactionTime','$response','$date','$purpose')";
-      //Job Post Transaction History Code End 
-      try{
-        $res = mysqli_query($con, $coinTransaction);
-      }catch(Exception $error){
-        echo $error->getMessage();
-      }
+      // $coinTransaction = "INSERT INTO `transaction_history`(`company_id`, `user_id`, `transaction_id`, `last_balance`, `current_balance`, `transaction_time`, `response`, `date`, `purpose`)
+      // VALUES ('$username',NULL,'$transactionId','$db_coins','$currentbalance','$transactionTime','$response','$date','$purpose')";
+      // //Job Post Transaction History Code End 
+      // try{
+      //   $res = mysqli_query($con, $coinTransaction);
+      // }catch(Exception $error){
+      //   echo $error->getMessage();
+      // }
+      // $query3 = "UPDATE `company` SET `coins` = $db_coins-$jobcost  WHERE `company`.`username` = '$username'";
+      // $result2 = mysqli_query($con, $query3);
       try{
         $result = mysqli_query($con, $query);
       }catch(Exception $e){
         echo $e->getMessage();
       }
-
       if ($result) {
-        $query3 = "UPDATE `company` SET `coins` = $db_coins-$jobcost  WHERE `company`.`username` = '$username'";
-        $result2 = mysqli_query($con, $query3);
+
         echo "
                  <script>
                    alert('Data updated Sucessfully');

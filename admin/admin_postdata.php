@@ -131,12 +131,9 @@ if (isset($_POST['create_blog'])) {
 
 
   $username = $_SESSION['username'];
-
-
-
   $name = $_POST['name'];
   $title = $_POST['title'];
-  $description = $_POST['description'];
+  $description = $con -> real_escape_string($_POST['description']);
   $tag = $_POST['tag'];
 
 
@@ -174,8 +171,7 @@ if (isset($_POST['create_blog'])) {
 
 
   $query = "INSERT INTO `blogs`(`blog_name`, `blog_title`, `blog_image`, `blog_description`, `blog_tags`, `other_image`)
-    VALUES ('$name', '$title', '$Final_image_name1', '$description', '$tag', '$Final_image_name2')
-    ";
+    VALUES ('$name', '$title', '$Final_image_name1', '$description', '$tag', '$Final_image_name2')";
 
 
 
@@ -192,7 +188,7 @@ if (isset($_POST['create_blog'])) {
   } else {
     echo "
              <script>
-               alert('Somrthing went Wrong');
+               alert('Something went Wrong');
                window.location.href='client-management.php';
              </script>
            ";
@@ -409,26 +405,23 @@ if (isset($_POST['updateFair'])) {
   $result = mysqli_query($con, $query);
   if ($result) {
     echo "
-                 <script>
-                   alert('Fair Updated Sucessfully');
-                   window.location.href='admin_jobfair.php';
-                 </script>
-               ";
+          <script>
+            alert('Fair Updated Sucessfully');
+            window.location.href='admin_jobfair.php';
+          </script>";
   } else {
-    echo "
-             <script>
-               alert('Somrthing went Wrong');
-               window.history.back();
-             </script>
-           ";
+    echo "<script>
+            alert('Somrthing went Wrong');
+            window.history.back();
+          </script>
+        ";
   }
   }else{
     echo "
     <script>
       alert('Please Fill the form Propely');
       window.history.back();
-    </script>
-  ";
+    </script>";
   }
 
 }
