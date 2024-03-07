@@ -248,8 +248,14 @@ require('connection.php');
                     }).then((result) => {
                     /* Read more about isConfirmed, isDenied below */
                     if (result.isConfirmed) {
+
                         $.ajax({
-                            url:"http://panel2.messagewale.com/http-api.php?username=JobFair&password=Jobfair@23&senderid=JOBCRD&route=1&number=<?php echo $phoneNumbersString?>&message=Dear Candidate For todays opening click on link <?=$msgUrl?> Ref-NCP NASHIK Reg- - - Job Card and Job Fair India&templateid=1407168327034496963",
+                            url: "http://tinyurl.com/api-create.php?url=" + '<?=$msgUrl?>',
+                            cache: false,
+                            success: function(data){
+                                // alert(data);
+                                $.ajax({
+                            url:"http://panel2.messagewale.com/http-api.php?username=JobFair&password=Jobfair@23&senderid=JOBCRD&route=1&number=<?php echo $phoneNumbersString?>&message=Dear Candidate For todays opening click on link "+data+" Ref-NCP NASHIK Reg- - - Job Card and Job Fair India&templateid=1407168327034496963",
                             type:'GET',
                             dataType: "jsonp",
                             // cors: true ,
@@ -269,6 +275,9 @@ require('connection.php');
                             }
                             
                         });
+                            }
+                        });
+                        
                         // Define the API URL
                     // const apiKey = '38384a6f62466169723734381707812329';
                     // const apiUrl = 'http://panel2.messagewale.com/http-jsonapi.php?&username=JobFair&password=Jobfair@23&senderid=JOBCRD&route=1&number=<?php echo $phoneNumbersString?>&message=Dear Candidate For todays opening click on link https://shorturl.at/koJO3 Ref-NCP NASHIK Reg- - - Job Card and Job Fair India&templateid=1407168327034496963';

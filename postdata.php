@@ -357,6 +357,9 @@ if(isset($_POST['cardCandidate'])){
   $fileName=$_FILES['cardCandidateResume']['name'];
   $linkedIn=NULL;
 
+  var_dump($_POST);
+  return;
+
   if(strlen($candiatename)>3 && preg_match("/^[a-zA-Z ]+$/", $candiatename)){
     // var_dump($birthdate);
     $pattern = "/^\d{4}-\d{2}-\d{2}$/";
