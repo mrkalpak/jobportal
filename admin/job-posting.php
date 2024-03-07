@@ -39,7 +39,7 @@ require('connection.php');
         $string = preg_replace('/\s+/', '', $jobTitle);
         $url= $header."card-candidate-jobdetail.php?job=".$jobTd."";
 
-        $msgUrl=$createUrl['url'];
+        // $msgUrl=$createUrl['url'];
         
         
     }
@@ -250,7 +250,7 @@ require('connection.php');
                     if (result.isConfirmed) {
 
                         $.ajax({
-                            url: "http://tinyurl.com/api-create.php?url=" + '<?=$msgUrl?>',
+                            url: "http://tinyurl.com/api-create.php?url=" + '<?=$url?>',
                             cache: false,
                             success: function(data){
                                 // alert(data);
