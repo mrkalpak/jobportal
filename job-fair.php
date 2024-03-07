@@ -23,7 +23,10 @@
     .main-title {
         font-size: x-large !important;
     }
-
+.card-img-top{
+    aspect-ratio: 16/9;
+    object-fit: contain;
+}
     @media (max-width: 767px) {
         .job-fair-card-details {
             width: 95%;

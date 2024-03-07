@@ -239,7 +239,7 @@ $jobCategory=['Developer','Engineer','Designer','Architecture'];
                 </div>
                 <div class="row">
                     <div class="mb-3 col">
-                        <label for="email" class="form-label">Emial*</label>
+                        <label for="email" class="form-label">Email*</label>
                         <input type="email" name="candidateEmail" class="form-control" id="email" required>
 
                     </div>

@@ -49,7 +49,7 @@
                                                 <div class="container py-4">
                                                     <div class="row d-flex justify-content-center align-items-center h-100">
                                                         <div class="col-12">
-                                                            <div class="card shadow-2-strong" style="background:#FFF8E5">
+                                                            <div class="card shadow-2-strong">
                                                                 <div class="card-body mx-md-4">
                                                                     <h3>Upload</h3>
                                                                     <form action="admin_postdata.php" method="POST" enctype="multipart/form-data">

@@ -54,7 +54,7 @@ if (isset($_GET['url'])) {
 
 
         <form>
-          <h6 class="mt-4">Your Link</h6>
+          <!-- <h6 class="mt-4">Your Link</h6> -->
 
           <div class="row">
             <div class="mb-3 col-md-6">
