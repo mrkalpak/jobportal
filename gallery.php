@@ -63,7 +63,7 @@ require('connection.php');
                 $category1 = $row1['video_category'];
             ?>
                 <div class="col-md-4  mb-4">
-                    <iframe width="450" height="260" src="admin/videos/.<?php echo $name1 ?>" allowfullscreen></iframe>
+                    <video width="450" height="260" src="admin/videos/.<?php echo $name1 ?>" controls></video>
                 </div>
 
             <?php }
