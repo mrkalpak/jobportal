@@ -6,7 +6,7 @@
 </nav>
 <?php
     require('connection.php');
-    $query = "SELECT * FROM job_fair";
+    $query = "SELECT * FROM job_fair ORDER BY id DESC";
     $queryClient= "SELECT * FROM jobcard_client";
     $result = mysqli_query($con, $query);
     $resultClient = mysqli_query($con, $queryClient);
@@ -187,3 +187,4 @@
 </div>
 
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+

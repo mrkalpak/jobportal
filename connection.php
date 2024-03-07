@@ -1,5 +1,4 @@
 <?php
-date_default_timezone_set("Asia/Calcutta");
 error_reporting(E_ALL); ini_set('display_errors', 1);
 $env = parse_ini_file('.env');
 // print_r($_SERVER['SERVER_PORT']);

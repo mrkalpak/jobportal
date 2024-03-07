@@ -130,6 +130,7 @@ require('connection.php');
                                     // var_dump($createUrl['id'],$createUrl['jobTitle']);
 
                                     while($row = $result->fetch_assoc()) {
+                                        // var_dump($row);
                                         $query4 = "SELECT jobId FROM cardcandidate WHERE jobId=".$row['id']."";
                                         $result4 = mysqli_query($con, $query4);
                                         // echo'<pre>';
@@ -154,8 +155,7 @@ require('connection.php');
                                         <td>
                                             '.$row['jobTitle'].' <span class="badge ms-2 badge-'.$badege.' rounded-pill  ">'.$fairStatus.'</span>
                                             <br>
-                                            <span style="color: #595959;">'.$row['workingFrom'].' | Posted On: '.$row['createdDate'].'</span> <br>
-
+                                            <span style="color: #595959;">'.$row['workingFrom'].' | Posted On: '.$row['createdDate'].' |</span > <span style="color: #595959;">'.$row['companyName'].'</span> <br>
                                         </td>
                                         <td>
                                         '.$result4->num_rows.'
@@ -214,7 +214,10 @@ require('connection.php');
 <script>
     $(document).ready(function() {
         $('#table-id').DataTable({
-            searching: true
+            searching: true,
+            aaSorting: [[2, 'desc']],
+            pageLength: 5,
+            
         });
     });
 </script>

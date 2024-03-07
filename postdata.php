@@ -2,6 +2,8 @@
 require('connection.php');
 session_start();
 // echo "im in post data";
+$env = parse_ini_file('.env');
+
 require('config.php');
 require('razorpay-php-2.9.0/Razorpay.php');
 use Razorpay\Api\Api;
@@ -414,7 +416,7 @@ if(isset($_POST['cardCandidate'])){
                   echo "
                     <script>
                       alert('Uploaded Sucessfully');
-                      window.location.href=`<?=$header;?>`;
+                      window.location.href=`$header`;
                     </script>";
                 } 
                 } catch(Exception $e) {
