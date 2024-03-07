@@ -71,7 +71,7 @@ if ($result) {
                                     <div class="container py-4">
                                         <div class="row d-flex justify-content-center align-items-center h-10">
                                             <div class="col-6">
-                                                <div class="card shadow-2-strong" style="background:#FFF8E5">
+                                                <div class="card shadow-2-strong" >
                                                     <div class="card-body mx-md-4">
 
                                                         <h3>Upload</h3>

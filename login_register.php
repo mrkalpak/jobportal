@@ -570,7 +570,7 @@ if (isset($_POST['companyupdate'])) {
       echo "
             <script>
               alert('Data updated Sucessfully');
-              window.location.href='candidate-myprofile.php';
+              window.location.href='popup.php';
             </script>
           ";
     }
