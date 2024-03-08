@@ -50,10 +50,13 @@
         <hr>
         <div class="row">
             <!-- Third Section -->
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <p class="copy-right">©Copyright 2023 <span>Jobfair India. All Rights Reserved</span></p>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4 text-center text-white">
+            A venture of tasmee industry
+            </div>
+            <div class="col-md-4">
                 <ul class="list-inline text-end social-media-icons">
                     <li class="list-inline-item">Follow Jobs : </li>
                     <li class="list-inline-item"><a target="_blank" href="https://www.facebook.com/profile.php?id=100089726761732&mibextid=LQQJ4d"><i class="bi bi-facebook"></i></a></li>
