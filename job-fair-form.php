@@ -12,14 +12,13 @@ $query = "SELECT * FROM job_fair Where id=" . $last . "";
 $result = mysqli_query($con, $query);
 if ($result->num_rows > 0) {
     $row = mysqli_fetch_assoc($result);
-    
 } else {
-    $NoData="No Data present";
+    $NoData = "No Data present";
 }
 
-                           
 
-$EducationData=[
+
+$EducationData = [
     '10th',
     '11th',
     '12th',
@@ -152,7 +151,7 @@ $EducationData=[
 
 
 
-$jobCategory=['Developer','Engineer','Designer','Architecture'];
+$jobCategory = ['Developer', 'Engineer', 'Designer', 'Architecture'];
 ?>
 
 <link rel="stylesheet" href="./assets/css/candiate-myprofile.css">
@@ -201,134 +200,156 @@ $jobCategory=['Developer','Engineer','Designer','Architecture'];
             </div>
         </div>
         <div class=" p-5 ">
-        <?php
+            <?php
             $row['fairDate'];
-            $today=date('Y-m-d');
+            $today = date('Y-m-d');
             // var_dump($today>$row['fairDate']);
-            if($today>$row['fairDate']){
+            if ($today > $row['fairDate']) {
                 echo "<div class='row d-flex justify-content-center text-danger h4'>
                         Opp's Fair expired
                      </div>";
-            }else{
+            } else {
             ?>
-            <form action="postdata.php" method="POST" enctype="multipart/form-data" class=" px-5" id="myForms">
-                <div class="row mt-3">
+                <form action="postdata.php" method="POST" enctype="multipart/form-data" class=" px-5" id="myForms">
+                    <div class="row mt-3">
 
-                    <div class="mb-3 col">
-                        <label for="candidateName" class="form-label">Name*</label>
-                        <input type="text" name="candidateName" class="form-control" id="candiatename" required>
+                        <div class="mb-3 col">
+                            <label for="candidateName" class="form-label">Name*</label>
+                            <input type="text" name="candidateName" class="form-control" id="candiatename" required>
 
+                        </div>
+                        <div class="mb-3 col">
+                            <label for="candiateAge" class="form-label">Birthdate*</label>
+                            <input type="date" name="candidateDOB" class="form-control" id="candiateAge" required>
+                        </div>
                     </div>
-                    <div class="mb-3 col">
-                        <label for="candiateAge" class="form-label">Birthdate*</label>
-                        <input type="date" name="candidateDOB" class="form-control" id="candiateAge" required>
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="mb-3 col">
-                        <label for="location" class="form-label">Current Location*</label>
-                        <input type="text" name="candiateLocation" class="form-control" id="location" required>
+                    <div class="row">
+                        <div class="mb-3 col">
+                            <label for="location" class="form-label">Current Location*</label>
+                            <input type="text" name="candiateLocation" class="form-control" id="location" required>
 
-                    </div>
-                    <div class="mb-3 col">
-                        <label for="c_no" class="form-label">Phone Number*</label>
-                        <input type="number" name="candidatePhone" class="form-control" id="c_no" required>
+                        </div>
+                        <div class="mb-3 col">
+                            <label for="c_no" class="form-label">Phone Number*</label>
+                            <input type="number" name="candidatePhone" class="form-control" id="c_no" required>
 
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="mb-3 col">
-                        <label for="email" class="form-label">Email*</label>
-                        <input type="email" name="candidateEmail" class="form-control" id="email" required>
+                    <div class="row">
+                        <div class="mb-3 col">
+                            <label for="email" class="form-label">Email*</label>
+                            <input type="email" name="candidateEmail" class="form-control" id="email" required>
 
-                    </div>
-                    <!-- <div class="mb-3 col">
+                        </div>
+                        <!-- <div class="mb-3 col">
                                 <label for="weburl" class="form-label">Website Link*</label>
                                 <input type="text" class="form-control" id="weburl">
 
                             </div> -->
-                    <div class="mb-3 col">
-                        <label for="cu-job-place" class="form-label">Current Job Place(Optional)</label>
-                        <input type="text" name="candidateCurrentJobLocation" class="form-control" id="cu-job-place">
+                        <div class="mb-3  col-md-6">
+                            <label for="selectexprience" class="form-label">Exprience/Fresher*</label>
+                            <select class="form-select" onchange="handleexprience(this.value)" id="selectexprience" aria-label="Default select example">
+                                <option selected>Select Exprience/Fresher</option>
+                                <option value="Fresher">Fresher</option>
+                                <option value="Exprienced">Exprienced</option>
+                            </select>
+                        </div>
+                        <div id="expriencehide" style="display: none;" class="row">
+
+                            <div class="mb-3  col-md-6">
+                                <label for="exprience" class="form-label">Exprience in years*</label>
+                                <input type="Number" min="1" max="100" value="" placeholder="In years" class="form-control" id="exprience" name="exprience">
+                            </div>
+
+                            <div class="mb-3  col-md-6">
+                                <label for="cu-job-place" class="form-label">Current Job Place(Optional)</label>
+                                <input type="text" value="" class="form-control" id="cu-job-place" name="currentjob">
+                            </div>
+                            <div class="mb-3  col-md-6">
+                                <label for="designation" class="form-label">Designation(Optional)</label>
+                                <input type="text" value="" class="form-control" id="designation" name="designation">
+                            </div>
+
+                        </div>
 
                     </div>
-                </div>
-                <div class="row">
-                    <div class="mb-3 col">
-                        <label for="designation" class="form-label">Designation(Optional)</label>
-                        <input type="text" name="candidateDesignation" class="form-control" id="designation">
-
-                    </div>
-                    <div class="mb-3 col">
-                        <label for="exprience" class="form-label">Exprience*</label>
-                        <input type="Number" name="exp" value="" min="0" max="99" required placeholder="In years" class="form-control" id="exprience" name="candidateExprience">
-                    </div>
-
-                </div>
-                <div class="row">
-                    <?php
-                    $sql = "SELECT * FROM `category`";
-                    $result4 = $con->query($sql);
-                    ?>
-                    <div class="mb-3 col">
-                        <label for="linkedin" class="form-label">Serching Job As a</label>
-                        <select name="jobType" required class="form-select" aria-label="Default select example">
-                        <option>Search Job as</option>
+                    <div class="row">
                         <?php
-                            if ($result4->num_rows > 0) {
+                        $sql = "SELECT * FROM `category`";
+                        $result4 = $con->query($sql);
+                        ?>
+                        <div class="mb-3  col-md-6">
+                            <label for="linkedin" class="form-label">Serching Job As a</label>
+                            <select name="jobType" required onchange="handlesearchjob(this.value)" class="form-select" aria-label="Default select example">
+                                <option>Search Job as</option>
+                                <?php
+                                if ($result4->num_rows > 0) {
 
-                                while ($row = $result4->fetch_assoc()) {
-                                    $category_id = $row["category_id"];
-                                    $category_name = $row["category"];
-                            ?>
-                                    <option value="<?= $row["category"] ?>"><?= $row["category"] ?></option>
+                                    while ($row = $result4->fetch_assoc()) {
+                                        $category_id = $row["category_id"];
+                                        $category_name = $row["category"];
+                                ?>
+                                        <option value="<?= $row["category"] ?>"><?= $row["category"] ?></option>
 
-                            <?php
+                                <?php
 
+                                    }
+                                } else {
+                                    echo "No categories found.";
                                 }
-                            } else {
-                                echo "No categories found.";
-                            }
-                            ?>
-                        </select>
+                                ?>
+                                <option value="Other">Other</option>
+                            </select>
 
+                        </div>
+                        <div id="otherseracingjob" style="display: none;" class="mb-3  col-md-6">
+
+                            <label for="otherseracingjob1" class="form-label">Other Serching Job As a*</label>
+                            <input type="text" value="" class="form-control" id="otherseracingjob1" name="otherseracingjob">
+
+                        </div>
+                        <div class="mb-3  col-md-6">
+                            <label for="qualification" class="form-label">Qualification*</label>
+                            <select name="qualification" required onchange="handlequalification(this.value)" class="form-select" id="qualification" aria-label="Default select example">
+                                <Option value="">Select Education</Option>
+                                <?php
+                                for ($i = 0; $i < count($EducationData); $i++) {
+                                    echo '<option  value="' . $EducationData[$i] . '">' . $EducationData[$i] . '</option>';
+                                }
+                                ?>
+                            </select>
+
+                        </div>
+                        <div id="otherqualification" style="display: none;" class="mb-3  col-md-6">
+
+                            <label for="otherqualification1" class="form-label">Other Qualification*</label>
+                            <input type="text" value="" class="form-control" id="otherqualification1" name="otherqualification">
+
+                        </div>
                     </div>
-                    <div class="mb-3 col">
-                        <label for="qualification" class="form-label">Qualification*</label>
-                        <select name="qualification" required class="form-select" id="qualification" aria-label="Default select example">
-                        <Option value="">Select Education</Option>
-                        <?php
-                            for($i=0;$i<count($EducationData);$i++){
-                                echo '<option  value="'.$EducationData[$i].'">'.$EducationData[$i].'</option>';
-                            }
-                        ?>  
-                        </select>
+                    <div class="row">
+                        <div class="mb-3 col">
+                            <label for="linkdin" class="form-label">Linkedin</label>
+                            <input type="url" name="linkedInProfile" class="form-control" id="linkdin">
 
+                        </div>
+                        <div class="mb-3 col ">
+                            <label for="formFile" class="form-label">Upload Resume</label>
+                            <input name="candidateResume" class="form-control" required type="file" id="formFile" accept="application/pdf">
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="mb-3 col">
-                        <label for="linkdin" class="form-label">Linkedin</label>
-                        <input  type="url" name="linkedInProfile" class="form-control" id="linkdin">
 
+                    <div class="mb-3">
+                        <label for="shortdesc" class="form-label">Describe Yourself</label>
+                        <textarea name="discription" class="form-control" required id="shortdesc" rows="5"></textarea>
+                        <input type="hidden" name="fairId" value="<?php echo $last ?>">
                     </div>
-                    <div class="mb-3 col ">
-                        <label for="formFile" class="form-label">Upload Resume</label>
-                        <input name="candidateResume" class="form-control" required type="file" id="formFile" accept="application/pdf">
-                    </div>
-                </div>
+                    <button type="submit" name="candidateData" class="btn py-2 px-3 mb-3 text-white btn-lg" style="background-color: var(--primary);" value="">Submit</button>
 
-                <div class="mb-3">
-                    <label for="shortdesc" class="form-label">Describe Yourself</label>
-                    <textarea name="discription" class="form-control" required id="shortdesc" rows="5"></textarea>
-                    <input type="hidden" name="fairId" value="<?php echo $last ?>">
-                </div>
-                <button type="submit" name="candidateData" class="btn py-2 px-3 mb-3 text-white btn-lg" style="background-color: var(--primary);" value="">Submit</button>
-
-            </form>
+                </form>
             <?php
-                }
+            }
             ?>
         </div>
 
@@ -367,7 +388,34 @@ $jobCategory=['Developer','Engineer','Designer','Architecture'];
 <!-- footer -->
 <?php include './footer.php'; ?>
 
+<script>
+    function handleexprience(value) {
+        if (value === "Fresher") {
+            document.getElementById("expriencehide").style.display = "none";
+        } else {
+            document.getElementById("expriencehide").style.display = "flex";
 
+        }
+    }
+
+    function handlesearchjob(value) {
+        if (value === "Other") {
+            document.getElementById("otherseracingjob").style.display = "block";
+        } else {
+            document.getElementById("otherseracingjob").style.display = "none";
+
+        }
+    }
+
+    function handlequalification(value) {
+        if (value === "Other") {
+            document.getElementById("otherqualification").style.display = "block";
+        } else {
+            document.getElementById("otherqualification").style.display = "none";
+
+        }
+    }
+</script>
 <!-- Plugin js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
 <script src="assets/js/our-trusted-company.js"></script>

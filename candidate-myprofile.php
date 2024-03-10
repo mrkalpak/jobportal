@@ -96,20 +96,31 @@ $username = $_SESSION['username'];
                             <label for="email" class="form-label">Email*</label>
                             <input type="email" class="form-control" value="<?= $result_fetch1['email'] ?>" id="email" name="email" disabled>
                         </div>
-                        <div class="mb-3  col-md-6">
-                            <label for="cu-job-place" class="form-label">Current Job Place(Optional)</label>
-                            <input type="text" value="<?= $result_fetch1['currentjob'] ?>" class="form-control" id="cu-job-place" name="currentjob">
-                        </div>
-                    </div>
 
-                    <div class="row">
                         <div class="mb-3  col-md-6">
-                            <label for="designation" class="form-label">Designation(Optional)</label>
-                            <input type="text" value="<?= $result_fetch1['designation'] ?>" class="form-control" id="designation" name="designation">
+                            <label for="selectexprience" class="form-label">Exprience/Fresher*</label>
+                            <select class="form-select" onchange="handleexprience(this.value)" id="selectexprience" aria-label="Default select example">
+                                <option selected>Select Exprience/Fresher</option>
+                                <option value="Fresher">Fresher</option>
+                                <option value="Exprienced">Exprienced</option>
+                            </select>
                         </div>
-                        <div class="mb-3  col-md-6">
-                            <label for="exprience" class="form-label">Exprience*</label>
-                            <input type="Number" min="0" max="100" value="<?= $result_fetch1['experience_level'] ?>" placeholder="In years" class="form-control" id="exprience" name="exprience">
+                        <div id="expriencehide" style="display: none;" class="row">
+
+                            <div class="mb-3  col-md-6">
+                                <label for="exprience" class="form-label">Exprience in years*</label>
+                                <input type="Number" min="1" max="100" value="<?= $result_fetch1['experience_level'] ?>" placeholder="In years" class="form-control" id="exprience" name="exprience">
+                            </div>
+
+                            <div class="mb-3  col-md-6">
+                                <label for="cu-job-place" class="form-label">Current Job Place(Optional)</label>
+                                <input type="text" value="<?= $result_fetch1['currentjob'] ?>" class="form-control" id="cu-job-place" name="currentjob">
+                            </div>
+                            <div class="mb-3  col-md-6">
+                                <label for="designation" class="form-label">Designation(Optional)</label>
+                                <input type="text" value="<?= $result_fetch1['designation'] ?>" class="form-control" id="designation" name="designation">
+                            </div>
+
                         </div>
 
                     </div>
@@ -121,7 +132,7 @@ $username = $_SESSION['username'];
                         <div class="mb-3  col-md-6">
                             <label for="linkedin" class="form-label">Serching Job As a</label>
                             <input type="text" value="<?= $result_fetch1['category'] ?>" class="form-control" id="designation" name="category1" hidden>
-                            <select value="<?= $result_fetch1['category'] ?>" class="form-select" name="category" aria-label="Default select example">
+                            <select value="<?= $result_fetch1['category'] ?>" onchange="handlesearchjob(this.value)" class="form-select" name="category" aria-label="Default select example">
                                 <option selected value=""><?= $result_fetch1['category']; ?></option>
                                 <?php
                                 if ($result4->num_rows > 0) {
@@ -139,15 +150,22 @@ $username = $_SESSION['username'];
                                     echo "No categories found.";
                                 }
                                 ?>
+                                <option value="Other">Other</option>
 
 
                             </select>
 
                         </div>
+                        <div id="otherseracingjob" style="display: none;" class="mb-3  col-md-6">
+
+                            <label for="otherseracingjob1" class="form-label">Other Serching Job As a*</label>
+                            <input type="text" value="" class="form-control" id="otherseracingjob1" name="otherseracingjob">
+
+                        </div>
                         <div class="mb-3  col-md-6">
                             <label for="linkedin" class="form-label">Qualification*</label>
                             <input type="text" value="<?= $result_fetch1['qualification'] ?>" class="form-control" id="designation" name="qualification1" hidden>
-                            <select value="<?= $result_fetch1['qualification'] ?>" class="form-select" aria-label="Default select example" name="qualification">
+                            <select value="<?= $result_fetch1['qualification'] ?>" onchange="handlequalification(this.value)" class="form-select" aria-label="Default select example" name="qualification">
 
                                 <option selected value=""><?= $result_fetch1['qualification']; ?></option>
 
@@ -281,6 +299,12 @@ $username = $_SESSION['username'];
                                 <option value="Other">Other</option>
                             </select>
                         </div>
+                        <div id="otherqualification" style="display: none;" class="mb-3  col-md-6">
+
+                            <label for="otherqualification1" class="form-label">Other Qualification*</label>
+                            <input type="text" value="" class="form-control" id="otherqualification1" name="otherqualification">
+
+                        </div>
 
                     </div>
 
@@ -328,7 +352,33 @@ $username = $_SESSION['username'];
 </section>
 <!-- footer -->
 <?php include './footer.php'; ?>
+<script>
+    function handleexprience(value) {
+        if (value === "Fresher") {
+            document.getElementById("expriencehide").style.display = "none";
+        } else {
+            document.getElementById("expriencehide").style.display = "flex";
 
+        }
+    }
+
+    function handlesearchjob(value) {
+        if (value === "Other") {
+            document.getElementById("otherseracingjob").style.display = "block";
+        } else {
+            document.getElementById("otherseracingjob").style.display = "none";
+
+        }
+    }
+    function handlequalification(value) {
+        if (value === "Other") {
+            document.getElementById("otherqualification").style.display = "block";
+        } else {
+            document.getElementById("otherqualification").style.display = "none";
+
+        }
+    }
+</script>
 <script src="./assets/js/candidate-sidenavbar.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 <script src="assets/js/job-details.js"></script>
