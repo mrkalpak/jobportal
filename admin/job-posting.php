@@ -39,7 +39,7 @@ require('connection.php');
         $string = preg_replace('/\s+/', '', $jobTitle);
         $url= $header."card-candidate-jobdetail.php?job=".$jobTd."";
 
-        // $msgUrl=$createUrl['url'];
+        $msgUrl=$createUrl['url'];
         
         
     }
@@ -248,35 +248,43 @@ require('connection.php');
                     }).then((result) => {
                     /* Read more about isConfirmed, isDenied below */
                     if (result.isConfirmed) {
+                        // N6C40NpyJ1ejZCyNmM5eYLWL6c6TIDDJgLuzjFd2ofAKNbZfa8qIJX9m3xos
+                        // $.ajax({
+                        //     type:'POST',
+                        //     dataType: "jsonp",
+                        //     contentType:'application/json; charset=utf-8;',
+                        //     headers: {
+                        //         "Access-Control-Allow-Origin": "*",
+                        //     },
+                        //     url: "https://api.tinyurl.com/create",
+                        //     cache: false,
+                        //     success: function(data){
+                        //         console.log(data);
 
-                        $.ajax({
-                            url: "http://tinyurl.com/api-create.php?url=" + '<?=$url?>',
-                            cache: false,
-                            success: function(data){
-                                // alert(data);
+
                                 $.ajax({
-                            url:"http://panel2.messagewale.com/http-api.php?username=JobFair&password=Jobfair@23&senderid=JOBCRD&route=1&number=<?php echo $phoneNumbersString?>&message=Dear Candidate For todays opening click on link "+data+" Ref-NCP NASHIK Reg- - - Job Card and Job Fair India&templateid=1407168327034496963",
-                            type:'GET',
-                            dataType: "jsonp",
-                            // cors: true ,
-                            contentType:'application/json; charset=utf-8;',
-                            // secure: true,
-                            headers: {
-                                "Access-Control-Allow-Origin": "*",
-                            },
-                            success: function (data, status, xhr) {
-                                console.log('data: ', data);
-                            },
-                            error: function (xhr,textStatus,error) {
-                                location.reload()  
-                                console.log(xhr);
-                                console.log(error);
+                                    url:"http://panel2.messagewale.com/http-api.php?username=JobFair&password=Jobfair@23&senderid=JOBCRD&route=1&number=<?php echo $phoneNumbersString?>&message=Dear Candidate For todays opening click on link <?=$msgUrl?> Ref-NCP NASHIK Reg- - - Job Card and Job Fair India&templateid=1407168327034496963",
+                                    type:'GET',
+                                    dataType: "jsonp",
+                                    // cors: true ,
+                                    contentType:'application/json; charset=utf-8;',
+                                    // secure: true,
+                                    headers: {
+                                        "Access-Control-Allow-Origin": "*",
+                                    },
+                                    success: function (data, status, xhr) {
+                                        console.log('data: ', data);
+                                    },
+                                    error: function (xhr,textStatus,error) {
+                                        location.reload()  
+                                        console.log(xhr);
+                                        console.log(error);
 
-                            }
+                                    }
                             
-                        });
-                            }
-                        });
+                                });
+                        //     }
+                        // });
                         
                         // Define the API URL
                     // const apiKey = '38384a6f62466169723734381707812329';

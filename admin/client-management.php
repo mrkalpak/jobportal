@@ -209,7 +209,7 @@ $_SESSION['username'];
                                                 <tbody>
                                                     <?php
 
-                                                    $query = "SELECT * FROM `jobcard_client` ";
+                                                    $query = "SELECT * FROM `jobcard_client` ORDER BY `client_id` DESC";
 
                                                     // Execute $query and process the results
 
@@ -312,7 +312,9 @@ $_SESSION['username'];
     <script>
         $(document).ready(function() {
             $('#table-id').DataTable({
-                searching: true
+                searching: true;
+                aaSorting: [[2, 'desc']],
+                pageLength: 5,
             });
         });
     </script>
